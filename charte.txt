@@ -1,0 +1,113 @@
+〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰
+
+FRONT
+
+    Houda
+        -  home => css ok
+        - a propos => css ok - rajouter grille
+        - tuto => css ok - tuto à refaire pour le nouveau site
+        - login/signup
+        - communauté
+            - cpops => css ok
+            - toutes les capsules => css ok
+        - contact => supprimée
+        - upload
+        - profil
+
+    Mila
+        - onearticle => ok - nav secondaire "notes et commentaires" à activer côté dev d'abord
+        - les territoires => css ok => ajax pour le tri
+        - views-parcours
+        - territoire =>  css ok => ajax pour le tri
+        - catégories => à supprimer
+
+
+〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰ 〰️ ➰
+
+🔱🔱 HOME 🔱🔱
+
+	🐾 NAV HEADER 🐾
+
+	font-family: "Permanent Marker", cursive;
+	font-size: 2rem;
+	background-color: #B3D342; 
+
+	🐾 HEADER 🐾
+
+	h1{
+	    font-family: "Permanent Marker", cursive;
+	    font-size: 4.8rem;
+	    color: #ee5249;
+	    line-height: 1.2;
+	    text-align: center;
+	    background-color: #909B66;
+	}
+
+
+🔱🔱 FOOTER 🔱🔱
+
+- toutes les pages : 
+	background opaque
+	photo grafiti tortue en parallax
+
+	boutons {
+		background-color: #ee5249;
+  		color: white;
+	}
+
+	boutons:hover {
+		background-color: #b3d342;
+		color: #ee5249;
+	}
+
+	titres des rubriques en h4{
+		border: 1px dashed #ee5249;
+		padding: 15px;
+		color: #fff;
+		margin-bottom: 20px;
+		font-family: "Permanent Marker", cursive;
+		font-size: 2rem !important;
+		font-weight: lighter !important;
+	}
+
+	- mini footer bottom :
+		-> fond opaque plus foncé (transparence sur la tortue aussi)
+		-> <p>Site réalisé par LePoleS</p>
+		-> à droite logos Facebook & Twitter
+
+		footer__bottom {
+		    background-color: #251313;
+		    opacity: 0.8;
+		}
+
+/*Style du bouton je participe dans le footer*/
+.bouton_1 {
+  width: 115px;
+  height: 45px;
+  padding: 10px;
+  border-radius: 40px;
+  border: 1px solid;
+  overflow: hidden;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  margin: auto;
+}
+
+.bouton_1:hover {
+  border: 1px solid #ee5249;
+}
+
+.texteduboutton_1 {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+
+.texteduboutton_1:hover {
+  color: #ee5249;
+}
+
+/*FIN Style du bouton je participe dans le footer*/

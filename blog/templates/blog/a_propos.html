@@ -1,0 +1,255 @@
+{% extends 'base.html' %} {% block content %} {%load static%}
+<link rel="stylesheet" href="../..{%static 'css/style.css'%}" />
+<style>
+	h1, #titreHome{
+		text-shadow: 2px 2px 2px #ee5249;
+		color: antiquewhite !important;
+	}
+	/*button{*/
+		/*font-size: small !important;*/
+	/*}*/
+	@media(max-width: 767px){
+		.header-page__category-title{
+			display: none !important;
+		}
+		.filtre2{
+			height: 21vh;
+		}
+		.col-md-12 .col-lg-5 .order-md-1 .order-lg-12{
+		#map{
+			max-width: 540px;
+		}
+		footer > h5{
+			font-size: initial;
+		}
+	}
+
+	@media(min-width: 768px){
+		.header-page__category-title{
+			display: none;
+		}
+		h5:not(.all_territoires){
+			height: 10vh;
+		}
+		footer > h5{
+			font-size: x-small !important;
+		}
+	}
+	@media(min-width: 992px){
+		.header-page__category-title{
+			display: initial;
+		}
+		.col-lg-9{
+			font-size: smaller;
+		}
+		#good_date, #territoire{
+			font-size: xx-small;
+		}
+		.navbar.navbar-expand-lg.navbar-light.bg-light a {
+			font-size: x-small;
+		}
+		footer > h5{
+			font-size: initial;
+		}
+	}
+	@media(min-width: 1500px){
+		.navbar.navbar-expand-lg.navbar-light.bg-light a {
+			font-size: initial;
+		}
+	}
+</style>
+<div class="container mt-5" style="background: rgba(64, 53, 44, 0.3); border-radius: 3px;">
+	<div class="row">
+		<div class="col">
+			<h1 class="display-5 text-center mt-3">Commons Pop, qu'est ce que c'est ?</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4 col-6 my-3">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal01" >
+				<i class="fas fa-plus" ><span class="ml-3">Pour qui ?</span></i>
+			</button>
+		</div>
+		<div class="col-lg-4 col-6 my-3">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal03">
+				<i class="fas fa-plus mr-1" ><span class="ml-3">Parcours</span> </i>
+			</button>
+		</div>
+		<div class="col-lg-4 col-6 my-3">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal05">
+				<i class="fas fa-plus mr-1" ><span class="ml-3">Par qui ?</span></i>
+			</button>
+		</div>
+	<!--</div>-->
+	<!--<div class="row">-->
+		<div class="col-lg-4 col-6 my-3">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal02">
+				<i class="fas fa-plus mr-1" > <span class="ml-3">Commons Pop</span> </i>
+			</button>
+		</div>
+
+		<div class="col-lg-4 col-6 my-3">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal04">
+				<i class="fas fa-plus mr-1" ><span class="ml-3">Les objectifs</span></i>
+			</button>
+		</div>
+
+		<div class="col-lg-4 col-6 my-3">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal06">
+				<i class="fas fa-plus mr-1" ><span class="ml-3">Comment ça marche ?</span></i>
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal01" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">Pour qui? </h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Toute personne qui souhaite s’exprimer sur ces territoires peut utiliser la plateforme en ouvrant un compte utilisateur, en postant un 					contenu (un texte, une vidéo, une photographie, un enregistrement audio) sur un lieu précis.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="exampleModal02" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">Commons Pop</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Commonspop est une plateforme collaborative, conçue comme un outil de partage autour des villes et des quartiers populaires. La plateforme 					a été développée pour être simple d’utilisation et intuitive pour que chacun puisse s’en emparer et poster des contenus. Pour en savoir 					plus sur le fonctionnement de la plateforme et son utilisation, voir la charte éditoriale (lien) et le Tutoriel.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="exampleModal03" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">Parcours</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Il est également possible de créer des « parcours » en associant différents lieux et donc différents contenus.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="exampleModal04" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">Les objectifs</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Avec Commonspop, l’objectif est de dépasser les analyses homogénéisantes, stigmatisantes ou au contraire naïves qui sont le plus souvent données des villes et quartiers populaires. Elle a en effet été développée dans le cadre d’un projet de recherche participative intitulé Pop-Part – « Les quartiers populaires au prisme de la jeunesse » initié en 2017 dans 10 villes du Grand Paris (Paris, Suresnes, Saint-Denis, Aubervilliers, Pantin, Villeneuve-la-Garenne, Corbeil-Essonnes, Nanterre, Clichy-sous-Bois, Vert-Saint-Denis). Au cours d’ateliers animés par des chercheurs et des animateurs du champ de la jeunesse, des groupes de jeunes ont construit un discours sur leur ville ou sur leur quartier qu’ils ont donné à voir dans des parcours filmés. Chaque parcours filmé comprend entre 5 et 15 capsules, écrites et réalisées par les jeunes. D’une durée maximale de deux minutes, elles sont centrées sur un lieu et une thématique dont ont souhaité parler les jeunes.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+			</div>
+		</div>
+	</div>
+</div><div class="modal fade" id="exampleModal05" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">Par qui?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Commonspop a été développée par le PoleS avec la contribution de l’équipe de recherche du projet Pop-Part et de ses partenaires. Elle a notamment bénéficié du concours de l’Agence nationale de la recherche (France) et du Conseil de recherches en sciences humaines (Canada) dans le cadre du projet Tryspaces.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+			</div>
+		</div>
+	</div>
+</div><div class="modal fade" id="exampleModal06" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLongTitle">Comment ça marche? </h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p><a href="#">Tutoriel cliquez ici</a></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="container container-fluid">
+	<div class="row">
+		<div class="col">
+			<h2 class="display-5 text-center my-3" id="titreHome">Nos partenaires</h2>
+			<div class="container">
+				<div class="row">
+					<div class="col-4">
+						<a href="https://www.parisnanterre.fr/" target="_blank"><img src="{%static 'img/Universite_nanterre_logo.png'%}" class="img-fluid rounded mx-auto d-block" alt="Logo Université nanterre"></a>
+						<p class="text-center mt-3">Centre de recherche en éducation et formation (CREF)<a href="https://www.parisnanterre.fr/" target="_blank"><br>site internet</a></p>
+					</div>
+					<div class="col-4">
+						<a href="http://injep.fr/" target="_blank"><img src="{%static 'img/logo-injep-2017.png'%}"   class="img-fluid rounded mx-auto d-block"  alt="Logo injep"></a>
+						<p class="text-center mt-3">Institution National de la Jeunesse et de l’Éducation Populaire<a href="http://injep.fr/" target="_blank"><br>site internet</a></p>
+					</div>
+					<div class="col-4">
+						<a href="http://www.lavue.cnrs.fr/" target="_blank"><img src="{%static 'img/logo-lavue.png'%}"  class="img-fluid rounded mx-auto d-block" alt="Logo lavue"></a>
+						<p class="text-center mt-3">Laboratoire Architecture Ville Urbanisme Environnement (LAVUE), UMR CNRS 7218<a href="http://www.lavue.cnrs.fr/" target="_blank"><br>site internet</a></p>
+					</div>
+				</div>
+
+
+					<div class="row">
+						<div class="col-4 offset-2 mt-5">
+							<a href="http://lepoles.org/" target="_blank"><img src="{%static 'img/lepolesCommonsPop.png'%}" class="img-fluid rounded mx-auto d-block" alt="Logo LePoleS"></a>
+							<p class="text-center mt-3">LePoleS, l'ESS est un combat de sport est on aime ça!<a href="http://lepoles.org/" target="_blank"><br>site internet</a></p>
+						</div>
+						<div class="col-4  mt-5">
+							<a href=""><img src="{%static 'img/tepop.png'%}"  class="img-fluid rounded mx-auto d-block" alt="Logo TEPOP"></a>
+							<p class="text-center mt-3" >Tepop (Territoire à Énergie Populaire)<a href=""><br>site internet</a></p>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock content%}

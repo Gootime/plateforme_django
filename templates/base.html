@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="description" content="CommonsPop, Raconte ton quartier">
+	<meta name="author" content="LePoleS">
+	<meta name="keywords" content="Quartiers, jeunes, quartiers populaires, PopPart, CommonsPop, CREF, INJEV, LaVue, UMR, CNRS, LePoleS, TEPOP, Territoires, Essonne, Paris, Seine-et-Marne, Hauts-de-Seine, Seine-Saint-Denis">
+	<title>Commons Pop</title>
+	<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+			crossorigin="anonymous"
+	/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+		  crossorigin="anonymous">
+	<style>@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Poppins');</style>
+	{%load static%}
+	<link rel="icon" type="image/png" href="https://d16gc1wdsdgw9o.cloudfront.net/static/logo_transparent_2_400x293.png" width="32" />
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../..{%static 'css/style.css' %}">
+	<style>
+		li > a{
+			text-shadow: 2px 2px 2px #ee5249;
+			color: white !important;
+		}
+		p.accroche{
+			line-height: 1.5 !important;
+		}
+		.fa-user{
+			font-weight: 1.36em;
+		}
+		.navbar-light .navbar-nav .nav-link{
+			float: right;
+			text-transform: uppercase;
+			font-family: "Permanent Marker", cursive;
+		}
+		h5.text-uppercase{
+			height: 7.35vh !important;
+		}
+		/*.footer-copyright > span{*/
+			/*color: #ffffff;*/
+		/*}*/
+		@media(max-width: 767px){
+			.header-page__category-title{
+				display: none !important;
+			}
+			.filtre2{
+				height: 21vh;
+			}
+			.col-md-12 . col-lg-5 .order-md-1 .order-lg-12{
+			#map{
+				max-width: 540px;
+			}
+			h5.text-uppercase{
+				height: 7.35vh !important;
+			}
+			.navbar.navbar-expand-custom.navbar-light.bg-light a {
+				font-size: 180%;
+			}
+		}
+		@media(max-width: 992px){
+			h1.display-4{
+				font-size: 2.5rem;
+			}
+		}
+		@media(min-width: 768px){
+			.header-page__category-title{
+				display: none !important;
+			}
+			h5:not(.all_territoires){
+				height: 9.35vh;
+			}
+		}
+		@media(min-width: 992px){
+			.header-page__category-title{
+				display: none !important;
+			}
+			.col-lg-9{
+				font-size: smaller;
+			}
+			#good_date, #territoire{
+				font-size: xx-small;
+			}
+			.navbar.navbar-expand-custom.navbar-light.bg-light a {
+				font-size: initial;
+				float: right;
+				font-family: "Permanent Marker", cursive;
+				text-transform: uppercase;
+			}
+			h1.display-4{
+				font-size: 3.5rem !important;
+			}
+		}
+		/*@media(min-width: 1200px) {*/
+			/*.header-page__category-title {*/
+				/*display: initial !important;*/
+			/*}*/
+		/*}*/
+		@media(min-width: 1500px){
+			.navbar.navbar-expand-custom.navbar-light.bg-light a {
+				font-size: initial;
+			}
+		}
+		@media (min-width: 1300px){
+			.navbar-expand-custom {
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+			}
+			.navbar-expand-custom .navbar-nav {
+				flex-direction: row;
+			}
+			.navbar-expand-custom .navbar-nav .nav-link {
+				padding-right: .5rem;
+				padding-left: .5rem;
+			}
+			.navbar-expand-custom .navbar-collapse {
+				display: flex!important;
+			}
+			.navbar-expand-custom .navbar-toggler {
+				display: none;
+			}
+		}
+	</style>
+</head>
+<body>
+
+<!-- Début navigation -->
+<nav class="navbar navbar-expand-custom navbar-light bg-light">
+
+	<a href="{% url 'home' %}"><img src="https://d16gc1wdsdgw9o.cloudfront.net/static/logo_transparent_2_400x293.png" width="100px;" alt="Logo commons pop" /></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item"><a class="nav-link" href="{% url 'a_propos' %}">A propos <span class="sr-only">(current)</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="{% url 'tutoriel' %}">Tutoriel</a></li>
+			<li class="nav-item"><a class="nav-link" href="{% url 'all_territoires' %}">Territoires</a></li>
+			<li class="nav-item"><a class="nav-link" href="{% url 'cpops' %}">La Communauté</a></li>
+
+			{% if not request.session.token %}
+			<li class="nav-item"><a class="nav-link" href=" {% url 'signUp' %}">Je participe</a></li>
+			{% endif %}
+		</ul>
+		<ul class="navbar-nav nav justify-content-end">
+			<li class="nav-item ">
+				{% if request.session.token %}
+				<a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
+			<li><a class="nav-link" href="{% url 'logOut' %}">Se déconnecter</a></li>
+			<li><a class="nav-link" href="{% url 'upload' %}">Poster une vidéo</a></li>
+			{% else %}
+			<li><a class="nav-link co" href="{% url 'logIn' %}">Connexion</a></li>
+			<li><a class="nav-link co" href=" {% url 'signUp' %}">Inscription</a></li>
+			{% endif%}
+
+		</ul>
+	</div>
+
+</nav>
+<!-- Fin navigation -->
+{% block content %} {% endblock %}
+
+{% block javascript %} {% endblock %}
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark" style="background-image:url(https://d16gc1wdsdgw9o.cloudfront.net/static/fondNew4.jpg)">
+	<div class="rs">
+		<div class="container footer">
+
+			<!-- Grid row-->
+			<div class="row d-flex align-items-center">
+
+				<!-- Grid column -->
+				<!--<div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">-->
+				<!--<h5 class="mb-0" style="color:#423026">Suivez sur les réseaux sociaux !</h5>-->
+				<!--</div>-->
+				<!-- Grid column -->
+
+				<!-- Grid column -->
+
+				<div class="mx-auto" style="max-width: 25vw;">
+
+
+					<!-- Facebook -->
+					<a class="fb-ic">
+						<i class="fab fa-facebook-f mr-3" style="color :#cede92; font-size:30px; margin-right:30px;"></i>
+					</a>
+					<!-- Twitter -->
+					<a class="tw-ic">
+						<i class="fab fa-twitter ml-3" style="color :#cede92; font-size:30px;"> </i>
+					</a>
+				</div>
+				<!-- Grid column -->
+
+			</div>
+			<!-- Grid row-->
+
+		</div>
+	</div>
+
+	<!-- Footer Links -->
+	<div class="container footer text-center text-md-left mt-5">
+
+		<!-- Grid row -->
+		<div class="row mt-3">
+
+			<!-- Grid column -->
+			<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+				<!-- Content -->
+				<h5 class="text-uppercase font-weight-bold text-center">Commons Pop</h5>
+				<p class="text-center"><img src="https://d16gc1wdsdgw9o.cloudfront.net/static/logo_transparent_2_400x293.png" width="90px;" alt="logo"></p>
+				<p class="text-center accroche">N'attendez plus pour rejoindre notre collectif et partager votre quartier !</p>
+
+			</div>
+			<!-- Grid column -->
+
+			<!-- Grid column -->
+			<div class="col-md-3 col-lg-4 col-xl-3 mb-4 mx-auto">
+
+				<!-- Links -->
+				<h5 class="text-uppercase font-weight-bold text-center">L'app mobile</h5>
+
+				<p class="text-center">
+					<a href="#" title="App Store" target="_blank">
+						<img class="logo img-fluid w-100" src="https://d16gc1wdsdgw9o.cloudfront.net/static/app-store-badge.png" alt="App Store" />
+					</a>
+				</p>
+				<p class="text-center">
+					<a href="https://play.google.com/store/apps/details?id=com.lepoles.commonspopv2" title="Google Play">
+						<img class="logo img-fluid w-100" src="https://d16gc1wdsdgw9o.cloudfront.net/static/google-play-256x256.png" alt="Google Play" />
+					</a>
+				</p>
+
+
+			</div>
+			<!-- Grid column -->
+
+			<!-- Grid column -->
+			<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+				<!-- Links -->
+				<h5 class="text-uppercase font-weight-bold text-center">Liens utiles</h5>
+
+				<p class="text-center">
+					<a href="{% url 'a_propos' %}">A propos</a>
+				</p>
+				<p class="text-center">
+					<a href="{% url 'tutoriel' %}">Tutoriel</a>
+				</p>
+				<p class="text-center">
+					<a href="#">Conditions d'utilisation</a>
+				</p>
+				<p class="text-center">
+					<a href="#">Politique de confidentialité</a>
+				</p>
+
+			</div>
+			<!-- Grid column -->
+
+		</div>
+		<!-- Grid row -->
+
+	</div>
+	<!-- Footer Links -->
+
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">
+		<a href="lepoles.org" target="_blank"> Réalisé par LePoleS - 2019</a>
+
+		<hr>
+
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a>
+			<br /><span>Cette œuvre est mise à disposition selon les termes de la </span><a rel="license"
+																							  href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><span>Licence Creative Commons Attribution - Pas d&#39;Utilisation Commerciale - Pas de Modification 4.0 International</span></a>.
+
+	</div>
+	<!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
+
+
+
+<style>
+	body {
+		background: #909b66;
+		font-family: "Poppins", sans-serif;
+	}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+<script>
+	/* affichage image à la une pour les capsules audio */
+	/*$('[src$=".mp3"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");
+	$('[src$=".MP3"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");*/
+	/* affichage image à la une pour les capsules vidéo */
+	/* $('[src$=".mov"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");
+	 $('[src$=".MOV"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");
+	 $('[src$=".mp4"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");
+	 $('[src$=".MP4"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");
+	 $('[src$=".mpeg4"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");
+	 $('[src$=".MPEG4"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");
+	 $('[src$=".avi"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");
+	 $('[src$=".AVI"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop.png' %}\" class=\"w-100 img-fluid card-img-top\">");*/
+	/*-------------------------------------------*/
+	/*---------IMAGE TEMPORAIRE-----------*/
+	// $('[src="http://data.planet-puzzles.com/m8/p3569/p1.jpg"]').replaceWith("<img src=\"https://media.giphy.com/media/l378asbpIR5DTsdqg/giphy.gif\" class=\"w-100 img-fluid\" style=\"min-height: 185px !important\">");
+	/*---------AVATAR si aucune photo uploadée-----------*/
+	// $('[src="None"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop_gris.jpg' %}\" class=\"w-100 img-fluid\" style=\"min-height: 17vh !important; max-height: 30vh !important;\">");
+	$('[src="None"]').replaceWith("<img src=\"{% static '../static/img/logo_commonspop_gris.jpg' %}\" class=\"w-100 img-fluid\" id=\"img_cpop\">");
+	/*-------------------------------------------*/
+</script>
+</body>
+</html>

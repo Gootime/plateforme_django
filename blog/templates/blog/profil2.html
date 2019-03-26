@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+
+<style media="screen">
+	.highlight{
+		background-color:green;
+	}
+</style>
+
+<p>Pseudo : {{ Profil.username}}</p>
+<p>Email : {{ Profil.email}}</p>
+<p>Prenom : {{ Profil.first_name}}</p>
+<p>Nom de Famille : {{ Profil.last_name}}</p>
+
+<p><a href="{%url 'home'%}">Revenir aux article</a></p>
+<p><a href="{% url 'logOut' %}">Se déconnecter</a></p>
+<hr>
+<h2>Mes Articles</h2>
+<div class="container">
+	<div class="row">
+		{% for article in Article_by_author %}
+		<div class="col-4" style="border:solid 1px #ccc">
+			<input type="hidden" value="{{article.id}}" name="article" class="articleHidden{{article.id}}">
+			<p>Title : {{ article.title }}</p>
+			<p>Author : {{ article.author }}</p>
+		</div>
+		{% empty %}
+		<p>Vous n'avez pas d'article</p>
+		{% endfor %}
+	</div>
+</div>
+<hr>
+<h2>Mes parcours</h2>
+<div class="container">
+	<div class="row">
+		{% for i in Parcours_by_author %}
+		<div class="col-4" style="border:solid 1px;">
+			Parcours n° {{i.id}}
+			<p><a href="{% url 'view_parcours' i.id %}">Voir ce parcours</a></p>
+		</div>
+		{% empty %}
+		<p>Aucun Parcours</p>
+		{% endfor %}
+
+	</div>
+</div>
+<hr>
+<h2>Créer un parcours</h2>
+<div class="container">
+	<div class="row">
+		{% for allarticle in All_article %}
+		<div class="col-4" style="border:solid 1px #ccc">
+			<p><i class="fas fa-plus-square add"></i></p>
+			<input type="hidden" value="{{allarticle.id}}" name="article" class="articleHidden{{article.id}}">
+			<p>Title : {{ allarticle.title }}</p>
+			<p>Author : {{ allarticle.author }}</p>
+		</div>
+		{% empty %}
+		<p>Aucun Article</p>
+		{% endfor %}
+	</div>
+	<button id="submit_parcours">Créer le parcours</button>
+</div>
+
+<script type="text/javascript">
+    var tableau = [];
+    var json = {};
+
+    $('.fa-plus-square').click(function (Capsule) {
+        var Capsule = $(this).closest("div.col-4").find($('input[type="hidden"]')).val();
+        var Valide = $(this).closest("div.col-4");
+        Valide.addClass("highlight")
+        if( $.inArray(Capsule , tableau) !== -1 ){
+            alert('Article Deja present');
+        }else{
+            tableau.push(Capsule);
+
+        }
+
+        var json = { tableau };
+
+    });
+    $('#submit_parcours').click(function(){
+        var json = {tableau}
+        if(tableau.length < 1){
+            alert('vous ne pouvez pas creer de parcours sans aucun article')
+        }else{
+            $.ajax({
+                method:'POST',
+                url: '../create_parkour/',
+                data: json ,
+                dataType: 'json',
+                success: function (data) {
+                    alert("Parcours créer avec succès")
+                    window.location.reload(true);
+                }
+            });
+        }
+    });
+
+
+</script>
+
+<!--<script-->
+<!--src="https://code.jquery.com/jquery-3.3.1.js"-->
+<!--integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="-->
+<!--crossorigin="anonymous"-->
+<!--&gt;</script>-->
+{% endblock %}

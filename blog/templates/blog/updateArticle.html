@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /*#form{*/
+        /*width: 100%;*/
+    /*}*/
+	#form, .btn-block{
+		width: 95%;
+	}
+	@media(min-width: 992px) {
+		#form, .btn-block{
+			width: 50%;
+		}
+	}
+    label{
+        display: inline-block;
+        width: 20%;
+    }
+    #form p:nth-of-type(9) label{
+        width: 35%;
+    }
+
+    input:not(#id_autorisation), textarea{
+        display: inline-block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+
+    textarea{
+        height: auto;
+    }
+    select{
+        display: inline-block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem 1.75rem .375rem .75rem;
+        line-height: 1.5;
+        color: #495057;
+        vertical-align: middle;
+        background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+        background-size: auto;
+        background-size: 8px 10px;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    .btn-outline-danger{
+        background-color: #cede92;
+        border-color: #cede92;
+        color: #ee5249;
+    }
+    .btn-outline-danger:hover{
+        background-color: #ee5249;
+        border-color: #ee5249;
+        color: #cede92;
+    }
+
+    .py-4{
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    .container:not(.footer){
+        background-color: #cede92;
+    }
+    h1{
+        text-shadow: 2px 2px 2px #ee5249;
+        color: antiquewhite !important;
+        font-size: 2.5rem;
+        margin-top: 30px;
+    }
+
+</style>
+<div class='row'>
+    <!--<div class='col-4 offset-4'>-->
+        <div class='item-loading-queue'>
+
+        </div>
+</div>
+<div class="row">
+    <div class="col d-flex justify-content-around mt-2">
+        <h1>Modifier une capsule</h1>
+    </div>
+
+</div>
+</div>
+<div class="row">
+        <form method="post" id="form" class='cfeproj-upload-form' enctype="multipart/form-data" action="/blog/post">
+            <input type="hidden" name="id" value="{{instance.pk.id}}">
+            <p><input type="text" name="title" placeholder="Title" id="title" value="{{instance.pk.title}}"></p>
+            <p><input type="text" name="content" placeholder="Content" id="content"  value="{{instance.pk.content}}"></p>
+            <p><select id="place">
+                {%for place in places%}
+                <option value="{{place.id.id}}">{{place.id.name}}</option>
+                {% endfor %}
+            </select></p>
+            <p><input type="text" name="address" placeholder="address" id="address" value="{{instance.pk.address}}"></p>
+            <p><input class='cfeproj-upload-file form-control' type='file' accept='audio/*,video/*,image/*'/></p>
+
+		</form>
+</div>
+<div class="row d-flex justify-content-around">
+	<button id="send" class="btn btn-outline-danger btn-block mt-4">Poster</button>
+	<!--</div>-->
+</div>
+</div>
+{% endblock content %}
+
+
+
+{%block javascript%}
+<script>
+
+$(document).ready(function(){
+
+
+// auto-upload on file input change.
+$("#send").click(function startSubmit(){
+    var selectedFile = $(".cfeproj-upload-file").prop('files')[0];
+    uploadFile(selectedFile)
+});
+
+function displayProgress(progress, name){
+var itemList = $('.item-loading-queue')
+    itemList.html("")
+    var html_ = "<div class=\"percent\">" + progress + "%</div><div class=\"progress\">" +
+      "<div class=\"progress-bar\" role=\"progressbar\" style='width:" + progress + "%' aria-valuenow='" + progress + "' aria-valuemin=\"0\" aria-valuemax=\"100\"></div></div>"
+    itemList.append("<div>" + name + "<a href='#' class='srvup-item-upload float-right'>X</a> <br/>" + html_ + "</div><hr/>")
+
+}
+
+
+function getCategory(file){
+    var extension = file.name.split('.').pop().toLowerCase();
+    switch(extension) {
+        case 'jpg':
+        case 'png':
+        case 'gif':
+        case 'jpeg':
+            return 1;
+        case 'mov':
+        case 'mp4':
+        case 'mpeg4':
+        case 'avi':
+        case 'm4v':
+            return 2;
+        case 'mp3':
+            return 3;
+        default:
+            return 4;
+    }
+}
+
+function uploadFile(){
+
+        var selectedFile = $(".cfeproj-upload-file").prop('files')[0];
+
+
+           var formData = new FormData();
+            if(selectedFile){
+                formData.append("file", selectedFile);
+                formData.append("category", getCategory(selectedFile));
+            }
+            formData.append("title", $("#title").val());
+            formData.append("content", $("#content").val());
+            formData.append("place", parseInt($("#place").val()));
+            formData.append("place", $("#place").val());
+            formData.append("address", $("#address").val());
+
+            var request = new XMLHttpRequest();
+            request.upload.addEventListener("progress", function(pe){
+                if (pe.lengthComputable) {
+                    displayProgress(Math.floor(pe.loaded*100/pe.total), selectedFile.name)
+                }
+            });
+            request.onreadystatechange = function() {
+                if (request.readyState == XMLHttpRequest.DONE) {
+
+                    window.location.replace("/");
+                }
+            };
+
+            request.open('PUT', "{{url}}/api/capsule/{{instance.pk.id}}/partial/");
+            request.setRequestHeader('Authorization', 'token {{request.session.token}}');
+            request.send(formData);
+
+}
+
+})
+</script>
+{% endblock %}

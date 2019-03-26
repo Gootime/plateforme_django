@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+{%  block content %}
+
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"        integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+<script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+<script type="text/javascript" src="../..{%static 'js/jquery.star-rating-svg.js'%}"></script>
+<link rel="stylesheet" href="../..{%static 'css/profil.css'%}">
+
+<style media="screen">
+	.highlight{
+		background-color: #ee5249;
+	}
+	/*.card-img-top{*/
+		/*width: 204px;*/
+		/*height: 110px;*/
+	/*}*/
+
+	#video{
+		height: 16vh;
+		background-color: #443f2f !important;
+	}
+	img.img-fluid{
+		width: 300px;
+		height: 19vh;
+		background-color: #443f2f !important;
+	}
+
+	h5.card-title:hover{
+		text-decoration: none;
+	}
+	#avatar{
+		min-height: 17vh !important;
+		max-height: 30vh !important;
+	}
+
+	.blog-pagination a span{
+		display: none;
+	}
+
+	#video{
+		height: 16vh;
+		background-color: #443f2f !important;
+	}
+	img.img-fluid{
+		width: 300px;
+		height: 19vh;
+		background-color: #443f2f !important;
+	}
+
+	@media(min-width: 992px) {
+		.blog-pagination a span{
+			display: initial;
+		}
+	}
+</style>
+
+<div class="jumbotron jumbotron-fluid mb-0">
+	<div class="container">
+		<h1 class="display-4"><i class="far fa-user"></i> {{ user.username }}</h1>
+	</div>
+</div>
+<div class="fil_d_ariane">
+	<div class="container" >
+		<div class="row">
+			<div class="col">
+				<p><a href="{% url 'home' %}">Accueil</a> <span> &raquo; Son compte </span></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="alert alert-danger" role="alert">
+		<div class="nav-scroller py-1 mb-2">
+			<nav class="nav d-flex justify-content-between blog-pagination mx-auto">
+				<a class="p-2 btn btn-outline-danger" href="#capsules"><i class="far fa-images fa-2x"></i> Ses capsules</a>
+				<a class="p-2 btn btn-outline-danger" href="#parcours"><i class="fas fa-map-marked-alt fa-2x"></i> Ses parcours</a>
+			</nav>
+		</div>
+
+		<!--<hr>-->
+
+		<div class="row mx-auto">
+			<div class="col-md-4 col-12 text-center">
+				<p><img id="avatar" class="img-fluid w-100" src="{{ avatar }}" alt="Image de {{user.username}}"/></p>
+			</div>
+			<div class="col-md-8 col-12">
+				<div class="col-12">
+					<p>Pseudo : {{ user.username}}</p>
+					<p>Email : {{ user.email}}</p>
+					<p>Prénom : {{ user.first_name}}</p>
+					<p>Nom de Famille : {{ user.last_name}}</p>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.alert .alert-danger-->
+
+</div><!-- /.container-->
+
+
+<div class="container">
+	<div class="alert alert-danger">
+		<h2 id="capsules">Ses Capsules</h2>
+		<div class="row">
+			{% for article in Article_by_author %}
+			<input type="hidden" value="{{article.id}}" name="article" class="articleHidden{{article.id}}">
+			<div class="col-lg-4 col-md-6 col-12 mx-auto mt-2">
+				<div class="card">
+					<!--<img class="card-img-top img-fluid w-100" src="{{article.thumbnail}}" alt="Card image cap">-->
+					<!--<img src="{{article.file}}" class="card-img-top img-fluid w-100" alt="Image de {{article.title}}">-->
+					{% if article.category == 2 %}
+					<video controls id="video" src="{{article.file}}"></video>
+					{% else %}
+					<img id="image" class="img-fluid w-100" src="{{article.file}}" alt="carte" />
+					{% endif %}
+					<div class="card-body">
+						<p class="text-right">
+							{% if article.category == 1 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Image </span>
+							{% endif %}
+							{% if article.category == 2 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Vidéo </span>
+							{% endif %}
+							{% if article.category == 3 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Audio </span>
+							{% endif %}
+							{% if article.category == 4 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Récit </span>
+							{% endif %}
+							<span class="full_date" style="display: none;">{{article.date}}</span>
+							<span class="good_date"></span>
+						</p>
+						<a href="{% url 'lire' article.id %}">
+							<h5 class="card-title">{{ article.title|truncatechars:75 }}</h5>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			{% empty %}
+			<p>Cet utilisateur n'a pas de capsule</p>
+
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="alert alert-danger">
+		<h2 id="parcours">Ses parcours</h2>
+		<div class="nav-scroller py-1 mb-2">
+			<nav class="nav d-flex justify-content-around blog-pagination mx-auto">
+				{% for i in Parcours_by_author %}
+				<a class="p-2 btn btn-outline-danger" href="{% url 'view_parcours' i.id %}"><i class="fas fa-map-marked-alt"></i>&nbsp; {{i.id}}</a>
+				{% empty %}
+				<p>Aucun Parcours</p>
+				{% endfor %}
+			</nav>
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+	var tableau = [];
+	var json = {};
+
+	console.log('capsule')
+	$('.fa-plus-square').click(function (Capsule) {
+		var Capsule = $(this).closest("div.col-md-4").find($('input[type="hidden"]')).val();
+		var Valide = $(this).closest("div.card-body");
+		Valide.addClass("highlight")
+		if( $.inArray(Capsule , tableau) !== -1 ){
+			alert('Article Deja present');
+		}else{
+			tableau.push(Capsule);
+
+		}
+
+		var json = { tableau };
+
+	});
+	$('#submit_parcours').click(function(){
+		var json = {tableau}
+		if(tableau.length < 1){
+			alert('vous ne pouvez pas créer de parcours sans aucun article')
+		}else{
+			console.log(json)
+			$.ajax({
+				method:'POST',
+				url: '../create_parkour/',
+				data: json ,
+				dataType: 'json',
+				success: function (data) {
+					alert("Parcours créer avec succès")
+					window.location.reload(true);
+				}
+			});
+		}
+	});
+
+	//2019-02-05T23:22:01.714652+01:00
+	var full_date = $('.full_date').text();
+	var short_date = full_date.slice(0,10);
+	var array_date = short_date.split('-');
+	var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
+	var nb_month = array_date[1];
+	var month = parseInt(nb_month);
+	// console.log(nb_month);
+	var month_ok = month-1;
+	console.log(m_names[month_ok]);
+	var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+	// console.log(full_date);
+	// console.log(short_date);
+	// console.log(array_date);
+	// console.log(formated_date);
+
+	$('.good_date').replaceWith('<span class=\"good_date mt-1 text-muted\" style=\"font-size: xx-small\">du ' + formated_date + '</span>');
+</script>
+{% endblock %}

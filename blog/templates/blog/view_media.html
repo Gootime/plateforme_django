@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+ <div class="container">
+    <div class="row">
+
+      {% for i in itemsVideo %}
+        <div class="col-3" style="border:solid 1px #000">
+          <p>
+
+            <video controls width="250">
+
+                <source src="https://s3.amazonaws.com/projetpoppart/{{i.path}}"
+                        type="video/mp4">
+
+                Sorry, your browser doesn't support embedded videos.
+            </video>
+            <span>Titre du Média : {{i.name}}</span>
+
+            <span>Date d'upload : {{i.updated}}</span>
+          </p>
+        </div>
+      {% endfor %}
+
+
+     {% for i in itemsImage %}
+        <div class="col-3" style="border:solid 1px #000">
+          <p>
+            <span>Titre du Média : {{i.name}}</span>
+            <span>
+                Lien du Média : <img src="https://s3.amazonaws.com/projetpoppart/{{i.path}}"/>
+            </span>
+            <span>Date d'upload : {{i.updated}}</span>
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+
+    </div>
+{%  endblock %}

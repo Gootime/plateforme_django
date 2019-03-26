@@ -1,0 +1,536 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>La plateforme</title>
+
+    <!-- Bootstrap -->
+    <link rel='stylesheet' href="{% static  ''%}vendor/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="{% static  ''%}vendor/bootstrap/css/bootstrap.min.css">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static  ''%}fonts/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="{% static  ''%}fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static  ''%}fonts/font-awesome-5/css/fontawesome-all.min.css">
+
+    <!-- Revolution slider -->
+    <link rel="stylesheet" href="{% static  ''%}vendor/revolution/settings.css">
+    <link rel="stylesheet" href="{% static  ''%}vendor/revolution/layers.css">
+    <link rel="stylesheet" href="{% static  ''%}vendor/revolution/navigation.css">
+    <link rel="stylesheet" href="{% static  ''%}vendor/revolution/settings-source.css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{% static  ''%}vendor/css-hamburgers/dist/hamburgers.min.css">
+    <link rel="stylesheet" href="{% static  ''%}vendor/fancybox/dist/jquery.fancybox.min.css">
+    <link rel='stylesheet' href="{% static  ''%}vendor/fullcalendar/fullcalendar.css">
+    <link rel='stylesheet' href="{% static  ''%}vendor/animate/animate.css">
+
+    <!-- Main CSS File -->
+    <link href="{% static  ''%}css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.png">
+
+    <style>
+        .heading-page .au-page-title h1, nav[aria-label=breadcrumb] {
+            background-color: rgba(243,132,0,0.5);
+            padding: 1vh;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- page load-->
+    <div class="images-preloader">
+	    <div id="preloader_1 spinner1" class="spinner1 rectangle-bounce">
+	    	<div class="double-bounce1"></div>
+	    	<div class="double-bounce2"></div>
+	    </div>
+	</div>
+
+    <!-- Header page -->
+    <header class="header">
+        <div class="header-top hidden-tablet-landscape">
+            <div class="container">
+                <div class="header-top-content display-flex">
+                    <div class="header-top-info">
+                        <div class="header-socials">
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                        <a href="mailto:info@smartedu.com" class="email"><i class="far fa-envelope"></i>contact@laplateforme.com</a>
+                        <a href="#" class="telephone"><i class="fas fa-mobile-alt"></i>01 15 16 17 18</a>
+                    </div>
+                    <div class="header-top-account">
+                        <a href="#" class="signup"><i class="fas fa-edit"></i>Je participe</a>
+                        <a href="#" class="login">Je me connecte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom hidden-tablet-landscape" id="js-navbar-fixed">
+            <div class="container">
+                <div class="header-bottom">
+                    <div class="header-bottom-content display-flex">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="{% static  ''%}img/la_plateforme.png" alt="La Plateforme">
+                            </a>
+                        </div>
+                        <div class="menu-search display-flex">
+                            <nav class="menu">
+                                <div>
+                                    <ul class="menu-primary">
+                                        <li class="menu-item">
+                                            <a href="index.html">Accueil</a>
+                                            <!--<ul class="sub-menu">-->
+                                                <!--<li class="menu-item"><a href="index.html">Home 1</a></li>-->
+                                                <!--<li class="menu-item"><a href="index2.html">Home 2</a></li>-->
+                                                <!--<li class="menu-item"><a href="index3.html">Home 3</a></li>-->
+                                            <!--</ul>-->
+                                        </li>
+                                        <li class="menu-item curent-menu-item">
+                                            <a href="communaute.html">La Communauté</a>
+                                            <!--<ul class="sub-menu">-->
+                                                <!--<li class="menu-item">-->
+                                                    <!--<a href="courses.html">Course 1</a>-->
+                                                    <!--<ul class="sub-menu">-->
+                                                        <!--<li class="menu-item"><a href="single-course.html">Course Detail</a></li>-->
+                                                    <!--</ul>-->
+                                                <!--</li>-->
+                                                <!--<li class="menu-item"><a href="standardlist.html">Standard List</a></li>-->
+                                            <!--</ul>-->
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="#">Découvrir</a>
+                                            <!--<ul class="sub-menu">-->
+                                                <!--<li class="menu-item"><a href="aboutus.html">About us </a></li>-->
+                                                <!--<li class="menu-item"><a href="gallery1.html">Gallery 1</a></li>-->
+                                                <!--<li class="menu-item"><a href="gallery2.html">Gallery 2</a></li>-->
+                                                <!--<li class="menu-item"><a href="404.html">404</a></li>-->
+                                                <!--<li class="menu-item"><a href="pricing.html">Pricing Table</a></li>-->
+                                            <!--</ul>-->
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="events.html">Territoires</a>
+                                            <!--<ul class="sub-menu">-->
+                                                <!--<li class="menu-item"><a href="events.html">Events</a>-->
+                                                    <!--&lt;!&ndash;<ul class="sub-menu">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<li class="menu-item"><a href="single-event.html">Event Detail</a></li>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                                                <!--</li>-->
+                                            <!--</ul>-->
+                                        </li>
+                                        <!--<li class="menu-item">-->
+                                            <!--<a href="blog1.html">News</a>-->
+                                            <!--<ul class="sub-menu">-->
+                                                <!--<li class="menu-item"><a href="blog1.html">Blog 1</a>-->
+                                                    <!--<ul class="sub-menu">-->
+                                                        <!--<li class="menu-item"><a href="single.html">Blog detail</a></li>-->
+                                                    <!--</ul>-->
+                                                <!--</li>-->
+                                                <!--<li class="menu-item"><a href="blog2.html">Blog 2</a></li>-->
+                                                <!--<li class="menu-item"><a href="blog3.html">Blog 3</a>-->
+                                            <!--</ul>-->
+                                            <!--</li>-->
+                                            <li class="menu-item">
+                                                <a href="contact1.html">Contact</a>
+                                                <!--<ul class="sub-menu">-->
+                                                    <!--<li class="menu-item"><a href="contact1.html">Contact 1</a></li>-->
+                                                    <!--<li class="menu-item"><a href="contact2.html">Contact 2</a></li>-->
+                                                    <!--<li class="menu-item"><a href="contact3.html">Contact 3</a></li>-->
+                                                <!--</ul>-->
+                                            </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!--<div class="search-box">-->
+                                <!--<form method="POST">-->
+                                    <!--<input type="text" placeholder="Search..." id="search-box" name="s" value="">-->
+                                    <!--<div class="search-icon display-flex-center">-->
+                                        <!--<i class="la la-search"></i>-->
+                                    <!--</div>-->
+                                <!--</form>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-tablet-landscape-up header-mobile">
+            <div class="header-top-mobile">
+                <div class="container-fluid">
+                    <div class="logo">
+                        <a href="indexOLD.html">
+                            <img src="img/la_plateforme.png" alt="La Plateforme" />
+                        </a>
+                    </div>
+                    <!--<div class="search-box">-->
+                        <!--<form method="POST">-->
+                            <!--<input type="text" placeholder="Search..." name="s" value="">-->
+                            <!--<div class="search-icon font-color-white display-flex-center">-->
+                                <!--<i class="fa fa-search" aria-hidden="true"></i>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                    <button class="hamburger hamburger--spin hidden-tablet-landscape-up" id="toggle-icon">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="au-nav-mobile">
+                <nav class="menu-mobile">
+                    <div>
+                        <ul class="au-navbar-menu">
+                            <li class="menu-item">
+                                <a href="index.html">Accueil</a>
+                                <!--<span class="arrow">-->
+                                    <!--<i></i>-->
+                                <!--</span>-->
+                                <!--<ul class="sub-menu">-->
+                                    <!--<li class="menu-item"><a href="index.html">Home 1</a></li>-->
+                                    <!--<li class="menu-item"><a href="index2.html">Home 2</a></li>-->
+                                    <!--<li class="menu-item"><a href="index3.html">Home 3</a></li>-->
+                                <!--</ul>-->
+                            </li>
+                            <li class="menu-item curent-menu-item">
+                                <a href="communaute.html">La communauté</a>
+                                <!--<span class="arrow">-->
+                                    <!--<i></i>-->
+                                <!--</span>-->
+                                <!--<ul class="sub-menu">-->
+                                    <!--<li class="menu-item">-->
+                                        <!--<a href="courses.html">Course 1</a>-->
+                                        <!--<ul class="sub-menu">-->
+                                            <!--<li class="menu-item"><a href="single-course.html">Course Detail</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</li>-->
+                                    <!--<li class="menu-item"><a href="standardlist.html">Standard List</a></li>-->
+                                <!--</ul>-->
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">Découvrir</a>
+                                <!--<span class="arrow">-->
+                                    <!--<i></i>-->
+                                <!--</span>-->
+                                <!--<ul class="sub-menu">-->
+                                    <!--<li class="menu-item"><a href="aboutus.html">About us </a></li>-->
+                                    <!--<li class="menu-item"><a href="gallery1.html">Gallery 1</a></li>-->
+                                    <!--<li class="menu-item"><a href="gallery2.html">Gallery 2</a></li>-->
+                                    <!--<li class="menu-item"><a href="404.html">404</a></li>-->
+                                    <!--<li class="menu-item"><a href="pricing.html">Pricing Table</a></li>-->
+                                <!--</ul>-->
+                            </li>
+                            <li class="menu-item">
+                                <a href="events.html">Territoires</a>
+                                <!--<span class="arrow">-->
+                                    <!--<i></i>-->
+                                <!--</span>-->
+                                <!--<ul class="sub-menu">-->
+                                    <!--<li class="menu-item"><a href="events.html">Events</a>-->
+                                        <!--<ul class="sub-menu">-->
+                                            <!--<li class="menu-item"><a href="single-event.html">Event Detail</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--<li class="menu-item">-->
+                                <!--<a href="blog1.html">News</a>-->
+                                <!--<span class="arrow">-->
+                                    <!--<i></i>-->
+                                <!--</span>-->
+                                <!--<ul class="sub-menu">-->
+                                    <!--<li class="menu-item"><a href="blog1.html">Blog 1</a>-->
+                                        <!--<ul class="sub-menu">-->
+                                            <!--<li class="menu-item"><a href="single.html">Blog detail</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</li>-->
+                                    <!--<li class="menu-item"><a href="blog2.html">Blog 2</a></li>-->
+                                    <!--<li class="menu-item"><a href="blog3.html">Blog 3</a>-->
+                                <!--</ul>-->
+                                <!--</li>-->
+                                <li class="menu-item">
+                                    <a href="contact1.html">Contact</a>
+                                    <!--<span class="arrow">-->
+                                    <!--<i></i>-->
+                                <!--</span>-->
+                                    <!--<ul class="sub-menu">-->
+                                        <!--<li class="menu-item"><a href="contact1.html">Contact 1</a></li>-->
+                                        <!--<li class="menu-item"><a href="contact2.html">Contact 2</a></li>-->
+                                        <!--<li class="menu-item"><a href="contact3.html">Contact 3</a></li>-->
+                                    <!--</ul>-->
+                                </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- <div class="clear"></div> -->
+            <div class="header-top">
+                <div class="container-fluid">
+                    <div class="header-top-content display-flex">
+                        <div class="header-top-info">
+                            <a href="tel:04445552222" class="telephone"><span><i class="fas fa-mobile-alt"></i></span> 06 63 74 11 35</a>
+                            <a href="mailto:contact@.laplateforme.com" class="email"><span><i class="far fa-envelope"></i></span> contact@.laplateforme.com</a>
+                        </div>
+                        <div class="header-top-account">
+                            <a href="#" class="login"><i class="fas fa-user"></i>Je participe</a>
+                            <a href="#" class="signup"><i class="fas fa-edit"></i>Je me connecte</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Heading Page -->
+        <section class="heading-page">
+            <img src="img/communaute.jpg" alt="">
+            {{cpops_page}}
+            <div class="container">
+                <div class="heading-page-content">
+                    <div class="au-page-title">
+                        <h1>La Communauté</h1>
+                    </div>
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">La Communauté</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- standard list -->
+        <section class="standard-list courses-2 section-padding-large">
+            <div class="container">
+                <div class="row">
+                    {% for cpops in data %}
+
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="team-group">
+                            <div class="team-group-content">
+                                <!-- @K
+                                loop .item
+                                -->
+                                <article class="item">
+                                    <figure>
+                                        <a href="#">
+                                            <img src="{{ cpops.3.picture }}" alt="Papaoumar Mbaye">
+                                        </a>
+                                    </figure>
+                                    <div class="info">
+                                        <h3 class="title">
+                                            <a href="{% url 'profil_other' cpops.2  %}">{{ cpops.0 }}</a>
+                                        </h3>
+                                        <span class="job-title">Auteur de {{cpops.1}} capsules</span>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+            	<div class="pagination text-center page-numbers">
+		            {% if data.has_previous %}
+		                <a href="?page=1" class="page-numbers"> Première Page </a>&nbsp;&nbsp;&nbsp;<a href="?page={{data.previous_page_number}}"> < </a>
+		            {% endif %}
+		            {% for num in data.paginator.page_range %}
+		                {% if data.number == num %}
+		                    <strong class="page-numbers">{{ num }}</strong>
+		                {% elif num > data.number|add:'-3' and num < data.number|add:'3' %}
+		                    <a href="?page={{ num }}" class="page-numbers">&nbsp;{{ num }}&nbsp;</a>
+		                {% endif %}
+		            {% endfor %}
+		            {% if data.has_next %}
+		                <a href="?page={{data.next_page_number}}" class="page-numbers"> > </a>&nbsp;&nbsp;&nbsp;<a href="?page={{data.paginator.num_pages}}" class="page-numbers"> Dernière Page </a>
+		            {% endif %}
+	            </div>
+        </section>
+    </main>
+
+    <!-- Footer page -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-top-content">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-info">
+                            <div class="footer-logo">
+                                <a href="indexOLD.html"><img src="img/la_plateforme_02.png" alt="SmartEdu"></a>
+                            </div>
+                            <p class="footer-intro">
+                                Proin libero nunc conseq interdum varius sit amet. Metus ali elei mi in nulla posuere. Tortor preti viverra suspendisse potenti nul ac.
+                            </p>
+                            <div class="socials">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 footer-menu">
+                            <div class="footer-title">
+                                <h4>Liens utiles</h4>
+                            </div>
+                            <div class="footer-link-menu">
+                                <ul>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Accueil</a></li>
+                                    <li><a href=""><i class="la la-angle-right"></i>La communauté</a></li>
+                                    <li><a href=""><i class="la la-angle-right"></i>Découvrir</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Territoires</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Qui sommes-nous ? </a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>A propos</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>FAQ</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>L'appli</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-12 footer-gallery">
+                            <div class="footer-title">
+                                <h4>Galerie</h4>
+                            </div>
+                            <div class="footer-gallery-content">
+                                <figure>
+                                    <a href="img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="img/footer-gallery-3.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="img/footer-gallery-3.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="img/footer-gallery-3.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="img/footer-gallery-4.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="img/footer-gallery-4.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="img/footer-gallery-5.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="img/footer-gallery-5.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="img/footer-gallery-6.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="img/footer-gallery-6.jpg" alt="">
+                                    </a>
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-contact">
+                            <div class="footer-title">
+                                <h4>Infomations</h4>
+                            </div>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>LePoleS - 11 allée Saint-Exupéry 92390 Villeneuve-la-Garenne</span>
+                                </li>
+                                <li class="footer-phone">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>01 45 65 69 68</span>
+                                </li>
+                                <li class="footer-fax">
+                                    <i class="fas fa-fax"></i>
+                                    <span>01 15 16 18 14</span>
+                                </li>
+                                <li>
+                                    <i class="far fa-envelope"></i>
+                                    <span>contact@laplateforme.com</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">Tout droits réservés @ 2019 <a class="au-btn-buy" href="http://lepoles.org/"><span>LePoleS</span>. </a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back to top -->
+    <div id="back-to-top">
+        <i class="fa fa-angle-up"></i>
+    </div>
+
+    <!-- JS -->
+
+    <!-- Jquery and Boostrap library -->
+    <script src="{% static  ''%}vendor/bootstrap/js/popper.min.js"></script>
+    <script src="{% static  ''%}vendor/jquery/jquery.min.js"></script>
+    <script src="{% static  ''%}vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Other js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEmXgQ65zpsjsEAfNPP9mBAz-5zjnIZBw"></script>
+    <script src="{% static  ''%}js/theme-map.js"></script>
+    <script src="{% static  ''%}js/jquery.countdown.min.js"></script>
+    <script src="{% static  ''%}js/masonry.pkgd.min.js"></script>
+    <script src="{% static  ''%}js/imagesloaded.pkgd.js"></script>
+    <script src="{% static  ''%}js/isotope-docs.min.js"></script>
+
+    <!-- Vendor JS -->
+    <script src="{% static  ''%}vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{% static  ''%}vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="{% static  ''%}vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="{% static  ''%}vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="{% static  ''%}vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="{% static  ''%}vendor/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script src='{% static  ''%}vendor/fullcalendar/lib/moment.min.js'></script>
+    <script src='{% static  ''%}vendor/fullcalendar/fullcalendar.min.js'></script>
+    <script src='{% static  ''%}vendor/wow/dist/wow.min.js'></script>
+
+    <!-- REVOLUTION JS FILES -->
+    <script src="{% static  ''%}vendor/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="{% static  ''%}vendor/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- Form JS -->
+    <script src="{% static  ''%}js/validate-form.js"></script>
+    <script src="{% static  ''%}js/config-contact.js"></script>
+
+    <!-- Main JS -->
+    <script src="{% static  ''%}js/main.js"></script>
+
+    <script>
+        $('[src="None"]').replaceWith("<img src=\"{% static '../static/img/utilisateur.jpg' %}\" class=\"w-100 img-fluid\" style=\"min-height: 17vh !important; max-height: 30vh !important;\">");
+    </script>
+</body>
+</html>

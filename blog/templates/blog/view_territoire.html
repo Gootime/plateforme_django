@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{%load static%}
+
+<style>
+    .--3{
+        width: 150%;
+    }
+
+    .card{
+        background-color: antiquewhite !important;
+    }
+    h5.card-title{
+        min-height: 8vh;
+    }
+
+    #video{
+        height: 16vh;
+        background-color: #443F2F !important;
+    }
+    img.img-fluid{
+        width: 300px;
+        height: 19vh;
+        background-color: #443F2F !important;
+    }
+
+    a[href*=profil_other]{
+        color: #ee5249;
+    }
+    a[href*=profil_other]:hover, a[href*=profil_other]:focus{
+        text-decoration: none;
+    }
+
+	footer > h5{
+		font-size: initial;
+	}
+
+    .pagination > strong{
+        color: #ee5249;
+    }
+
+	@media(max-width: 767px){
+		.header-page__category-title{
+			display: none !important;
+		}
+		.filtre2{
+			height: 21vh;
+		}
+		.col-md-12 .col-lg-5 .order-md-1 .order-lg-12{
+		#map{
+			max-width: 540px;
+		}
+		footer > h5{
+			font-size: initial;
+		}
+	}
+
+	@media(min-width: 768px){
+		.header-page__category-title{
+			display: none;
+		}
+		h5:not(.all_territoires){
+			height: 10vh;
+		}
+		footer > h5{
+			font-size: x-small !important;
+		}
+	}
+	@media(min-width: 992px){
+		.header-page__category-title{
+			display: initial;
+		}
+		.col-lg-9{
+			font-size: smaller;
+		}
+		#good_date, #territoire{
+			font-size: xx-small;
+		}
+		.navbar.navbar-expand-lg.navbar-light.bg-light a {
+			font-size: x-small;
+		}
+		footer > h5{
+			font-size: initial;
+		}
+	}
+	@media(min-width: 1500px){
+		.navbar.navbar-expand-lg.navbar-light.bg-light a {
+			font-size: initial;
+		}
+	}
+
+</style>
+<link rel="stylesheet" href="../..{%static 'css/viewTerritoire.css'%}">
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+<link rel="stylesheet" href="../..{%static 'css/viewTerritoire.css'%}">
+
+<div class="jumbotron jumbotron-fluid mb-0">
+	<div class="container">
+		<h1 class="display-4">{{request_territoire}}</h1>
+	</div>
+</div>
+<div class="fil_d_ariane">
+	<div class="container" >
+		<div class="row">
+			<div class="col">
+				<p><a href="{% url 'home' %}">Accueil &raquo; </a>  <a href="{% url 'all_territoires' %}">Les Territoires</a>
+                    <span> &raquo; {{request_territoire}}</span></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <div class="form-group">
+
+                    <select name="categories" id="categories" class="filter option-set clearfix form-control custom-select"  data-filter-group="categories">
+                        <option value="*">Voir tout</option>
+                        {% for item in categories%}
+
+                            {% if item == 1 %}
+                                <option value="{{item}}" data-filter-value=".{{item}}">Image</option>
+                            {% endif %}
+                            {% if item == 2 %}
+                            <option value="{{item}}" data-filter-value=".{{item}}">Vidéo</option>
+                            {% endif %}
+                            {% if item == 3 %}
+                            <option value="{{item}}" data-filter-value=".{{item}}">Audio</option>
+                            {% endif %}
+                            {% if item == 4 %}
+                            <option value="{{item}}" data-filter-value=".{{item}}">Récit</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+                </div>
+            </div>
+        </div>
+		<!--{{articles}}-->
+				<div class="row grid_filter">
+
+            {% for article in articles %}
+            <div class="col-lg-4 col-md-6 col-12 mx-auto element-item {{article.category}}">
+                <div class="card mt-4">
+                    <!--<img class="card-img-top img-fluid w-100" src="{{article.file}}" alt="Image de {{article.title}}">-->
+                    <!--<img src="http://data.planet-puzzles.com/m8/p3569/p1.jpg" class="card-img-top img-fluid w-100" alt="">&lt;!&ndash;&ndash;&gt;-->
+                    {% if article.category == 2 %}
+                    <video controls id="video" src="{{article.file}}"></video>
+                    {% else %}
+                    <img id="image" class="img-fluid w-100" src="{{article.file}}" alt="Image de {{article.title}}" />
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title|truncatechars:85 }}</h5>
+						<p>
+						{% if article.category == 1 %}
+						<span>Image </span>
+						{% endif %}
+						{% if article.category == 2 %}
+						<span>Vidéo </span>
+						{% endif %}
+						{% if article.category == 3 %}
+						<span>Audio </span>
+						{% endif %}
+						{% if article.category == 4 %}
+						<span>Récit </span>
+						{% endif %}
+                        par <a href="{% url 'profil_other' article.user %}">{{article.username}}</a></p>
+                        <span class="full_date" style="display: none;">{{article.date}}</span>
+                        <p class="good_date"></p>
+                        <p class="card-text">{{ article.content|truncatechars:85 }}</p>
+                        <a href="{% url 'lire' article.id %}" class="btn btn-outline-danger btn-block">Lire la suite</a>
+                    </div>
+
+                </div>
+            </div>
+
+            {% empty %}
+             <h4>Aucun article.</h4>
+            {% endfor %}
+
+
+    </div>
+</div>
+    </div>
+
+<div class="container-fluid d-flex justify-content-center">
+    <div class="pagination text-center">
+        {% if articles.has_previous %}
+        <a href="?page=1"> Première Page </a>&nbsp;&nbsp;&nbsp;<a href="?page={{articles.previous_page_number}}"> < </a>
+
+        {% endif %}
+        {% for num in articles.paginator.page_range %}
+        {% if articles.number == num %}
+        <strong>{{ num }}</strong>
+        {% elif num > articles.number|add:'-3' and num < articles.number|add:'3' %}
+        <a href="?page={{ num }}">&nbsp;&nbsp;&nbsp;{{ num }}&nbsp;&nbsp;&nbsp;</a>
+        {% endif %}
+        {% endfor %}
+        {% if articles.has_next %}
+        <a href="?page={{articles.next_page_number}}"> > </a>&nbsp;&nbsp;&nbsp;<a href="?page={{articles.paginator.num_pages}}"> Dernière Page </a>
+
+        {% endif %}
+    </div>
+</div>
+<script>
+    $(function(){
+
+        var $container = $('.grid_filter'),
+            filters = {};
+
+        $container.isotope({
+            itemSelector : '.element-item'
+        });
+
+        // filter buttons
+        $('select').change(function(){
+            var $this = $(this);
+
+            // store filter value in object
+            // i.e. filters.color = 'red'
+            var group = $this.attr('data-filter-group');
+
+            filters[ group ] = $this.find(':selected').attr('data-filter-value');
+             console.log( $this.find(':selected') )
+            // convert object into array
+            var isoFilters = [];
+            for ( var prop in filters ) {
+                isoFilters.push( filters[ prop ] )
+            }
+						/*if(isoFilters.length > 0){
+								$('.pagination').css({display: 'none'})
+						}else if($('select').val('*')){
+							$('.pagination').css({display: 'block'})
+						}else{
+							$('.pagination').css({display: 'block'})
+						}*/
+            var selector = isoFilters.join('');
+            $container.isotope({ filter: selector });
+            return false;
+        });
+
+
+    });
+
+    //2019-02-05T23:22:01.714652+01:00
+    var full_date = $('.full_date').text();
+    var short_date = full_date.slice(0,10);
+    var array_date = short_date.split('-');
+    var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
+    var nb_month = array_date[1];
+    var month = parseInt(nb_month);
+    // console.log(nb_month);
+    var month_ok = month-1;
+    console.log(m_names[month_ok]);
+    var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+    // console.log(full_date);
+    // console.log(short_date);
+    // console.log(array_date);
+    // console.log(formated_date);
+
+    $('.good_date').replaceWith('<p id=\"good_date\">Le ' + formated_date + '</p>');
+
+
+</script>
+{% endblock %}

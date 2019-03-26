@@ -1,0 +1,156 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+
+  form{
+	  width: 95%;
+  }
+
+
+  a.forgotten{
+    color: #000 !important;
+  }
+
+  a.forgotten:hover {
+
+    color: #ee5249;
+    text-decoration: none;
+
+  }
+
+  .btn-secondary{
+    color: #cede92 !important;
+    border-color: #443f2f;
+    background-color: #443f2f;
+  }
+  .btn-secondary:hover{
+    background-color: #cede92;
+    color: #443f2f !important;
+    border-color: #cede92;
+  }
+
+  .btn-secondary a{
+    color: antiquewhite;
+    font-size: medium;
+  }
+  .btn-secondary a:hover{
+    color: #443f2f;
+    text-decoration: none;
+  }
+
+	label{
+		width: 100%;
+	}
+	label.text-center{
+		font-size: x-large;
+	}
+
+  @media(min-width: 992px) {
+	  form{
+	  	width: 50%;
+	  }
+  }
+
+</style>
+
+{% if error %}
+
+<style>
+
+  form{
+	  width: 95%;
+  }
+
+
+  a.forgotten{
+    color: #000 !important;
+  }
+
+  a.forgotten:hover {
+
+    color: #ee5249;
+    text-decoration: none;
+
+  }
+
+  .btn-secondary{
+    color: #cede92 !important;
+    border-color: #443f2f;
+    background-color: #443f2f;
+  }
+  .btn-secondary:hover{
+    background-color: #cede92;
+    color: #443f2f !important;
+    border-color: #cede92;
+  }
+
+  .btn-secondary a{
+    color: antiquewhite;
+    font-size: medium;
+  }
+  .btn-secondary a:hover{
+    color: #443f2f;
+    text-decoration: none;
+  }
+
+  label{
+	  width: 100%;
+  }
+  label.text-center{
+	  font-size: x-large;
+  }
+
+</style>
+<div class="container">
+  <div class="row">
+    <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+    {% endif %} {% if user.is_authenticated %} Vous êtes connecté,
+    {{ user.username }} !
+    <p>
+      <a href="{% url 'profil' user.id %}">Profil de {{ user.username }}</a>
+    </p>
+    <p><a class="p-2 btn btn-outline-danger mt-4 ml-4" href="{%url 'home'%}">Retour accueil</a></p>
+    <p><a href="{% url 'logOut' %}">Se déconnecter</a></p>
+
+    {% else %}
+    <p><a class="p-2 btn btn-outline-danger mt-4 ml-4" href="{%url 'home'%}">Retour accueil</a></p>
+    <form action="{% url 'logIn' %}" method="post">
+      <div class="row">
+        <div class="col-4">
+          <div class="imgcontainer">
+            <img
+                    src="https://ionic.lepoles.com/wp-content/uploads/2018/03/logo_transparent_2_400x293.png"
+                    width="100px;"
+                    alt="Logo commons pop"
+            />
+          </div>
+        </div>
+        <div class="col-8">
+          <label class="text-center mt-2"><b>Connexion</b></label>
+        </div>
+      </div>
+
+
+      <div class="container">
+        <label for="">{% csrf_token %} </label>
+        <label for="">{{ form.as_p }}</label>
+		  <p><a class="forgotten" href="{% url 'reset_password_create' %}">Mot de passe oublié ?</a></p>
+        <input type="submit" value="Connexion" class="btn btn-block btn-danger"/>
+        <button class="btn btn-block btn-secondary btn-lg">
+          <a href="{% url 'signUp' %}">Inscription</a>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{%endif%} {% endblock %}
+{% block javascript %}
+
+<script>
+  // gestion des champs générés par le template de django en anglais
+  $('[for="id_pseudo"]').replaceWith('<label for="id_pseudo">Pseudo</label>');
+
+  $('[for="id_password"]').replaceWith('<label for="id_password">Mot de passe</label>');
+</script>
+{% endblock %}

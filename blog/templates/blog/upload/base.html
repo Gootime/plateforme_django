@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% load static %}
+    <title>Je Participe</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+      <link rel="stylesheet" href="../..{%static 'css/style.css'%}" />
+    </head>
+    <body>
+
+      <!-- Début navigation -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="https://ionic.lepoles.com/wp-content/uploads/2018/03/logo_transparent_2_400x293.png" width="100px;" alt="Logo commons pop" />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a class="nav-link" href="{% url 'a_propos' %}">A propos <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'tutoriel' %}">Tutoriel</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Territoires
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for t in territoires %}
+                <a class="dropdown-item" href="{% url 'view_territoire' t.id %}">{{ t.name }}</a>
+                {% endfor %}
+                <a class="dropdown-item" href="{% url 'all_territoires' %}">Tous</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                La communauté
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'toutes_les_capsules' %}">Toutes les capsules</a>
+                <a class="dropdown-item" href="{% url 'cpops' %}">Les CPOPS</a>
+              </div>
+            <li class="nav-item"><a class="nav-link" href="{% url 'upload-home' %}">Je participe</a></li>
+          </ul>
+          <ul class="navbar-nav nav justify-content-end">
+            <li class="nav-item ">
+              {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'profil' user.id %}"><i class="far fa-user"></i> {{ user.username }}</a></li>
+            <li><a class="nav-link" href="{% url 'logOut' %}">Se déconnecter</a></li>
+            <li><a class="nav-link" href="{% url 'upload-home' %}">Ajouter un Article</a></li>
+            {% else%}<li><a class="nav-link co" href="{% url 'logIn' %}">Connexion</a></li>
+            <li></li><a class="nav-link" co href=" {% url 'signUp' %}">Inscription</a></li> {% endif%}
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+      <!-- Fin navigation -->
+      {% block content %} {% endblock %}
+      {% block javascript %} {% endblock %}
+      <!-- Footer -->
+      <!-- Footer -->
+      <footer class="page-footer font-small unique-color-dark" style="background-image:url(https://ionic.lepoles.com/wp-content/uploads/2019/01/fondNew4.jpg)">
+        <div class="rs">
+          <div class="container">
+
+            <!-- Grid row-->
+            <div class="row d-flex align-items-center">
+
+              <!-- Grid column -->
+              <!--<div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">-->
+              <!--<h5 class="mb-0" style="color:#423026">Suivez sur les réseaux sociaux !</h5>-->
+              <!--</div>-->
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+              <div class="mx-auto" style="max-width: 25vw;">
+                <!-- Facebook -->
+                <a class="fb-ic">
+                  <i class="fab fa-facebook-f mr-3" style="color :#cede92; font-size:30px; margin-right:30px;"></i>
+                </a>
+                <!-- Twitter -->
+                <a class="tw-ic">
+                  <i class="fab fa-twitter ml-3" style="color :#cede92; font-size:30px;"> </i>
+                </a>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row-->
+          </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h5 class="text-uppercase font-weight-bold text-center">Commons Pop</h5>
+              <p class="text-center"><img src="https://ionic.lepoles.com/wp-content/uploads/2018/03/logo_transparent_2_400x293.png" width="90px;" alt="logo"></p>
+              <p class="text-center accroche">N'attendez plus pour rejoindre notre collectif et partager votre quartier !</p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-4 col-xl-3 mb-4 mx-auto">
+              <!-- Links -->
+              <h5 class="text-uppercase font-weight-bold text-center">Télécharger l'appli</h5>
+              <p class="text-center">
+                <a href="#" title="App Store" target="_blank">
+                  <img class="logo" src="https://ionic.lepoles.com/wp-content/uploads/2018/09/app-store-badge.png" alt="App Store" />
+                </a>
+              </p>
+              <p class="text-center">
+                <a href="#" title="Google Play">
+                  <img class="logo" src="https://ionic.lepoles.com/wp-content/uploads/2018/09/google-play-256x256.png" alt="Google Play" />
+                </a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Links -->
+              <h5 class="text-uppercase font-weight-bold text-center">Liens utiles</h5>
+              <p class="text-center">
+                <a href="#">A propos</a>
+              </p>
+              <p class="text-center">
+                <a href="#">Tutoriel</a>
+              </p>
+              <p class="text-center">
+                <a href="#">Condition d'uilisation</a>
+              </p>
+              <p class="text-center">
+                <a href="#">Politique de confidentiliaté</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+          <a href="lepoles.org" target="_blank"> Réalisé par LePoleS - 2019</a>
+        </div>
+        <!-- Copyright -->
+
+      </footer>
+      <!-- Footer -->
+    </body>
+
+    </html>

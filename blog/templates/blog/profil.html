@@ -1,0 +1,330 @@
+{% extends 'base.html' %}
+{% load static %}
+{%  block content %}
+
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"        integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+<script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+<script type="text/javascript" src="../..{%static 'js/jquery.star-rating-svg.js'%}"></script>
+<link rel="stylesheet" href="../..{%static 'css/profil.css'%}">
+
+<style media="screen">
+    .highlight{
+        background-color: #ee5249;
+    }
+
+    .card-img-top{
+        width: 204px;
+        height: 110px;
+    }
+
+	#avatar{
+		 min-height: 17vh !important;
+		 max-height: 30vh !important;
+	 }
+
+	.container-fluid.profil{
+		background-color: antiquewhite;
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+		border-radius: 1%;
+	}
+
+	.blog-pagination a span{
+		display: none;
+	}
+	h5{
+		height: 5vh;
+	}
+
+    #video{
+        height: 16vh;
+        background-color: #443f2f !important;
+    }
+    img.img-fluid{
+        width: 300px;
+        height: 19vh;
+        background-color: #443f2f !important;
+    }
+
+	@media(min-width: 992px) {
+		.blog-pagination a span{
+			display: initial;
+		}
+	}
+
+	@media(max-width: 767px){
+		.header-page__category-title{
+			display: none !important;
+		}
+		.filtre2{
+			height: 21vh;
+		}
+		.col-md-12 .col-lg-5 .order-md-1 .order-lg-12{
+		#map{
+			max-width: 540px;
+		}
+		footer > h5{
+			font-size: initial;
+		}
+	}
+
+	@media(min-width: 768px){
+		.header-page__category-title{
+			display: none;
+		}
+		h5:not(.all_territoires), h5:not(.mb-0), h5:not(.card-title){
+			height: 10vh;
+		}
+		footer > h5{
+			font-size: x-small !important;
+		}
+	}
+	@media(min-width: 992px){
+		.header-page__category-title{
+			display: initial;
+		}
+		.col-lg-9{
+			font-size: smaller;
+		}
+		#good_date, #territoire{
+			font-size: xx-small;
+		}
+		.navbar.navbar-expand-lg.navbar-light.bg-light a {
+			font-size: x-small;
+		}
+		footer > h5{
+			font-size: initial;
+		}
+	}
+	@media(min-width: 1500px){
+		.navbar.navbar-expand-lg.navbar-light.bg-light a {
+			font-size: initial;
+		}
+	}
+</style>
+
+<div class="jumbotron jumbotron-fluid mb-0">
+    <div class="container">
+        <h1 class="display-4"><i class="far fa-user"></i> {{ user.username }}</h1>
+    </div>
+</div>
+<div class="fil_d_ariane">
+    <div class="container" >
+        <div class="row">
+            <div class="col">
+                <p><a href="{% url 'home' %}">Accueil</a> <span> &raquo; Mon compte </span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between blog-pagination mx-auto">
+                <a class="p-2 btn btn-outline-danger" href="#capsules"><i class="far fa-images fa-2x"></i> <span>Mes
+					capsules</span></a>
+                <a class="p-2 btn btn-outline-danger" href="#parcours"><i class="fas fa-map-marked-alt fa-2x"></i> <span>Mes
+					parcours</span></a>
+                <a class="p-2 btn btn-outline-danger" href="{% url 'upload' %}"><i class="fas fa-camera-retro fa-2x"></i>
+					<span>Poster une capsule</span></a>
+                <a class="p-2 btn btn-outline-danger" href="#add_parcours"><i class="fas fa-project-diagram fa-2x"></i>
+					<span>Créer un parcours</span></a>
+            </nav>
+        </div>
+
+        <!--<hr>-->
+
+		<div class="container-fluid profil">
+			<div class="row mx-auto">
+				<div class="col-md-4 col-12 text-center">
+					<p><img src="{{ avatar }}" class="img-fluid w-100" id="avatar"/></p>
+				</div>
+				<div class="col-md-8 col-12">
+					<div class="col-12">
+						<p>Pseudo : {{ user.username}}</p>
+						<p>Email : {{ user.email}}</p>
+						<p>Prénom : {{ user.first_name}}</p>
+						<p>Nom : {{ user.last_name}}</p>
+					</div>
+					<p><a href="{% url 'update_profil' %}" class="btn btn-outline-secondary btn-block">
+						<i class="fas fa-pen"></i> Modifier mon profil</a>
+					</p>
+				</div>
+			</div>
+		</div>
+    </div><!-- /.alert .alert-danger-->
+
+</div><!-- /.container-->
+
+
+<div class="container">
+    <div class="alert alert-danger">
+        <h2 id="capsules">Mes Capsules</h2>
+        <nav class="row">
+            {% for article in Article_by_author %}
+            <input type="hidden" value="{{article.id}}" name="article" class="articleHidden{{article.id}}">
+            <div class="col-lg-4 col-md-6 col-12 mx-auto mt-2">
+                <a class="card" href="{% url 'lire' article.id %}">
+
+                    <!--<img class="card-img-top img-fluid w-100" src="{{article.thumbnail}}" alt="Card image cap">-->
+                    <!--<img src="{{article.file}}" class="card-img-top img-fluid w-100" alt="Image de {{ article.title }}">-->
+                    {% if article.category == 2 %}
+                    <video controls id="video" src="{{article.file}}"></video>
+                    {% else %}
+                    <img id="image" class="img-fluid w-100" src="{{article.file}}" alt="carte" />
+                    {% endif %}
+                    <div class="card-body">
+						<p class="text-right">
+							{% if article.category == 1 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Image </span>
+							{% endif %}
+							{% if article.category == 2 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Vidéo </span>
+							{% endif %}
+							{% if article.category == 3 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Audio </span>
+							{% endif %}
+							{% if article.category == 4 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Récit </span>
+							{% endif %}
+							<span class="full_date" style="display: none;">{{article.date}}</span>
+							<span class="good_date"></span>
+						</p>
+						<h5 class="card-title">{{ article.title|truncatechars:75 }}</h5>
+
+                    </div>
+                </a>
+            </div>
+
+            {% empty %}
+            <nav class="nav d-flex justify-content-around blog-pagination mx-auto">
+                <div class="col">
+                    <p><a href="{% url 'upload' %}" id="add_capsule" class="btn btn-outline-secondary btn-block">Poster une capsule</a></p>
+                </div>
+            </nav>
+            {% endfor %}
+    </div>
+</div>
+</div>
+
+<div class="container">
+    <div class="alert alert-danger">
+        <h2 id="parcours">Mes parcours</h2>
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-around blog-pagination mx-auto">
+                {% for i in Parcours_by_author %}
+                <a class="p-2 btn btn-outline-danger" href="{% url 'view_parcours' i.id %}"><i class="fas fa-map-marked-alt"></i>&nbsp; {{i.id}}</a>
+                {% empty %}
+                <p>Aucun Parcours</p>
+                {% endfor %}
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="alert alert-danger">
+        <h2 id="add_parcours">Créer un parcours</h2>
+        <div class="row">
+            {% for allarticle in Article_by_author %}
+			<div class="col-lg-4 col-md-6 col-12 mx-auto mt-2">
+                <div class="card text-white bg-dark flex-md-row mb-4 shadow-sm h-md-250">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <p><i class="fas fa-plus-square fa-3x add"></i></p>
+                        <input type="hidden" value="{{allarticle.id}}" name="article" class="articleHidden{{article.id}}">
+                        <strong class="d-inline-block mb-2 text-danger">{{ allarticle.author }}</strong>
+						<p class="text-right">
+							{% if allarticle.category == 1 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Image </span>
+							{% endif %}
+							{% if allarticle.category == 2 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Vidéo </span>
+							{% endif %}
+							{% if allarticle.category == 3 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Audio </span>
+							{% endif %}
+							{% if allarticle.category == 4 %}
+							<span class="mt-1 text-muted" style="font-size: xx-small">Récit </span>
+							{% endif %}
+							<span class="full_date" style="display: none;">{{allarticle.date}}</span>
+							<span class="good_date"></span>
+						</p>
+                        <h5 class="mb-0">
+                            <a class="text-light" href="#">{{ allarticle.title|truncatechars:75 }}</a>
+                        </h5>
+                        <!--<div class="mt-1 text-muted">{{ allarticle.date }}</div>-->
+
+                        <!--<a href="#">Lire plus &raquo;</a>-->
+                    </div>
+                    <!--<img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb"-->
+                         <!--src="{%static ''%}{{article.file}}"-->
+                         <!--alt="Capsule image">-->
+                </div>
+            </div>
+            {% empty %}
+            <p>Aucune capsule.</p>
+            {% endfor %}
+        </div>
+    </div>
+    <button id="submit_parcours" class="btn btn-secondary btn-block"><i class="fas fa-project-diagram fa-2x"></i>&nbsp; Créer le parcours</button>
+</div>
+
+
+<script type="text/javascript">
+    var tableau = [];
+    var json = {};
+
+    console.log('capsule')
+    $('.fa-plus-square').click(function (Capsule) {
+        var Capsule = $(this).closest("div.col-md-4").find($('input[type="hidden"]')).val();
+        var Valide = $(this).closest("div.card-body");
+        Valide.addClass("highlight")
+        if( $.inArray(Capsule , tableau) !== -1 ){
+            alert('Article Deja present');
+        }else{
+            tableau.push(Capsule);
+
+        }
+
+        var json = { tableau };
+
+    });
+    $('#submit_parcours').click(function(){
+        if(tableau.length < 1){
+            alert('vous ne pouvez pas créer de parcours sans aucun article')
+        }else{
+            console.log(json)
+            $.ajax({
+                method:'POST',
+                url: '{{ url }}/api/playlist/',
+                data: JSON.stringify(tableau) ,
+                headers: {'Authorization': '{{ header }}'},
+                dataType: 'json',
+                complete: function (data) {
+                    window.location.reload(true);
+                }
+            });
+        }
+    });
+
+	//2019-02-05T23:22:01.714652+01:00
+	var full_date = $('.full_date').text();
+	var short_date = full_date.slice(0,10);
+	var array_date = short_date.split('-');
+	var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
+	var nb_month = array_date[1];
+	var month = parseInt(nb_month);
+	// console.log(nb_month);
+	var month_ok = month-1;
+	console.log(m_names[month_ok]);
+	var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+	// console.log(full_date);
+	// console.log(short_date);
+	// console.log(array_date);
+	// console.log(formated_date);
+
+	$('.good_date').replaceWith('<span class=\"good_date mt-1 text-muted\" style=\"font-size: xx-small\">du ' + formated_date + '</span>');
+</script>
+
+{% endblock %}

@@ -1,0 +1,439 @@
+{% extends 'base.html' %} {% block content %} {%load static%}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+	  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+	  crossorigin=""/>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css"/>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css"/>
+<link rel="stylesheet" href="../..{%static 'css/style.css'%}" />
+<link rel="stylesheet" href="../..{%static 'css/allTerritoires.css'%}">
+<style>
+    p{
+        font-size: 0.85rem;
+    }
+    p:not(.lead){
+        line-height: 0.5;
+    }
+    .bg_green{
+        background-color: #443f2f;
+        /*font-family: Permanent Marker, cursive;*/
+    }
+    .bg_green a{
+        color: #ffffff;
+        font-style: italic;
+        font-weight: bold;
+        font-family: "Poppins", sans-serif;
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 0.8rem;
+    }
+    .col-md-6 .bg_green{
+     height: fit-content;
+    }
+    .filtre2 a{
+        line-height: 68px;
+        padding-left: 1vw !important;
+    }
+    h2.display-4{
+        font-family: "Permanent Marker", cursive;
+        font-size: 2rem;
+    }
+    .container-fluid.home {
+        margin-top: 0rem;
+    }
+    .card{
+        border: none;
+    }
+    .card-body .home:hover {
+        background-color: #ee5249 !important;
+    }
+    .card img{
+        background-color: antiquewhite;
+    }
+    .btn-primary {
+        background-color: #cede92 !important;
+        border-color: #cede92 !important;
+        color: #000;
+    }
+    .btn-primary:hover {
+        background-color: #443f2f !important;
+        border-color: #443f2f !important;
+        color: #fff;
+    }
+    #video{
+        /*height: 16vh;*/
+        background-color: #443f2f !important;
+    }
+    img.img-fluid{
+        /*width: 300px;*/
+        /*height: 19vh;*/
+        background-color: #443f2f !important;
+    }
+    .col-md-6{
+        padding-left: 0px;
+    }
+    a#profil span{
+        color: #000;
+    }
+    a#profil span:hover, a#profil span:focus{
+        text-decoration: none;
+        cursor: default;
+    }
+    a#profil, a#territoire{
+        color: #cede92 !important;
+    }
+    a#profil:hover, a#territoire:hover, a#profil:focus, a#territoire:focus{
+        text-decoration: none;
+    }
+    /*img.logo{*/
+        /*width: 50%;*/
+        /*height: 30%;*/
+    /*}*/
+    h5:not(.all_territoires){
+        height: 9.35vh;
+    }
+    .jumbotron{
+        padding-bottom: 0rem !important;
+    }
+    @media(max-width: 767px){
+        /*.header-page__category-title{*/
+            /*display: none !important;*/
+        /*}*/
+        .filtre2{
+            /*height: 21vh;*/
+            margin-bottom: 8vh;
+        }
+        .col-md-12 .col-lg-5 .order-md-1 .order-lg-12{
+        #map{
+            max-width: 540px;
+        }
+        footer > h5{
+            font-size: initial;
+        }
+    }
+    @media(min-width: 768px){
+        /*.header-page__category-title{*/
+            /*display: none;*/
+        /*}*/
+        h5:not(.all_territoires){
+            height: 9.35vh;
+        }
+        footer > h5{
+            font-size: x-small !important;
+        }
+        .navbar.navbar-expand-custom.navbar-light.bg-light a {
+            font-size: x-small;
+        }
+    }
+    @media(min-width: 992px){
+        /*.header-page__category-title{*/
+            /*display: none;*/
+        /*}*/
+        .col-lg-9{
+            font-size: smaller;
+        }
+        #good_date, #territoire{
+            font-size: smaller;
+        }
+        .navbar.navbar-expand-custom.navbar-light.bg-light a {
+            font-size: x-small;
+        }
+        footer > h5{
+            font-size: initial;
+        }
+    }
+    @media(max-width: 1200px) {
+        .header-page__category-title {
+            display: none !important;
+        }
+    }
+    @media(min-width: 1500px){
+        .navbar.navbar-expand-custom.navbar-light.bg-light a {
+            font-size: initial;
+        }
+    }
+</style>
+<!--<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"/>-->
+
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"        integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+<script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+<script type="text/javascript" src="../..{%static 'js/jquery.star-rating-svg.js'%}"></script>
+<script src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&amp;version=v2.5";></script>
+
+<!-- Début jumbotron -->
+<div class="jumbotron">
+
+    <h1 class="display-4 text-center">Raconte ton quartier</h1>
+    <div>
+        <!--<h2 id="titreHome">Raconte ton quartier</h2>-->
+        <p class="lead">
+            Participe à ce projet collectif en partageant ta vision de ton quartier à
+            travers des récits, photos, sons, vidéos ou vidéos-guide.
+        </p>
+        <hr class="my-4" />
+        <div class="row">
+			<div class="col-md-8 order-md-2 col-12">
+				<h2 class="display-4 text-center">Commons Pop</h2>
+			</div>
+			<div class="col-md-2 order-md-1 col-6 order-2">
+                {% if not request.session.token %}
+				<a class="btn btn-outline-danger btn-lg" href="{% url 'signUp' %}" role="button">Je participe</a>
+				{% endif %}
+			</div>
+            <div class="col-md-2 order-md-12 col-6 order-2">
+                <p class="text-center">
+                    <a href="#" title="App Store" target="_blank">
+                        <img class="logo img-fluid" src="https://d16gc1wdsdgw9o.cloudfront.net/static/app-store-badge.png" alt="App Store" />
+                    </a>
+                </p>
+                <p class="text-center">
+                    <a href="https://play.google.com/store/apps/details?id=com.lepoles.commonspopv2" title="Google Play" target="_blank">
+                        <img class="logo img-fluid" src="https://d16gc1wdsdgw9o.cloudfront.net/static/google-play-256x256.png" alt="Google Play" />
+                    </a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- fin jumbotron -->
+<!--{{articles}}-->
+<!-- Début de filtre -->
+<div class="container filtre1">
+
+    <div class="row filtre2">
+        <div class="col-lg-9 col-md-6 col-12 d-flex justify-content-around">
+            {% for categorie in categories %}
+            <a href="{% url 'view_categorie' categorie %}">
+                <span class="header-page__category-icon"><img src="../../static{%static ''%}{{ categorie }}.png" data-recalc-dims="1"/></span>
+                {% if categorie == 1 %}
+                <span class="header-page__category-title">Image</span>
+                {% endif %}
+                {% if categorie == 2 %}
+                <span class="header-page__category-title">Vidéo</span>
+                {% endif %}
+                {% if categorie == 3 %}
+                <span class="header-page__category-title">Audio</span>
+                {% endif %}
+                {% if categorie == 4 %}
+                <span class="header-page__category-title">Récit</span>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+        <div class="col-lg-3 col-md-6 col-12 bg_green text-center">
+            <a href="{% url 'toutes_les_capsules' %}">voir les {{count}} vidéos</a>
+        </div>
+
+    </div>
+</div>
+<script>
+    $( document ).ready(function() {
+        $("canvas").each(function (index, value) {
+            var video = $(this).children('video')[0];
+            value.getContext('2d').drawImage(video, 0, 0, value.width, value.height);
+        })
+    })
+</script>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12 col-lg-5 order-md-1 order-lg-12">
+            <div id="map"></div>
+        </div>
+
+        <div class="col-md-12 col-lg-7 order-md-12 order-lg-1">
+            <div class="container-fluid home">
+
+                <div class="row">
+                    <!--{{articles}}-->
+                    {% for article in articles %}
+
+                    <div class="col-lg-6 col-md-5 mx-auto home">
+                        <div class="card">
+
+                            {% if article.category == 2 %}
+                            <video controls id="video" src="{{article.file}}" class="img-fluid w-100"></video>
+                            {% else %}
+                            <img id="image" class="img-fluid w-100" src="{{article.file}}" alt="carte" />
+                            {% endif %}
+
+                            <div class="card-body home">
+
+                                <h5 class="card-title text-center">
+                                    {{ article.title|truncatechars:75 }}
+                                </h5>
+                                <p>
+                                    {% if article.category == 1 %}
+                                    <span>Image </span>
+                                    {% endif %}
+                                    {% if article.category == 2 %}
+                                    <span>Vidéo </span>
+                                    {% endif %}
+                                    {% if article.category == 3 %}
+                                    <span>Audio </span>
+                                    {% endif %}
+                                    {% if article.category == 4 %}
+                                    <span>Récit </span>
+                                    {% endif %}
+                                    <a href="{% url 'profil_other' article.user  %}" id="profil"><span>par </span>
+                                        {{ article.username }}</a> </p>
+                                <p class="mx-auto d-flex justify-content-between">
+                                    <span class="full_date" style="display: none;">{{article.date}}</span>
+                                    <span class="good_date"></span>
+                                    <!--<span>{{article.place}}</span>-->
+                                    <a id="territoire" href="{% url 'view_territoire' article.place %}">
+                                        {% if article.place == 1 %}
+                                        <span>Essonne</span>
+                                        {% endif %}
+                                        {% if article.place == 2 %}
+                                        <span>Paris</span>
+                                        {% endif %}
+                                        {% if article.place == 3 %}
+                                        <span>Hauts-de-Seine</span>
+                                        {% endif %}
+                                        {% if article.place == 4 %}
+                                        <span>Seine-et-Marne</span>
+                                        {% endif %}
+                                        {% if article.place == 5 %}
+                                        <span>Seine-st-Denis</span>
+                                        {% endif %}
+                                    </a>
+                                </p>
+                                <a href="{% url 'lire' article.id %}" class="btn btn-primary btn-block">Lire la suite</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        //2019-02-05T23:22:01.714652+01:00
+                        var full_date = $('.full_date').text();
+                        var short_date = full_date.slice(0,10);
+                        var array_date = short_date.split('-');
+                        var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
+                        var nb_month = array_date[1];
+                        var month = parseInt(nb_month);
+                        // console.log(nb_month);
+                        var month_ok = month-1;
+                        console.log(m_names[month_ok]);
+                        var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+                        // console.log(full_date);
+                        // console.log(short_date);
+                        // console.log(array_date);
+                        // console.log(formated_date);
+                        $('.good_date').replaceWith('<p id=\"good_date\" class=\"text-right\">Le ' + formated_date + '</p>');
+                    </script>
+
+                    {% empty %}
+                    <p>Aucun article.</p>
+                    {% endfor %}
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+
+        </div><!-- /.col-md-5 .order-1 -->
+
+    </div><!-- /.row -->
+
+</div><!-- /.container -->
+
+<script type="text/javascript">
+    var lat = 48.852969;
+    var lon = 2.349903;
+    var macarte = null;
+    var markerClusters;
+    var info_cluster = document.getElementsByClassName('info_cluster')
+    function initMap() {
+        macarte = L.map('map').setView([lat, lon], 11);
+        markerClusters = L.markerClusterGroup();
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+            minZoom: 1,
+            maxZoom: 20
+        }).addTo(macarte);
+        {% for marker in listMarker %}
+        var marker = L.marker([{{marker.0.0}},{{marker.0.1}}]);
+        marker.bindPopup("{{marker.1}}")
+        marker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        markerClusters.addLayer(marker);
+        marker.addEventListener('click',function(){
+            window.location.href = "{% url 'lire' marker.2 %}"
+        })
+        {% endfor %}
+        macarte.addLayer(markerClusters);
+        markerClusters.on('clustermouseover', function (a) {
+            for(i=0;i <a.layer.getAllChildMarkers().length;i++){
+                console.log(a.layer.getAllChildMarkers()[i]._popup._content);
+            }
+        });
+    }
+    window.onload = function(){
+        initMap();
+    };
+    $("canvas").each(function (index, value) {
+        var video = $(this).children('video')[0];
+        value.getContext('2d').drawImage(video, 0, 0, value.width, value.height);
+    })
+</script>
+
+<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"
+></script>
+<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"
+></script>
+
+
+
+
+<style type="text/css">
+    @media (min-width: 576px) {
+        #map {
+            height: 300px;
+            /*width: 300px;*/
+            margin-bottom: 1vh;
+        }
+    }
+    @media (min-width: 768px) {
+        #map {
+            height: 300px;
+            width: 720px;
+            margin-bottom: 1vh;
+        }
+        .col-md-12{
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+    @media (min-width: 992px) {
+        #map {
+            height: 700px;
+            width: 377px;
+        }
+        .col-md-12{
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+        }
+    }
+    @media (min-width: 1200px) {
+        #map {
+            height: 889px;
+            width: 450px;
+        }
+    }
+    .info_cluster {
+        border: solid 1px #ccc;
+    }
+</style>
+
+{% endblock %}
+</div>

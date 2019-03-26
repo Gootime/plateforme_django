@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+{%load static%}
+<link rel="stylesheet" href="../..{%static 'css/allTerritoires.css'%}">
+
+<style>
+    a:hover, a:focus{
+        text-decoration: none;
+    }
+    .card-img-top{
+        width: 300px;
+        height: 200px;
+    }
+</style>
+
+<script
+        type="text/javascript"
+></script>
+
+<div class="jumbotron jumbotron-fluid mb-0">
+    <div class="container">
+        <h1 class="display-4">Tous les territoires</h1>
+    </div>
+</div>
+<div class="fil_d_ariane">
+    <div class="container" >
+        <div class="row">
+            <div class="col">
+                <p><a href="{% url 'home' %}">Accueil</a> <span> &raquo; Les Territoires </span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            {% for t in territoires %}
+            <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                <a href="{% url 'view_territoire' t.id.id %}">
+                    <div class="card hover">
+                        <img class="card-img-top img-fluid w-100" src="{{t.id.image | safe}}" alt="{{t.id.nom}}">
+                        <div class="card-body text-center">
+                            <h5 class="all_territoires">{{t.id.name}}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
