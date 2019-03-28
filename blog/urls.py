@@ -25,5 +25,6 @@ urlpatterns = [
     path('upload', views.upload, name='upload'),
     path('reset_password_create',views.reset_password_create,name="reset_password_create"),
     path('updateprofil/',views.updateProfile,name='update_profil'),
-    path('password/reset/confirm/<str:uid>/<str:token>', views.reset_password_confirm, name="reset_password_confirm")
+    path('password/reset/confirm/<str:uid>/<str:token>', views.reset_password_confirm, name="reset_password_confirm"),
+    path('contact',views.contact,name="contact"),
 ]

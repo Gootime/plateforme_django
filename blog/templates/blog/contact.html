@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+{%load static%}
+<main>
+       <!-- Heading Page -->
+       <section class="heading-page">
+           <img src="images/bloggrid-heading-bg.jpg" alt="">
+           <div class="container">
+               <div class="heading-page-content">
+                   <div class="au-page-title">
+                     <h1>Contactez-nous</h1>
+                   </div>
+                   <nav aria-label="breadcrumb">
+                       <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                           <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                       </ul>
+                   </nav>
+               </div>
+           </div>
+       </section>
+
+       <!-- Contact Info -->
+       <section class="contact-info-two section-padding-large">
+           <div class="container">
+               <div class="contact-info-two-content">
+                   <div class="row">
+                       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                           <article class="item">
+                               <span class="icon">
+                                   <i class="fas fa-mobile-alt"></i>
+                               </span>
+                               <div class="info">
+                                 <h3 class="title">Téléphone &amp; fax</h3>
+                                 <p><span class="contact-phone">01 15 16 17 18 </span>
+                   <span class="contact-phone">01 15 16 17 19</span></p>
+                               </div>
+                           </article>
+                       </div>
+                       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                           <article class="item">
+                               <span class="icon">
+                                   <i class="far fa-envelope"></i>
+                               </span>
+                               <div class="info">
+                                 <h3 class="title">Adresse email</h3>
+                                 <a href="mailto:info@smartedu.com" class="email">plateforme@lepoles.com</a></div>
+                           </article>
+                       </div>
+                       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                           <article class="item">
+                               <span class="icon">
+                                   <i class="fas fa-map-marker-alt"></i>
+                               </span>
+                               <div class="info">
+                                 <h3 class="title">Adresse postale</h3>
+                                 <span class="address">11, allée Saint-Exupéry 9339 Villeneuve-la-Garenne</span></div>
+                           </article>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+
+       <!-- Contact us -->
+       <section class="contact-us contact-us-two">
+           <div class="container-fluid">
+               <div class="contact-us-content">
+                   <div class="row">
+                       <div class="col-xl-6 col-lg-6 col-md-12-col-sm-12 col-12 px-0">
+                           <div class="contact-form">
+                               <h3 class="contact-title">
+                                   Restez en contact
+                               </h3>
+                               <form method="POST" action="{% url 'contact' %}" class="form-contact js-contact-form">
+                                  {{form.as_p}}
+                                  <input type="submit" value="Submit">
+                               </form>
+                           </div>
+                       </div>
+                       <div class="col-xl-6 col-lg-6 col-md-12-col-sm-12 col-12 px-0">
+                           <div class="map-wrapper js-google-map" data-makericon="images/icon/icon-map-blue.png" data-makers='[["Smartedu", "Now that you visited our website,<br> how about checking out our office too?", 40.717209, -74.005165]]'>
+                               <div class="map__holder js-map-holder" id="map"></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+   </main>
+{% endblock %}

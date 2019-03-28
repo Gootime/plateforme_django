@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
 from blog.forms import UserLogIn, UserFormSignUp, ArticleForm, CommentForm, UserForm, ProfileForm, \
-    form_reset_password_create, form_reset_password_confirm, upate_profile_form, UserFormUpdate
+    form_reset_password_create, form_reset_password_confirm, upate_profile_form, UserFormUpdate,Contact
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -19,6 +19,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from blog.models import Capsule, Place
 from cpop.settings import BASE_URL, get_header
 from django.utils import formats
+from django.core.mail import send_mail
 
 
 def home(request):
@@ -444,3 +445,23 @@ def reset_password_confirm(request, uid, token):
             pass
 
     return render(request,'blog/reset_password_confirm.html', locals())
+
+
+def contact(request):
+    form = Contact(request.POST)
+    if form.is_valid():
+        sujet = form_reset_create.cleaned_data['sujet']
+        email = form_reset_create.cleaned_data['email']
+        message = form_reset_create.cleaned_data['message']
+        print(sujet + ' ' + email + ' ' + message)
+        try:
+            send_mail(
+                sujet,
+                message,
+                email,
+                ['gotimeingame@gmail.com'],
+                fail_silently=False,
+            )
+        except:
+            return('Erreur')
+    return render(request,'blog/contact.html',locals())
