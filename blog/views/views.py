@@ -26,6 +26,10 @@ def home(request):
     articles = requests.get(BASE_URL + '/api/capsule/last/')
     articles = articles.json()
 
+    data = requests.get(BASE_URL + '/api/cpops_last/').json()
+
+
+
     allArticle = requests.get(BASE_URL + '/api/capsule/')
     allArticle = [Capsule(article) for article in allArticle.json()]
     listMarker = []
@@ -40,7 +44,7 @@ def home(request):
 
     return render(request, 'blog/home.html',
                   {'articles': articles, 'listMarker': listMarker, 'territoires': get_territoire,
-                   'categories': get_category, 'count': len(allArticle)})
+                   'categories': get_category, 'count': len(allArticle),'cpops':data})
 
 
 def lire(request, id):

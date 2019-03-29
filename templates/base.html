@@ -284,8 +284,10 @@
                             <a href="mailto:contact@.laplateforme.com" class="email"><span><i class="far fa-envelope"></i></span> contact@.laplateforme.com</a>
                         </div>
                         <div class="header-top-account">
-                            <a href="#" class="login"><i class="fas fa-user"></i>Je participe</a>
-                            <a href="#" class="signup"><i class="fas fa-edit"></i>Je me connecte</a>
+                            {% if not request.session.token %}
+                                   <a href="#" class="login"><i class="fas fa-user"></i>Je participe</a>
+					                         <a class="btn btn-outline-danger btn-lg" href="{% url 'signUp' %}" role="button">Je me connecte</a>
+				                    {% endif %}
                         </div>
                     </div>
                 </div>
