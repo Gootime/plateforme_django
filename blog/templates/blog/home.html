@@ -18,9 +18,9 @@
             <div id="au_rev_slider2" class="rev_slider fullscreenbanner slide-content" style="display:none;" data-version="5.4.1">
                 <ul>
                     <!-- SLIDE  -->
-                    <li data-index="rs-82" data-transition="papercut" data-thumb="images/immeuble.jpg">
+                    <li data-index="rs-82" data-transition="papercut" data-thumb="{% static '' %}img/la_caravelle_slider.jpg">
                         <!-- MAIN IMAGE 1 -->
-                        <img src="images/la_caravelle.jpg" alt="">
+                        <img src="{% static '' %}img/la_caravelle.jpg" alt="">
 
                         <!-- LAYERS -->
                         <div class="tp-caption tp-resizeme slide-title slide-title-uppercase" data-frames='[{"delay":0,"split":"chars","splitdelay":0.05,"speed":1000,"frame":"0","from":"x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -41,9 +41,9 @@
                         </a>
                     </li>
                     <!-- SLIDE  -->
-                    <li data-index="rs-83" data-transition="cube-horizontal" data-thumb="images/le_canal.jpg">
+                    <li data-index="rs-83" data-transition="cube-horizontal" data-thumb="{% static '' %}img/le_canal.jpg">
                         <!-- MAIN IMAGE -->
-                        <img src="images/le_canal.jpg" alt="">
+                        <img src="{% static '' %}img/la_caravelle_slider.jpg" alt="">
 
                         <!-- LAYERS -->
                         <div class="tp-caption tp-resizeme slide-title slide-title-uppercase" data-frames='[{"delay":0,"speed":1500,"frame":"0","from":"y:bottom;rZ:90deg;sX:2;sY:2;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -64,9 +64,9 @@
                         </a>
                     </li>
                     <!-- SLIDE  -->
-                    <li data-index="rs-84" data-transition="flyin" data-thumb="images/immeuble.jpg">
+                    <li data-index="rs-84" data-transition="flyin" data-thumb="{% static '' %}img/la_caravelle_slider.jpg">
                         <!-- MAIN IMAGE -->
-                        <img src="images/immeuble.jpg" alt="">
+                        <img src="{% static '' %}img/la_caravelle_slider.jpg" alt="">
 
                         <!-- LAYERS -->
                         <div class="tp-caption tp-resizeme slide-title slide-title-uppercase" data-frames='[{"delay":0,"speed":1000,"frame":"0","from":"z:0;rX:0deg;rY:0;rZ:0;sX:2;sY:2;skX:0;skY:0;opacity:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
@@ -289,7 +289,7 @@
         </section>
 
         <!-- La communauté -->
-        <section class="courses courses-2 section-padding-large" style="background-image: url('images/membres.jpg'); background-color: rgba(255, 255, 255, 0.5);">
+        <section class="courses courses-2 section-padding-large" style="background-image: url('{% static '' %}img/membres.jpg'); background-color: rgba(255, 255, 255, 0.5);">
             <div class="container">
                 <div class="section-title section-title-center">
                     <h2>La communauté</h2>
@@ -305,7 +305,7 @@
 	                            <article class="item wow fadeIn" data-wow-delay="0.3s">
 	                                <div class="item-thumb">
 	                                    <a href="single-course.html">
-	                                        <img src="images/tarek_benkherouf.jpg" alt="">
+	                                        <img src="{{item.3.picture}}" alt="">
 	                                        <span class="overlay"></span>
 	                                    </a>
 	                                    <div class="feadtured-course-small">
@@ -409,13 +409,13 @@
 							  <br>
 								<figure>
 									<a href="#">
-										<img src="images/google-play-256x256.png" alt="" width="125" height="40">
+										<img src="{% static '' %}img/google-play-256x256.png" alt="" width="125" height="40">
 									</a>
                         		</figure>
 								<br>
 								<figure>
 									<a href="#">
-										<img src="images/app-store-badge.png" alt="" width="125" height="40">
+										<img src="{% static '' %}img/app-store-badge.png" alt="" width="125" height="40">
 									</a>
                         		</figure>
                             </div>
@@ -450,7 +450,7 @@
                         </div>
                         <figure>
                             <a href="single-event.html">
-                                <img src="images/telephone.jpg" alt="">
+                                <img src="{% static '' %}img/telephone.jpg" alt="">
                             </a>
                         </figure>
                     </article>
@@ -473,7 +473,7 @@
                         </div>
                         <figure>
                             <a href="single-event.html">
-                                <img src="images/habitants.jpg" alt="">
+                                <img src="{% static '' %}img/quartier.jpg" alt="">
                             </a>
                         </figure>
                     </article>
@@ -501,7 +501,7 @@
                         </div>
                         <figure>
                             <a href="single-event.html">
-                                <img src="images/partage.jpg" alt="">
+                                <img src="{% static '' %}img/partage.jpg" alt="">
                             </a>
                         </figure>
                     </article>
@@ -517,36 +517,36 @@
                     <div class="row">
                         <div class="col px-0">
                             <figure>
-                                <a href="images/caravelle_bandeau_01.jpg" class="grouped_gallery" data-fancybox="gallery">
-                                    <img src="images/caravelle_bandeau_01.jpg" alt="">
+                                <a href="{% static '' %}img/caravelle_bandeau_01.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static '' %}img/caravelle_bandeau_01.jpg" alt="">
                                 </a>
                             </figure>
                         </div>
                         <div class="col px-0">
                             <figure>
-                                <a href="images/caravelle_bandeau_02.jpg" class="grouped_gallery" data-fancybox="gallery">
-                                    <img src="images/caravelle_bandeau_02.jpg" alt="">
+                                <a href="{% static '' %}img/caravelle_bandeau_02.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static '' %}img/caravelle_bandeau_02.jpg" alt="">
                                 </a>
                             </figure>
                         </div>
 						<div class="col px-0">
                             <figure>
-                                <a href="images/caravelle_bandeau_05.jpg" class="grouped_gallery" data-fancybox="gallery">
-                                    <img src="images/caravelle_bandeau_05.jpg" alt="">
+                                <a href="{% static '' %}img/caravelle_bandeau_05.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static '' %}img/caravelle_bandeau_05.jpg" alt="">
                                 </a>
                             </figure>
                         </div>
                         <div class="col px-0">
                             <figure>
-                                <a href="images/caravelle_bandeau_03.jpg" class="grouped_gallery" data-fancybox="gallery">
-                                    <img src="images/caravelle_bandeau_03.jpg" alt="">
+                                <a href="{% static '' %}img/caravelle_bandeau_03.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static '' %}img/caravelle_bandeau_03.jpg" alt="">
                                 </a>
                             </figure>
                         </div>
                         <div class="col px-0">
                             <figure>
-                                <a href="images/caravelle_bandeau_04.jpg" class="grouped_gallery" data-fancybox="gallery">
-                                    <img src="images/caravelle_bandeau_04.jpg" alt="">
+                                <a href="{% static '' %}img/caravelle_bandeau_04.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static '' %}img/caravelle_bandeau_04.jpg" alt="">
                                 </a>
                             </figure>
                         </div>

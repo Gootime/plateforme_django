@@ -347,13 +347,13 @@
 
 // Sign up
 .sign-up {
-    background: #fff url('../images/home1-signup-bg.jpg') no-repeat center center;
+    background: #fff url('../{% static '' %}img/home1-signup-bg.jpg') no-repeat center center;
     @include background-size(cover);
     background-attachment: fixed;
 }
 
 .sign-up-2 {
-    background: #fff url('../images/home3-signup-bg.jpg') no-repeat center center;
+    background: #fff url('../{% static '' %}img/home3-signup-bg.jpg') no-repeat center center;
     @include background-size(cover);
     background-attachment: fixed;
 }

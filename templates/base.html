@@ -99,7 +99,7 @@
                                             <!--</ul>-->
                                         </li>
                                         <li class="menu-item curent-menu-item">
-                                            <a href="communaute.html">La Communauté</a>
+                                            <a href="{% url 'cpops' %}">La Communauté</a>
                                             <!--<ul class="sub-menu">-->
                                                 <!--<li class="menu-item">-->
                                                     <!--<a href="courses.html">Course 1</a>-->
@@ -112,13 +112,10 @@
                                         </li>
                                         <li class="menu-item">
                                             <a href="#">Découvrir</a>
-                                            <!--<ul class="sub-menu">-->
-                                                <!--<li class="menu-item"><a href="aboutus.html">About us </a></li>-->
-                                                <!--<li class="menu-item"><a href="gallery1.html">Gallery 1</a></li>-->
-                                                <!--<li class="menu-item"><a href="gallery2.html">Gallery 2</a></li>-->
-                                                <!--<li class="menu-item"><a href="404.html">404</a></li>-->
-                                                <!--<li class="menu-item"><a href="pricing.html">Pricing Table</a></li>-->
-                                            <!--</ul>-->
+                                            <ul class="sub-menu">
+                                              <li class="menu-item"><a href="posts.php">Les posts</a></li>
+                                              <li class="menu-item"><a href="parcours.php">Les parcours</a></li>
+                                            </ul>
                                         </li>
                                         <li class="menu-item">
                                             <a href="events.html">Territoires</a>
@@ -337,7 +334,7 @@
 												<div class="footer-link-menu">
 														<ul>
 																<li><a href="#"><i class="la la-angle-right"></i>Accueil</a></li>
-																<li><a href=""><i class="la la-angle-right"></i>La communauté</a></li>
+																<li><a href="{% url 'cpops' %}"><i class="la la-angle-right"></i>La communauté</a></li>
 																<li><a href=""><i class="la la-angle-right"></i>Découvrir</a></li>
 																<li><a href="#"><i class="la la-angle-right"></i>Territoires</a></li>
 																<li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
@@ -357,33 +354,33 @@
 												</div>
 												<div class="footer-gallery-content">
 														<figure>
-																<a href="{% static  ''%}img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
-																		<img src="{% static  ''%}img/footer-gallery-3.jpg" alt="">
+																<a href="{% static  ''%}img/galerie_footer_fresque.jpg" class="grouped_elements" data-fancybox="gallery">
+																		<img src="{% static  ''%}img/galerie_footer_fresque.jpg" alt="">
 																</a>
 														</figure>
 														<figure>
-																<a href="{% static  ''%}img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
-																		<img src="{% static  ''%}img/footer-gallery-3.jpg" alt="">
+																<a href="{% static  ''%}img/galerie_footer_st_exupery.jpg" class="grouped_elements" data-fancybox="gallery">
+																		<img src="{% static  ''%}img/galerie_footer_st_exupery.jpg" alt="">
 																</a>
 														</figure>
 														<figure>
-																<a href="{% static  ''%}img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
-																		<img src="{% static  ''%}img/footer-gallery-3.jpg" alt="">
+																<a href="{% static  ''%}img/carre_tarek_benkherouf.jpg" class="grouped_elements" data-fancybox="gallery">
+																		<img src="{% static  ''%}img/carre_tarek_benkherouf.jpg" alt="">
 																</a>
 														</figure>
 														<figure>
-																<a href="{% static  ''%}img/footer-gallery-4.jpg" class="grouped_elements" data-fancybox="gallery">
-																		<img src="{% static  ''%}img/footer-gallery-4.jpg" alt="">
+																<a href="{% static  ''%}img/carre_don_juan.jpg" class="grouped_elements" data-fancybox="gallery">
+																		<img src="{% static  ''%}img/carre_don_juan.jpg" alt="">
 																</a>
 														</figure>
 														<figure>
-																<a href="{% static  ''%}img/footer-gallery-5.jpg" class="grouped_elements" data-fancybox="gallery">
-																		<img src="{% static  ''%}img/footer-gallery-5.jpg" alt="">
+																<a href="{% static  ''%}img/carre_kilic_aslan.jpg" class="grouped_elements" data-fancybox="gallery">
+																		<img src="{% static  ''%}img/carre_kilic_aslan.jpg" alt="">
 																</a>
 														</figure>
 														<figure>
-																<a href="{% static  ''%}img/footer-gallery-6.jpg" class="grouped_elements" data-fancybox="gallery">
-																		<img src="{% static  ''%}img/footer-gallery-6.jpg" alt="">
+																<a href="{% static  ''%}img/carre_le_canal.jpg" class="grouped_elements" data-fancybox="gallery">
+																		<img src="{% static  ''%}img/carre_le_canal.jpg" alt="">
 																</a>
 														</figure>
 												</div>

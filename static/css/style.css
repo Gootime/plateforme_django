@@ -514,7 +514,7 @@ body {
   padding-bottom: 120px; }
 
 .bg-parten {
-  background: transparent url("../images/bg-parten.png") repeat scroll center center;
+  background: transparent url("../{% static '' %}img/bg-parten.png") repeat scroll center center;
   position: relative; }
   .bg-parten:after {
     position: absolute;
@@ -529,10 +529,10 @@ body {
 /*modifié par pisola*/
 
 .bg-parten-2 {
-  background: transparent url("../images/bg-parten-new.jpg") repeat scroll center center; }
+  background: transparent url("../{% static '' %}img/bg-parten-new.jpg") repeat scroll center center; }
 
 .bg-parten-3 {
-/*	background: transparent url("../images/bg-parten-02.png") repeat scroll center center; }*/
+/*	background: transparent url("../{% static '' %}img/bg-parten-02.png") repeat scroll center center; }*/
 background-color: rgba(44, 110, 213, 0.98);
 }
 
@@ -2027,7 +2027,7 @@ background-color: rgba(44, 110, 213, 0.98);
     padding-left: 360px;
     padding-right: 45px;
     padding-top: 75px;
-    background: #fff url("../images/contact.jpg") no-repeat scroll center center;
+    background: #fff url("../{% static '' %}img/contact.jpg") no-repeat scroll center center;
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
@@ -2159,7 +2159,7 @@ background-color: rgba(44, 110, 213, 0.98);
     border: none;
     cursor: pointer;
     color: #fff;
-    background: #ff8300 url("../images/icon/icon-dropdown.png") no-repeat scroll;
+    background: #ff8300 url("../{% static '' %}img/icon/icon-dropdown.png") no-repeat scroll;
     background-position: right 20px center;
     padding: 11px 43px 11px 27px;
     border-radius: 23px;
@@ -2813,7 +2813,7 @@ background-color: rgba(44, 110, 213, 0.98);
       color: #666; }
 
 .sign-up {
-  background: #fff url("../images/home1-signup-bg.jpg") no-repeat center center;
+  background: #fff url("../{% static '' %}img/home1-signup-bg.jpg") no-repeat center center;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
@@ -2822,7 +2822,7 @@ background-color: rgba(44, 110, 213, 0.98);
   background-attachment: fixed; }
 
 .sign-up-2 {
-  background: #fff url("../images/home3-signup-bg.jpg") no-repeat center center;
+  background: #fff url("../{% static '' %}img/home3-signup-bg.jpg") no-repeat center center;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;

@@ -276,7 +276,7 @@ body {
     padding-bottom: 120px;
 }
 .bg-parten {
-    background: transparent url('../images/bg-parten.png') repeat scroll center center;
+    background: transparent url('../{% static '' %}img/bg-parten.png') repeat scroll center center;
     position: relative;
     &:after {
         position: absolute;
@@ -290,7 +290,7 @@ body {
     }
 }
 .bg-parten-2 {
-    background: transparent url('../images/bg-parten-2.png') repeat scroll center center;
+    background: transparent url('../{% static '' %}img/bg-parten-2.png') repeat scroll center center;
 }
 .slick-initialized .slick-slide {
     outline: none;

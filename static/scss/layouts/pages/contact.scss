@@ -126,7 +126,7 @@
             padding-left: 360px;
             padding-right: 45px;
             padding-top: 75px;
-            background: #fff url('../images/contactus-form-bg.jpg') no-repeat scroll center center;
+            background: #fff url('../{% static '' %}img/contactus-form-bg.jpg') no-repeat scroll center center;
             @include background-size(cover);
             height: 100%;
             .contact-title {

@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{% static  ''%}vendor/fancybox/dist/jquery.fancybox.min.css">
     <link rel='stylesheet' href="{% static  ''%}vendor/fullcalendar/fullcalendar.css">
     <link rel='stylesheet' href="{% static  ''%}vendor/animate/animate.css">
+		<link rel="stylesheet" href="{% static  ''%}vendor/slick/slick-theme.css">
+		<link rel="stylesheet" href="{% static  ''%}vendor/slick/slick.css">
 
     <!-- Main CSS File -->
     <link href="{% static  ''%}css/style.css" rel="stylesheet">
@@ -39,6 +41,8 @@
         }
     </style>
 
+		<!-- jQuery CDN -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- page load-->
@@ -95,7 +99,7 @@
                                             <!--</ul>-->
                                         </li>
                                         <li class="menu-item curent-menu-item">
-                                            <a href="communaute.html">La Communauté</a>
+                                            <a href="{% url 'cpops' %}">La Communauté</a>
                                             <!--<ul class="sub-menu">-->
                                                 <!--<li class="menu-item">-->
                                                     <!--<a href="courses.html">Course 1</a>-->
@@ -166,7 +170,7 @@
             <div class="header-top-mobile">
                 <div class="container-fluid">
                     <div class="logo">
-                        <a href="indexOLD.html">
+                        <a href="{% url 'home' %}">
                             <img src="{% static  ''%}img/la_plateforme.png" alt="La Plateforme" />
                         </a>
                     </div>
@@ -190,7 +194,7 @@
                     <div>
                         <ul class="au-navbar-menu">
                             <li class="menu-item">
-                                <a href="index.html">Accueil</a>
+                                <a href="{% url 'home' %}">Accueil</a>
                                 <!--<span class="arrow">-->
                                     <!--<i></i>-->
                                 <!--</span>-->
@@ -201,7 +205,7 @@
                                 <!--</ul>-->
                             </li>
                             <li class="menu-item curent-menu-item">
-                                <a href="communaute.html">La communauté</a>
+                                <a href="{% url 'cpops' %}">La communauté</a>
                                 <!--<span class="arrow">-->
                                     <!--<i></i>-->
                                 <!--</span>-->
@@ -217,16 +221,10 @@
                             </li>
                             <li class="menu-item">
                                 <a href="#">Découvrir</a>
-                                <!--<span class="arrow">-->
-                                    <!--<i></i>-->
-                                <!--</span>-->
-                                <!--<ul class="sub-menu">-->
-                                    <!--<li class="menu-item"><a href="aboutus.html">About us </a></li>-->
-                                    <!--<li class="menu-item"><a href="gallery1.html">Gallery 1</a></li>-->
-                                    <!--<li class="menu-item"><a href="gallery2.html">Gallery 2</a></li>-->
-                                    <!--<li class="menu-item"><a href="404.html">404</a></li>-->
-                                    <!--<li class="menu-item"><a href="pricing.html">Pricing Table</a></li>-->
-                                <!--</ul>-->
+                            		<ul class="sub-menu">
+                                  <li class="menu-item"><a href="posts.php">Les posts</a></li>
+                                  <li class="menu-item"><a href="parcours.php">Les parcours</a></li>
+                                </ul>
                             </li>
                             <li class="menu-item">
                                 <a href="events.html">Territoires</a>
@@ -280,8 +278,10 @@
                             <a href="mailto:contact@.laplateforme.com" class="email"><span><i class="far fa-envelope"></i></span> contact@.laplateforme.com</a>
                         </div>
                         <div class="header-top-account">
-                            <a href="#" class="login"><i class="fas fa-user"></i>Je participe</a>
-                            <a href="#" class="signup"><i class="fas fa-edit"></i>Je me connecte</a>
+                            {% if not request.session.token %}
+                                   <a href="#" class="login"><i class="fas fa-user"></i>Je participe</a>
+					                         <a class="btn btn-outline-danger btn-lg" href="{% url 'signUp' %}" role="button">Je me connecte</a>
+				                    {% endif %}
                         </div>
                     </div>
                 </div>
@@ -293,8 +293,8 @@
     <main>
         <!-- Heading Page -->
         <section class="heading-page">
-            <img src="img/communaute.jpg" alt="">
-            {{cpops_page}}
+            <img src="{% static '' %}img/communaute.jpg" alt="">
+
             <div class="container">
                 <div class="heading-page-content">
                     <div class="au-page-title">
@@ -357,142 +357,141 @@
 
     <!-- Footer page -->
     <footer class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-top-content">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-info">
-                            <div class="footer-logo">
-                                <a href="indexOLD.html"><img src="{% static '' %}img/la_plateforme_02.png" alt="SmartEdu"></a>
-                            </div>
-                            <p class="footer-intro">
-                                Proin libero nunc conseq interdum varius sit amet. Metus ali elei mi in nulla posuere. Tortor preti viverra suspendisse potenti nul ac.
-                            </p>
-                            <div class="socials">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fab fa-youtube"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 footer-menu">
-                            <div class="footer-title">
-                                <h4>Liens utiles</h4>
-                            </div>
-                            <div class="footer-link-menu">
-                                <ul>
-                                    <li><a href="#"><i class="la la-angle-right"></i>Accueil</a></li>
-                                    <li><a href=""><i class="la la-angle-right"></i>La communauté</a></li>
-                                    <li><a href=""><i class="la la-angle-right"></i>Découvrir</a></li>
-                                    <li><a href="#"><i class="la la-angle-right"></i>Territoires</a></li>
-                                    <li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#"><i class="la la-angle-right"></i>Qui sommes-nous ? </a></li>
-                                    <li><a href="#"><i class="la la-angle-right"></i>A propos</a></li>
-                                    <li><a href="#"><i class="la la-angle-right"></i>FAQ</a></li>
-                                    <li><a href="#"><i class="la la-angle-right"></i>L'appli</a></li>
-                                    <li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-12 footer-gallery">
-                            <div class="footer-title">
-                                <h4>Galerie</h4>
-                            </div>
-                            <div class="footer-gallery-content">
-                                <figure>
-                                    <a href="{% static '' %}img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
-                                        <img src="{% static '' %}img/footer-gallery-3.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <figure>
-                                    <a href="{% static '' %}img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
-                                        <img src="{% static '' %}img/footer-gallery-3.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <figure>
-                                    <a href="{% static '' %}img/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
-                                        <img src="{% static '' %}img/footer-gallery-3.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <figure>
-                                    <a href="{% static '' %}img/footer-gallery-4.jpg" class="grouped_elements" data-fancybox="gallery">
-                                        <img src="{% static '' %}img/footer-gallery-4.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <figure>
-                                    <a href="{% static '' %}img/footer-gallery-5.jpg" class="grouped_elements" data-fancybox="gallery">
-                                        <img src="{% static '' %}img/footer-gallery-5.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <figure>
-                                    <a href="{% static '' %}img/footer-gallery-6.jpg" class="grouped_elements" data-fancybox="gallery">
-                                        <img src="{% static '' %}img/footer-gallery-6.jpg" alt="">
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-contact">
-                            <div class="footer-title">
-                                <h4>Infomations</h4>
-                            </div>
-                            <ul>
-                                <li>
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>LePoleS - 11 allée Saint-Exupéry 92390 Villeneuve-la-Garenne</span>
-                                </li>
-                                <li class="footer-phone">
-                                    <i class="fas fa-mobile-alt"></i>
-                                    <span>01 45 65 69 68</span>
-                                </li>
-                                <li class="footer-fax">
-                                    <i class="fas fa-fax"></i>
-                                    <span>01 15 16 18 14</span>
-                                </li>
-                                <li>
-                                    <i class="far fa-envelope"></i>
-                                    <span>contact@laplateforme.com</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <p class="copyright">Tout droits réservés @ 2019 <a class="au-btn-buy" href="http://lepoles.org/"><span>LePoleS</span>. </a></p>
-                </div>
-            </div>
-        </div>
+    		<div class="footer-top">
+    				<div class="container">
+    						<div class="footer-top-content">
+    								<div class="row">
+    										<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-info">
+    												<div class="footer-logo">
+    														<a href="indexOLD.html"><img src="{% static  ''%}img/la_plateforme_02.png" alt="SmartEdu"></a>
+    												</div>
+    												<p class="footer-intro">
+    														Proin libero nunc conseq interdum varius sit amet. Metus ali elei mi in nulla posuere. Tortor preti viverra suspendisse potenti nul ac.
+    												</p>
+    												<div class="socials">
+    														<ul>
+    																<li>
+    																		<a href="#"><i class="fab fa-facebook-f"></i></a>
+    																</li>
+    																<li>
+    																		<a href="#"><i class="fab fa-google-plus-g"></i></a>
+    																</li>
+    																<li>
+    																		<a href="#"><i class="fab fa-twitter"></i></a>
+    																</li>
+    																<li>
+    																		<a href="#"><i class="fab fa-youtube"></i></a>
+    																</li>
+    																<li>
+    																		<a href="#"><i class="fab fa-instagram"></i></a>
+    																</li>
+    														</ul>
+    												</div>
+    										</div>
+    										<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 footer-menu">
+    												<div class="footer-title">
+    														<h4>Liens utiles</h4>
+    												</div>
+    												<div class="footer-link-menu">
+    														<ul>
+    																<li><a href="#"><i class="la la-angle-right"></i>Accueil</a></li>
+    																<li><a href="{% url 'cpops' %}"><i class="la la-angle-right"></i>La communauté</a></li>
+    																<li><a href=""><i class="la la-angle-right"></i>Découvrir</a></li>
+    																<li><a href="#"><i class="la la-angle-right"></i>Territoires</a></li>
+    																<li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
+    														</ul>
+    														<ul>
+    																<li><a href="#"><i class="la la-angle-right"></i>Qui sommes-nous ? </a></li>
+    																<li><a href="#"><i class="la la-angle-right"></i>A propos</a></li>
+    																<li><a href="#"><i class="la la-angle-right"></i>FAQ</a></li>
+    																<li><a href="#"><i class="la la-angle-right"></i>L'appli</a></li>
+    																<li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
+    														</ul>
+    												</div>
+    										</div>
+    										<div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-12 footer-gallery">
+    												<div class="footer-title">
+    														<h4>Galerie</h4>
+    												</div>
+    												<div class="footer-gallery-content">
+    														<figure>
+    																<a href="{% static  ''%}img/galerie_footer_fresque.jpg" class="grouped_elements" data-fancybox="gallery">
+    																		<img src="{% static  ''%}img/galerie_footer_fresque.jpg" alt="">
+    																</a>
+    														</figure>
+    														<figure>
+    																<a href="{% static  ''%}img/galerie_footer_st_exupery.jpg" class="grouped_elements" data-fancybox="gallery">
+    																		<img src="{% static  ''%}img/galerie_footer_st_exupery.jpg" alt="">
+    																</a>
+    														</figure>
+    														<figure>
+    																<a href="{% static  ''%}img/carre_tarek_benkherouf.jpg" class="grouped_elements" data-fancybox="gallery">
+    																		<img src="{% static  ''%}img/carre_tarek_benkherouf.jpg" alt="">
+    																</a>
+    														</figure>
+    														<figure>
+    																<a href="{% static  ''%}img/carre_don_juan.jpg" class="grouped_elements" data-fancybox="gallery">
+    																		<img src="{% static  ''%}img/carre_don_juan.jpg" alt="">
+    																</a>
+    														</figure>
+    														<figure>
+    																<a href="{% static  ''%}img/carre_kilic_aslan.jpg" class="grouped_elements" data-fancybox="gallery">
+    																		<img src="{% static  ''%}img/carre_kilic_aslan.jpg" alt="">
+    																</a>
+    														</figure>
+    														<figure>
+    																<a href="{% static  ''%}img/carre_le_canal.jpg" class="grouped_elements" data-fancybox="gallery">
+    																		<img src="{% static  ''%}img/carre_le_canal.jpg" alt="">
+    																</a>
+    														</figure>
+    												</div>
+    										</div>
+    										<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-contact">
+    												<div class="footer-title">
+    														<h4>Infomations</h4>
+    												</div>
+    												<ul>
+    														<li>
+    																<i class="fas fa-map-marker-alt"></i>
+    																<span>LePoleS - 11 allée Saint-Exupéry 92390 Villeneuve-la-Garenne</span>
+    														</li>
+    														<li class="footer-phone">
+    																<i class="fas fa-mobile-alt"></i>
+    																<span>01 45 65 69 68</span>
+    														</li>
+    														<li class="footer-fax">
+    																<i class="fas fa-fax"></i>
+    																<span>01 15 16 18 14</span>
+    														</li>
+    														<li>
+    																<i class="far fa-envelope"></i>
+    																<span>contact@laplateforme.com</span>
+    														</li>
+    												</ul>
+    										</div>
+    								</div>
+    						</div>
+    				</div>
+    		</div>
+    		<div class="footer-bottom">
+    				<div class="container">
+    						<div class="footer-bottom-content">
+    								<p class="copyright">Tout droits réservés @ 2019 <a class="au-btn-buy" href="http://lepoles.org/"><span>LePoleS</span>. </a></p>
+    						</div>
+    				</div>
+    		</div>
     </footer>
 
 
     <!-- Back to top -->
     <div id="back-to-top">
-        <i class="fa fa-angle-up"></i>
+    		<i class="fa fa-angle-up"></i>
     </div>
 
     <!-- JS -->
 
     <!-- Jquery and Boostrap library -->
     <script src="{% static  ''%}vendor/bootstrap/js/popper.min.js"></script>
-    <script src="{% static  ''%}vendor/jquery/jquery.min.js"></script>
     <script src="{% static  ''%}vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Other js -->
@@ -504,6 +503,7 @@
     <script src="{% static  ''%}js/isotope-docs.min.js"></script>
 
     <!-- Vendor JS -->
+
     <script src="{% static  ''%}vendor/jquery-ui/jquery-ui.min.js"></script>
     <script src="{% static  ''%}vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <script src="{% static  ''%}vendor/waypoints/lib/jquery.waypoints.min.js"></script>
@@ -513,6 +513,7 @@
     <script src='{% static  ''%}vendor/fullcalendar/lib/moment.min.js'></script>
     <script src='{% static  ''%}vendor/fullcalendar/fullcalendar.min.js'></script>
     <script src='{% static  ''%}vendor/wow/dist/wow.min.js'></script>
+    <script src="{% static  ''%}vendor/slick/slick.min.js"></script>
 
     <!-- REVOLUTION JS FILES -->
     <script src="{% static  ''%}vendor/revolution/js/jquery.themepunch.tools.min.js"></script>
@@ -526,7 +527,7 @@
     <script src="{% static  ''%}js/main.js"></script>
 
     <script>
-        $('[src="None"]').replaceWith("<img src=\"{% static '../static/img/utilisateur.jpg' %}\" class=\"w-100 img-fluid\" style=\"min-height: 17vh !important; max-height: 30vh !important;\">");
+    		$('[src="None"]').replaceWith("<img src=\"{% static '../static/img/utilisateur.jpg' %}\" class=\"w-100 img-fluid\" style=\"min-height: 17vh !important; max-height: 30vh !important;\">");
     </script>
-</body>
-</html>
+    </body>
+    </html>

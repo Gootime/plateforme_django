@@ -43,7 +43,7 @@
                 border: none;
                 cursor: pointer;
                 color: #fff;
-                background: $yellow-primary url('../images/icon/icon-dropdown.png') no-repeat scroll;
+                background: $yellow-primary url('../{% static '' %}img/icon/icon-dropdown.png') no-repeat scroll;
                 background-position: right 20px center;
                 padding: 11px 43px 11px 27px;
                 @include border-radius(23px);

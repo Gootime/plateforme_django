@@ -13,7 +13,7 @@ SECRET_KEY = 'j&fomq-a^9#5z*9f)vz%q0i4%vrfhqn&i8i+)=5o9(26aeoqg0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'plateforme.lepoles.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'plateforme2.lepoles.com']
 
 
 # Application definition
