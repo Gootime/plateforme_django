@@ -6,6 +6,6 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    
+
 
 ]

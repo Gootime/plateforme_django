@@ -28,10 +28,10 @@
                 <div class="categories-content">
                     <article class="item cat-1">
                         <figure>
-                            <a href="courses.html"><img src="{% static '' %}img/camera.jpg" alt=""></a>
+                            <a href="{% url 'view_categorie' 2 %}"><img src="{% static '' %}img/camera.jpg" alt=""></a>
                             <div class="info">
                                 <h3 class="title">
-                                    <a href="courses.html">Vidéos</a>
+                                    <a href="{% url 'view_categorie' 2 %}">Vidéos</a>
                                 </h3>
                                 <span class="total-course"><i class="la la-video-camera"></i> nombre de vidéos</span>
                             </div>

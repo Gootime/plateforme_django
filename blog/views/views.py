@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from blog.models import Capsule, Place
-from plateforme2.settings import BASE_URL, get_header
+from cpop.settings import BASE_URL, get_header
 from django.utils import formats
 from django.core.mail import send_mail
 
