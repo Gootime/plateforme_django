@@ -71,8 +71,8 @@
                         <a href="#" class="telephone"><i class="fas fa-mobile-alt"></i>01 15 16 17 18</a>
                     </div>
                     <div class="header-top-account">
-                        <a href="#" class="signup"><i class="fas fa-edit"></i>Je participe</a>
-                        <a href="#" class="login">Je me connecte</a>
+                        <a href="{% url 'signUp' %}" class="signup"><i class="fas fa-edit"></i>Je participe</a>
+                        <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                                 <div>
                                     <ul class="menu-primary">
                                         <li class="menu-item">
-                                            <a href="index.html">Accueil</a>
+                                            <a href="{% url 'home' %}">Accueil</a>
                                             <!--<ul class="sub-menu">-->
                                                 <!--<li class="menu-item"><a href="index.html">Home 1</a></li>-->
                                                 <!--<li class="menu-item"><a href="index2.html">Home 2</a></li>-->
@@ -113,12 +113,12 @@
                                         <li class="menu-item">
                                             <a href="#">Découvrir</a>
                                             <ul class="sub-menu">
-                                              <li class="menu-item"><a href="posts.php">Les posts</a></li>
-                                              <li class="menu-item"><a href="parcours.php">Les parcours</a></li>
+                                              <li class="menu-item"><a href="{% url 'toutes_les_capsules' %}">Les posts</a></li>
+                                              <li class="menu-item"><a href="{% url 'view_collection' %}">Les parcours</a></li>
                                             </ul>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="events.html">Territoires</a>
+                                            <a href="{% url 'all_territoires' %}">Territoires</a>
                                             <!--<ul class="sub-menu">-->
                                                 <!--<li class="menu-item"><a href="events.html">Events</a>-->
                                                     <!--&lt;!&ndash;<ul class="sub-menu">&ndash;&gt;-->
@@ -282,8 +282,8 @@
                         </div>
                         <div class="header-top-account">
                             {% if not request.session.token %}
-                                   <a href="#" class="login"><i class="fas fa-user"></i>Je participe</a>
-					                         <a class="btn btn-outline-danger btn-lg" href="{% url 'signUp' %}" role="button">Je me connecte</a>
+                                   <a href="{% url 'signUp' %}" class="login"><i class="fas fa-user"></i>Je participe</a>
+					                         <a class="btn btn-outline-danger btn-lg" href="{% url 'logIn' %}" role="button">Je me connecte</a>
 				                    {% endif %}
                         </div>
                     </div>

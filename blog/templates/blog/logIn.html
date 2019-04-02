@@ -1,150 +1,142 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
+{% load static%}
+<main>
+        <!-- Heading Page -->
+        <section class="heading-page">
+            <img src="{% static ''%}img/territoires_bandeau.jpg" alt="">
+            <div class="container">
+                <div class="heading-page-content">
+                    <div class="au-page-title connexion">
+                      <h1>Je me connecte</h1>
+                    </div>
+                    <nav aria-label="breadcrumb" class="connexion">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Connexion</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
 
-<style>
+        <!-- Contact us -->
+        <section class="contact-us section-padding-large">
+            <div class="container">
+                <div class="contact-us-content">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <div class="contact-us-info">
+                                <h3 class="contact-title">
+                                    Je me connecte
+                                </h3>
+                                <div class="item">
+                                    <i class="fas fa-home"></i>
+                                    <span class="address-info">VOIR</span>
+                                </div>
+                                <div class="item phone-item">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span class="contact-phone">VOIR</span>
+                                </div>
+                                <div class="item">
+                                    <i class="far fa-clock"></i>
+                                    <div class="time-info">
+                                        <span>VOIR</span>
+                                        <span>Voir</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                            <div class="contact-form">
+                                <h3 class="contact-title">Connectez-vous à la plateforme</h3>
+                                <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
 
-  form{
-	  width: 95%;
-  }
+                                  {% if user.is_authenticated %}
+                                  Vous êtes connecté, {{ user.username }} !
+                                 <p>
+                                   <a href="{% url 'profil' user.id %}">Profil de {{ user.username }}</a>
+                                 </p>
 
+                                 <p><a href="{% url 'logOut' %}">Se déconnecter</a></p>
 
-  a.forgotten{
-    color: #000 !important;
-  }
+                                 {% else %}
 
-  a.forgotten:hover {
+                                 <form action="{% url 'logIn' %}" method="post">
+                                   <div class="row">
 
-    color: #ee5249;
-    text-decoration: none;
-
-  }
-
-  .btn-secondary{
-    color: #cede92 !important;
-    border-color: #443f2f;
-    background-color: #443f2f;
-  }
-  .btn-secondary:hover{
-    background-color: #cede92;
-    color: #443f2f !important;
-    border-color: #cede92;
-  }
-
-  .btn-secondary a{
-    color: antiquewhite;
-    font-size: medium;
-  }
-  .btn-secondary a:hover{
-    color: #443f2f;
-    text-decoration: none;
-  }
-
-	label{
-		width: 100%;
-	}
-	label.text-center{
-		font-size: x-large;
-	}
-
-  @media(min-width: 992px) {
-	  form{
-	  	width: 50%;
-	  }
-  }
-
-</style>
-
-{% if error %}
-
-<style>
-
-  form{
-	  width: 95%;
-  }
-
-
-  a.forgotten{
-    color: #000 !important;
-  }
-
-  a.forgotten:hover {
-
-    color: #ee5249;
-    text-decoration: none;
-
-  }
-
-  .btn-secondary{
-    color: #cede92 !important;
-    border-color: #443f2f;
-    background-color: #443f2f;
-  }
-  .btn-secondary:hover{
-    background-color: #cede92;
-    color: #443f2f !important;
-    border-color: #cede92;
-  }
-
-  .btn-secondary a{
-    color: antiquewhite;
-    font-size: medium;
-  }
-  .btn-secondary a:hover{
-    color: #443f2f;
-    text-decoration: none;
-  }
-
-  label{
-	  width: 100%;
-  }
-  label.text-center{
-	  font-size: x-large;
-  }
-
-</style>
-<div class="container">
-  <div class="row">
-    <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
-    {% endif %} {% if user.is_authenticated %} Vous êtes connecté,
-    {{ user.username }} !
-    <p>
-      <a href="{% url 'profil' user.id %}">Profil de {{ user.username }}</a>
-    </p>
-    <p><a class="p-2 btn btn-outline-danger mt-4 ml-4" href="{%url 'home'%}">Retour accueil</a></p>
-    <p><a href="{% url 'logOut' %}">Se déconnecter</a></p>
-
-    {% else %}
-    <p><a class="p-2 btn btn-outline-danger mt-4 ml-4" href="{%url 'home'%}">Retour accueil</a></p>
-    <form action="{% url 'logIn' %}" method="post">
-      <div class="row">
-        <div class="col-4">
-          <div class="imgcontainer">
-            <img
-                    src="https://ionic.lepoles.com/wp-content/uploads/2018/03/logo_transparent_2_400x293.png"
-                    width="100px;"
-                    alt="Logo commons pop"
-            />
-          </div>
-        </div>
-        <div class="col-8">
-          <label class="text-center mt-2"><b>Connexion</b></label>
-        </div>
-      </div>
+                                     <div class="col-8">
+                                       <label class="text-center mt-2"><b>Connexion</b></label>
+                                     </div>
+                                   </div>
 
 
-      <div class="container">
-        <label for="">{% csrf_token %} </label>
-        <label for="">{{ form.as_p }}</label>
-		  <p><a class="forgotten" href="{% url 'reset_password_create' %}">Mot de passe oublié ?</a></p>
-        <input type="submit" value="Connexion" class="btn btn-block btn-danger"/>
-        <button class="btn btn-block btn-secondary btn-lg">
-          <a href="{% url 'signUp' %}">Inscription</a>
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
+                                   <div class="container">
+                                     <label for="">{% csrf_token %} </label>
+                                     <label for="">{{ form.as_p }}</label>
+                             		  <p><a class="forgotten" href="{% url 'reset_password_create' %}">Mot de passe oublié ?</a></p>
+                                     <input type="submit" value="Connexion" class="btn btn-block btn-danger"/>
+                                    <h3 class="contact-title">Pas inscrit ? Par
+                                       <a href="{% url 'signUp' %}">ici</a>
+                                    </h3>
+                                   </div>
+                                 </form>
+                                 {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-{%endif%} {% endblock %}
+		<!-- galerie-->
+        <section class="gallery">
+            <div class="container-fluid">
+                <div class="gallery-content gallery-hover">
+                    <div class="row">
+                        <div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/carre_damien_santo.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/carre_damien_santo.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/utilisateur.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/utilisateur.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+						<div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/carre_lesly_poujaud_melot.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/carre_lesly_poujaud_melot.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/utilisateur.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/utilisateur.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/carre_papaoumar_mbaye.png" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/carre_papaoumar_mbaye.png" alt="">
+                                </a>
+                            </figure>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}
 {% block javascript %}
 
 <script>

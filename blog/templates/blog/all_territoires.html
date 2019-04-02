@@ -1,56 +1,347 @@
 {% extends 'base.html' %}
-
 {%  block content %}
 {%load static%}
-<link rel="stylesheet" href="../..{%static 'css/allTerritoires.css'%}">
 
-<style>
-    a:hover, a:focus{
-        text-decoration: none;
-    }
-    .card-img-top{
-        width: 300px;
-        height: 200px;
-    }
-</style>
-
-<script
-        type="text/javascript"
-></script>
-
-<div class="jumbotron jumbotron-fluid mb-0">
-    <div class="container">
-        <h1 class="display-4">Tous les territoires</h1>
-    </div>
-</div>
-<div class="fil_d_ariane">
-    <div class="container" >
-        <div class="row">
-            <div class="col">
-                <p><a href="{% url 'home' %}">Accueil</a> <span> &raquo; Les Territoires </span></p>
+<main>
+        <!-- Heading Page -->
+        <section class="heading-page">
+            <img src="{% static '' %}img/bandeau_reseau.jpg" alt="">
+            <div class="container">
+                <div class="heading-page-content">
+                    <div class="au-page-title territoires">
+                      <h1>Les territoires</h1>
+                    </div>
+                    <nav aria-label="breadcrumb" class="territoires">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li><li class="breadcrumb-item"><a href="index.php">Découvrir</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Les territoires</li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+        </section>
 
-
-<div class="container">
-    <div class="container-fluid">
-        <div class="row">
-            {% for t in territoires %}
-            <div class="col-lg-4 col-md-6 col-12 mx-auto">
-                <a href="{% url 'view_territoire' t.id.id %}">
-                    <div class="card hover">
-                        <img class="card-img-top img-fluid w-100" src="{{t.id.image | safe}}" alt="{{t.id.nom}}">
-                        <div class="card-body text-center">
-                            <h5 class="all_territoires">{{t.id.name}}</h5>
+  <section class="categories section-padding-large">
+            <div class="container">
+                <div class="section-title section-title-center">
+                    <h2>Les territoires</h2>
+                </div>
+                <div class="categories-content">
+                    <article class="item cat-1">
+                        <figure>
+                            <a href="courses.html"><img src="{% static '' %}img/camera.jpg" alt=""></a>
+                            <div class="info">
+                                <h3 class="title">
+                                    <a href="courses.html">Vidéos</a>
+                                </h3>
+                                <span class="total-course"><i class="la la-video-camera"></i> nombre de vidéos</span>
+                            </div>
+                        </figure>
+                    </article>
+                    <div class="categories-group-2">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <article class="item cat-2">
+                                    <figure>
+                                        <a href="courses.html"><img src="{% static '' %}img/images.jpg" alt=""></a>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="courses.html">Images</a>
+                                            </h3>
+                                            <span class="total-course"><i class="la la-photo"></i> nombre d'images</span>
+                                        </div>
+                                    </figure>
+                                </article>
+                                <article class="item cat-3">
+                                    <figure>
+                                        <a href="courses.html"><img src="{% static '' %}img/sons.jpg" alt=""></a>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="courses.html">Sons</a>
+                                            </h3>
+                                            <span class="total-course"><i class="la la-file-sound"></i> nombre de sons</span>
+                                        </div>
+                                    </figure>
+                                </article>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <article class="item cat-4">
+                                    <figure>
+                                        <a href="courses.html"><img src="{% static '' %}img/textes.jpg" alt=""></a>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="courses.html">Textes</a>
+                                            </h3>
+                                            <span class="total-course"><i class="la la-file-text-o"></i> nombre de textes</span>
+                                        </div>
+                                    </figure>
+                                </article>
+                                <article class="item cat-5">
+                                    <figure>
+                                        <a href="courses.html"><img src="{% static '' %}img/tous_les_posts.jpg" alt=""></a>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="courses.html">Tous les posts</a>
+                                            </h3>
+                                            <span class="total-course"><i class="la la-list-ul"></i> nombre de posts</span>
+                                        </div>
+                                    </figure>
+                                </article>
+                            </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+    </section>
+
+<!--	section liste des posts -->
+    <section class="blog blog-sidebar section-padding-large">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="blog-content">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <article class="item hover-scale">
+                                        <figure>
+                                            <a href="single.html">
+                                                <img src="{% static '' %}img/blog-sidebar-1.jpg" alt="Adipiscing Mattis Pellentesque">
+                                            </a>
+                                            <div class="hover-border">
+                                                <a href="single.html">
+                                                    <i class="fas fa-link"></i>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="single.html">
+                                                    Eget Duis Tellus Urna Accumsan.
+                                                </a>
+                                            </h3>
+                                            <p class="desc">
+                                                Cursus mattis molestie a iaculis at males fames ac turpis. Justo nec ultrices dui sapien eget mi proin maecenas accumsan.
+                                            </p>
+                                            <div class="meta">
+                                                <span class="date"><i class="far fa-calendar"></i>24 June,2018</span>
+                                                <span class="likes">
+                                                    <i class="fas fa-heart"></i>22 Likes
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <article class="item hover-scale">
+                                        <figure>
+                                            <a href="single.html">
+                                                <img src="{% static '' %}img/blog-sidebar-2.jpg" alt="Condimentum Mattis Tesque">
+                                            </a>
+                                            <div class="hover-border">
+                                                <a href="single.html">
+                                                    <i class="fas fa-link"></i>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="single.html">
+                                                    Condimentum Mattis Tesque
+                                                </a>
+                                            </h3>
+                                            <p class="desc">
+                                                Euismod nisi porta lorem mollis aliquam ut. In fermentum posuere urna nec tincidunt. In hendrerit gravida rutrum quisque non tellus.
+                                            </p>
+                                            <div class="meta">
+                                                <span class="date"><i class="far fa-calendar"></i>26 June,2018</span>
+                                                <span class="likes">
+                                                    <i class="fas fa-heart"></i>25 Likes
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <article class="item hover-scale">
+                                        <figure>
+                                            <a href="single.html">
+                                                <img src="{% static '' %}img/blog-sidebar-3.jpg" alt="Adipiscing Mattis Pellentesque">
+                                            </a>
+                                            <div class="hover-border">
+                                                <a href="single.html">
+                                                    <i class="fas fa-link"></i>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="single.html">
+                                                    Adipiscing Mattis Pellentesque
+                                                </a>
+                                            </h3>
+                                            <p class="desc">
+                                                Justo nec ultrices dui sapien eget mi proin. Arcu dui vivamus arcu felis bibendum ut tristique. Aliquam sem fringilla ut morbi tincidunt
+                                            </p>
+                                            <div class="meta">
+                                                <span class="date"><i class="far fa-calendar"></i>26 June,2018</span>
+                                                <span class="likes">
+                                                    <i class="fas fa-heart"></i>10 Likes
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <article class="item hover-scale">
+                                        <figure>
+                                            <a href="single.html">
+                                                <img src="{% static '' %}img/blog-sidebar-4.jpg" alt="Risus Ultricies Tristique.">
+                                            </a>
+                                            <div class="hover-border">
+                                                <a href="single.html">
+                                                    <i class="fas fa-link"></i>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="single.html">
+                                                    Risus Ultricies Tristique.
+                                                </a>
+                                            </h3>
+                                            <p class="desc">
+                                                Aenean euismod elementum nisi quis eleifend. Et magnis dis parturient montes nascetur ridiculus mus mauris vitae. Adipiscing tristique.
+                                            </p>
+                                            <div class="meta">
+                                                <span class="date"><i class="far fa-calendar"></i>30 June,2018</span>
+                                                <span class="likes">
+                                                    <i class="fas fa-heart"></i>30 Likes
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <article class="item hover-scale">
+                                        <figure>
+                                            <a href="single.html">
+                                                <img src="{% static '' %}img/blog-sidebar-5.jpg" alt="Gravida Neque Convallis.">
+                                            </a>
+                                            <div class="hover-border">
+                                                <a href="single.html">
+                                                    <i class="fas fa-link"></i>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="single.html">
+                                                    Gravida Neque Convallis.
+                                                </a>
+                                            </h3>
+                                            <p class="desc">
+                                                Aliquam purus sit amet luctus venenatis lectus magna fringilla. Consectetur purus ut faucibus pulvinar elementum integer.
+                                            </p>
+                                            <div class="meta">
+                                                <span class="date"><i class="far fa-calendar"></i>30 June,2018</span>
+                                                <span class="likes">
+                                                    <i class="fas fa-heart"></i>15 Likes
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <article class="item hover-scale">
+                                        <figure>
+                                            <a href="single.html">
+                                                <img src="{% static '' %}img/blog-sidebar-6.jpg" alt="Adipiscing Tristique Risus">
+                                            </a>
+                                            <div class="hover-border">
+                                                <a href="single.html">
+                                                    <i class="fas fa-link"></i>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="single.html">
+                                                    Adipiscing Tristique Risus
+                                                </a>
+                                            </h3>
+                                            <p class="desc">
+                                                Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Risus ultricies tristique nulla aliquet enim tortor at.
+                                            </p>
+                                            <div class="meta">
+                                                <span class="date"><i class="far fa-calendar"></i>01 July,2018</span>
+                                                <span class="likes">
+                                                    <i class="fas fa-heart"></i>30 Likes
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="right-sidebar">
+
+                            <div class="widget_product_categories">
+                                <div class="widget-title">
+                                  <h2>Catégories</h2>
+                                </div>
+                                <ul>
+                                    <li><a href="#"><i class="la la-video-camera"></i>Vidéos</a></li>
+                                    <li><a href="#"><i class="la la-photo"></i>Images</a></li>
+                                    <li><a href="#"><i class="la la-file-sound-o"></i>Sons</a></li>
+                                    <li><a href="#"><i class="la la-file-text-o"></i>Textes</a></li>
+                                    <li><a href="#"><i class="la la-list-ul"></i>Tous les posts</a></li>
+                                </ul>
+                            </div>
+                            <div class="widget_signupform">
+                                <div class="sign-up-form">
+                                    <div class="form-heading">
+                                        <a href="index.php"><img src="{% static '' %}img/la_plateforme_03.png" alt="La plateforme vidéo du PoleS"></a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+		<div class="pagination">
+                <ul class="page-numbers">
+                    <li><span aria-current="page" class="page-numbers current">01</span></li>
+                    <li><a class="page-numbers" href="#">02</a></li>
+                    <li><a class="page-numbers" href="#">03</a></li>
+                    <li><a class="page-numbers" href="#"><i class="la la-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+<script type="text/javascript">
+
+    //2019-02-05T23:22:01.714652+01:00
+    var full_date = $('.full_date').text();
+    var short_date = full_date.slice(0,10);
+    var array_date = short_date.split('-');
+    var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
+    var nb_month = array_date[1];
+    var month = parseInt(nb_month);
+    // console.log(nb_month);
+    var month_ok = month-1;
+    console.log(m_names[month_ok]);
+    var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+    // console.log(full_date);
+    // console.log(short_date);
+    // console.log(array_date);
+    // console.log(formated_date);
+
+    $('.good_date').replaceWith('<p id=\"good_date\">Le ' + formated_date + '</p>');
+</script>
+
 
 {% endblock %}

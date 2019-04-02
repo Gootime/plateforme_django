@@ -4,15 +4,15 @@
 1. Extend
 2. Global
 3. Arrows
-4. Breadcrumb 
-5. Dots 
+4. Breadcrumb
+5. Dots
 6. Fonts
 7. Pagination
 8. Footer
 9. Header
 10. Sidebar
-11. 404 Page 
-12. About us Page 
+11. 404 Page
+12. About us Page
 13. Blog Page
 14. Contact Page
 15. Course Page
@@ -228,10 +228,10 @@ body {
 }
 
 @keyframes bounce {
-  0%, 100% { 
+  0%, 100% {
     transform: scale(0.0);
     -webkit-transform: scale(0.0);
-  } 50% { 
+  } 50% {
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }
@@ -514,7 +514,7 @@ body {
   padding-bottom: 120px; }
 
 .bg-parten {
-  background: transparent url("../{% static '' %}img/bg-parten.png") repeat scroll center center;
+  background: transparent url("../{% static ''%}img/bg-parten.png") repeat scroll center center;
   position: relative; }
   .bg-parten:after {
     position: absolute;
@@ -526,14 +526,17 @@ body {
     background: rgba(44, 110, 213, 0.98);
     z-index: 9; }
 
-/*modifié par pisola*/
+/*modifié par pisola & mila*/
 
 .bg-parten-2 {
-  background: transparent url("../{% static '' %}img/bg-parten-new.jpg") repeat scroll center center; }
+  background: #f2f2f2;
+  /*background-color: rgba(243,131,0,0.25);*/
+  /*background: transparent url("../{% static ''%}img/bg-parten-new.jpg") repeat scroll center center; */
+}
 
 .bg-parten-3 {
-/*	background: transparent url("../{% static '' %}img/bg-parten-02.png") repeat scroll center center; }*/
-background-color: rgba(44, 110, 213, 0.98);
+  /*	background: transparent url("../{% static ''%}img/bg-parten-02.png") repeat scroll center center; }*/
+  background-color: rgba(44, 110, 213, 0.98);
 }
 
 /*fin modifié par pisola*/
@@ -728,8 +731,52 @@ background-color: rgba(44, 110, 213, 0.98);
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
-    padding-bottom: 15px; }
+    padding-bottom: 15px;
 
+
+  }
+
+/*ajout pisola mila en-têtes*/
+
+.heading-page .au-page-title.communaute h1 {
+ background-color: rgba(243,131,0,0.7);
+    padding: 1vh;
+}
+
+.heading-page .au-page-title.posts h1 {
+ background-color: rgba(99, 199, 106, 0.8);
+    padding: 1vh;
+}
+
+.heading-page .au-page-title.parcours h1 {
+ background-color: rgba(108, 122, 224, 0.8);
+    padding: 1vh;
+}
+
+.heading-page .au-page-title.territoires h1 {
+ background-color: rgba(255, 75, 90, 0.8);
+    padding: 1vh;
+}
+
+.heading-page .au-page-title.contact h1 {
+ background-color: rgba(233, 140, 56, 0.8);
+    padding: 1vh;
+}
+
+.heading-page .au-page-title.connexion h1 {
+ background-color: rgba(0, 194, 209, 0.8);
+    padding: 1vh;
+}
+
+.heading-page .au-page-title.inscription h1 {
+ background-color: rgba(243, 131, 0, 0.8);
+    padding: 1vh;
+}
+
+.heading-page .au-page-title.profil h1 {
+ background-color: rgba(243, 131, 0, 0.8);
+    padding: 1vh;
+}
 .widget-title h2 {
   font-size: 23px;
   font-weight: bold;
@@ -840,6 +887,46 @@ background-color: rgba(44, 110, 213, 0.98);
   content: "/";
   font-size: 16px;
   color: #fff; }
+
+/* @mila ajout */
+
+nav[aria-label=breadcrumb] {
+	 padding: 1vh;
+}
+
+nav[aria-label=breadcrumb].communaute{
+  background-color: rgba(243,131,0,0.7);
+}
+
+nav[aria-label=breadcrumb].posts{
+  background-color: rgba(99, 199, 106, 0.8);
+}
+
+nav[aria-label=breadcrumb].parcours{
+  background-color: rgba(108, 122, 224, 0.8);
+}
+
+nav[aria-label=breadcrumb].territoires{
+  background-color: rgba(255, 75, 90, 0.8);
+}
+
+nav[aria-label=breadcrumb].contact{
+  background-color: rgba(233, 140, 56, 0.8);
+}
+
+nav[aria-label=breadcrumb].connexion{
+  background-color: rgba(0, 194, 209, 0.8);
+}
+
+nav[aria-label=breadcrumb].inscription{
+  background-color:  rgba(243, 131, 0, 0.8);
+}
+nav[aria-label=breadcrumb].profil{
+  background-color:  rgba(243, 131, 0, 0.8);
+}
+
+
+/* @mila fin ajout */
 
 /* 5. Dots ------------------------------------------*/
 .slick-dots {
@@ -2020,14 +2107,14 @@ background-color: rgba(44, 110, 213, 0.98);
     height: 500px; }
 
 
-/*modifié par pisola*/
+/*modifié par pisola couleur place holder et image de fond*/
 .contact-us-two {
   overflow: hidden; }
   .contact-us-two .contact-us-content .contact-form {
     padding-left: 360px;
     padding-right: 45px;
     padding-top: 75px;
-    background: #fff url("../{% static '' %}img/contact.jpg") no-repeat scroll center center;
+    background: #fff url("../{% static ''%}img/bg-parten-new.jpg") no-repeat scroll center center;
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
@@ -2037,7 +2124,7 @@ background-color: rgba(44, 110, 213, 0.98);
     .contact-us-two .contact-us-content .contact-form .contact-title {
       text-transform: none;
       font-size: 32px;
-      color: #fff; }
+      color: red; }
     .contact-us-two .contact-us-content .contact-form .form-input {
       margin: 0px; }
       .contact-us-two .contact-us-content .contact-form .form-input .wrap-group {
@@ -2046,13 +2133,13 @@ background-color: rgba(44, 110, 213, 0.98);
       color: #fff;
       border-bottom: 1px solid #ccc; }
       .contact-us-two .contact-us-content .contact-form form .wrap-group input::-webkit-input-placeholder, .contact-us-two .contact-us-content .contact-form form .wrap-group textarea::-webkit-input-placeholder {
-        color: #fff; }
+        color: #000000; }
       .contact-us-two .contact-us-content .contact-form form .wrap-group input::-moz-placeholder, .contact-us-two .contact-us-content .contact-form form .wrap-group textarea::-moz-placeholder {
-        color: #fff; }
+        color:  #000000; }
       .contact-us-two .contact-us-content .contact-form form .wrap-group input:-ms-input-placeholder, .contact-us-two .contact-us-content .contact-form form .wrap-group textarea:-ms-input-placeholder {
-        color: #fff; }
+        color:  #000000; }
       .contact-us-two .contact-us-content .contact-form form .wrap-group input:-moz-placeholder, .contact-us-two .contact-us-content .contact-form form .wrap-group textarea:-moz-placeholder {
-        color: #fff; }
+        color:  #000000; }
     .contact-us-two .contact-us-content .contact-form form .wrap-group textarea {
       height: 120px;
       margin-bottom: 38px; }
@@ -2159,7 +2246,7 @@ background-color: rgba(44, 110, 213, 0.98);
     border: none;
     cursor: pointer;
     color: #fff;
-    background: #ff8300 url("../{% static '' %}img/icon/icon-dropdown.png") no-repeat scroll;
+    background: #ff8300 url("../{% static ''%}img/icon/icon-dropdown.png") no-repeat scroll;
     background-position: right 20px center;
     padding: 11px 43px 11px 27px;
     border-radius: 23px;
@@ -2813,7 +2900,7 @@ background-color: rgba(44, 110, 213, 0.98);
       color: #666; }
 
 .sign-up {
-  background: #fff url("../{% static '' %}img/home1-signup-bg.jpg") no-repeat center center;
+  background: #fff url("../{% static ''%}img/home1-signup-bg.jpg") no-repeat center center;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
@@ -2822,7 +2909,7 @@ background-color: rgba(44, 110, 213, 0.98);
   background-attachment: fixed; }
 
 .sign-up-2 {
-  background: #fff url("../{% static '' %}img/home3-signup-bg.jpg") no-repeat center center;
+  background: #fff url("../{% static ''%}img/home3-signup-bg.jpg") no-repeat center center;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;

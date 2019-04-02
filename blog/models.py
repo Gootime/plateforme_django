@@ -56,11 +56,9 @@ class Comment(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to="static", blank=True, null=True)
-
+    city = models.CharField(max_length=256)
 
 class Test(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     age = models.IntegerField(default=0, blank=True)
-
-

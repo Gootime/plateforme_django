@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from blog.models import Capsule, Place
-from cpop.settings import BASE_URL, get_header
+from plateforme2.settings import BASE_URL, get_header
 from django.utils import formats
 from django.core.mail import send_mail
 
@@ -245,15 +245,10 @@ def profil_other(request, id):
 
     Myarticle = full_profile['capsules']
     avatar = full_profile['profile']['picture']
+    city = full_profile['profile']['city']
     user = full_profile['user']
     get_parcours = full_profile['parcours']
-    return render(request, 'blog/profil_other.html', {
-        'Article_by_author': Myarticle,
-        'user': user,
-        'avatar': avatar,
-        'Parcours_by_author': get_parcours,
-
-    })
+    return render(request, 'blog/profil_other.html', locals())
 
 
 def profil(request, id):
@@ -394,7 +389,7 @@ def toutes_les_capsules(request):
 
 def cpops(request):
     data = requests.get(BASE_URL + '/api/cpops/').json()
-    paginator = Paginator(data,9)
+    paginator = Paginator(data,18)
     page = request.GET.get('page', 1)
     try:
         cpops_page = paginator.page(page)
@@ -469,3 +464,7 @@ def contact(request):
         except:
             return('Erreur')
     return render(request,'blog/contact.html',locals())
+
+def view_collection(request):
+    print('Hello world')
+    return render(request,'blog/view_collection.html',locals())

@@ -297,10 +297,10 @@
 
             <div class="container">
                 <div class="heading-page-content">
-                    <div class="au-page-title">
+                    <div class="au-page-title communaute">
                         <h1>La Communauté</h1>
                     </div>
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" class="communaute">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
                             <li class="breadcrumb-item active" aria-current="page">La Communauté</li>
@@ -311,24 +311,25 @@
         </section>
 
         <!-- standard list -->
-        <section class="standard-list courses-2 section-padding-large">
+        <section class="standard-list courses-2 section-padding-large" style="background: url('{% static '' %}img/sneaker_mesh_fabric.png') repeat scroll center center; background-color: rgba(255, 255, 255, 0.5);">
             <div class="container">
                 <div class="row">
                     {% for cpops in data %}
+
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="team-group">
                             <div class="team-group-content">
                                 <article class="item">
                                     <figure style="width:217px;height:217px;">
-                                        <a href="#">
-                                            <img src="{{ cpops.3.picture }}" alt="Papaoumar Mbaye">
+                                        <a href="{% url 'profil_other' cpops.4  %}">
+                                            <img src="{{ cpops.5.picture }}" alt="{{cpops.0}} {{cpops.1}}">
                                         </a>
                                     </figure>
                                     <div class="info">
-                                        <h3 class="title">
-                                            <a href="{% url 'profil_other' cpops.2  %}">{{ cpops.0 }}</a>
+                                        <h3 class="title"><i class="far fa-user"></i>
+                                            <a href="{% url 'profil_other' cpops.4  %}">{{ cpops.0 }} {{cpops.1}}</a>
                                         </h3>
-                                        <span class="job-title">Auteur de {{cpops.1}} capsules</span>
+                                        <h5 class="title"><i class="fas fa-map-marker-alt"></i> {{ cpops.5.city }}</h5>
                                     </div>
                                 </article>
                             </div>
@@ -337,20 +338,24 @@
                     {% endfor %}
 
 
-            	<div class="pagination text-center page-numbers">
-		            {% if data.has_previous %}
-		                <a href="?page=1" class="page-numbers"> Première Page </a>&nbsp;&nbsp;&nbsp;<a href="?page={{data.previous_page_number}}"> < </a>
-		            {% endif %}
-		            {% for num in data.paginator.page_range %}
-		                {% if data.number == num %}
-		                    <strong class="page-numbers">{{ num }}</strong>
-		                {% elif num > data.number|add:'-3' and num < data.number|add:'3' %}
-		                    <a href="?page={{ num }}" class="page-numbers">&nbsp;{{ num }}&nbsp;</a>
-		                {% endif %}
-		            {% endfor %}
-		            {% if data.has_next %}
-		                <a href="?page={{data.next_page_number}}" class="page-numbers"> > </a>&nbsp;&nbsp;&nbsp;<a href="?page={{data.paginator.num_pages}}" class="page-numbers"> Dernière Page </a>
-		            {% endif %}
+            	<div class="pagination">
+                <ul class="page-numbers">
+  		            {% if data.has_previous %}
+  		                <li><a href="?page=1" class="page-numbers"> << </i></a></li>
+                      <li><a href="?page={{data.previous_page_number}}" class="page-numbers"> <i class="la la-angle-left"></i> </a></li>
+  		            {% endif %}
+  		            {% for num in data.paginator.page_range %}
+  		                {% if data.number == num %}
+  		                    <li><span aria-current="page" class="page-numbers current">{{ num }}</span></li>
+  		                {% elif num > data.number|add:'-3' and num < data.number|add:'3' %}
+  		                    <li><a href="?page={{ num }}" class="page-numbers">&nbsp;{{ num }}&nbsp;</a></li>
+  		                {% endif %}
+  		            {% endfor %}
+  		            {% if data.has_next %}
+  		              <li><a href="?page={{data.next_page_number}}" class="page-numbers"> <i class="la la-angle-right"></i> </a></li>
+                    <li><a href="?page={{data.paginator.num_pages}}" class="page-numbers"> >> </a></li>
+  		            {% endif %}
+                </ul>
 	            </div>
         </section>
     </main>

@@ -1,64 +1,141 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<style>
-    input{
-        display: block;
-        width: 100%;
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        border-radius: .25rem;
-        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    }
-    .small, small {
-        font-size: 0.85rem !important;
-        font-weight: 400 !important;
-    }
+{% load static %}
+<main>
+        <!-- Heading Page -->
+        <section class="heading-page">
+            <img src="{% static ''%}img/territoires_bandeau.jpg" alt="">
+            <div class="container">
+                <div class="heading-page-content">
+                    <div class="au-page-title inscription">
+                        <h1>Je participe</h1>
+                    </div>
+                    <nav aria-label="breadcrumb" class="inscription">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Inscription</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
 
-	form{
-		width: 95%;
-	}
-	@media(min-width: 992px) {
-		form{
-			width: 50%;
-		}
-	}
+        <!-- Contact us -->
+        <section class="contact-us section-padding-large">
+            <div class="container">
+                <div class="contact-us-content">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <div class="contact-us-info">
+                                <h3 class="contact-title">
+                                    Je m'inscris à la plateforme vidéo
+                                </h3>
+                                <div class="item">
+                                    <i class="fas fa-home"></i>
+                                    <span class="address-info">VOIR</span>
+                                </div>
+                                <div class="item phone-item">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span class="contact-phone">VOIR</span>
+                                </div>
+                                <div class="item">
+                                    <i class="far fa-clock"></i>
+                                    <div class="time-info">
+                                        <span>VOIR</span>
+                                        <span>Voir</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                            <div class="contact-form">
+                                <h3 class="contact-title">
+                                    Inscrivez-vous
+                                </h3>
+                                
+                                    {% if error %}
+                                        <p>Une erreur s'est produite ou le pseudo est déjà pris.</p>
+                                    {% endif %}
+                                    <form action="{% url 'signUp' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        {{ profile_form.as_p}}
+                                        <input type="submit" value="Inscription" class="btn btn-block btn-danger"/>
+                                    </form>
 
-</style>
-    <p><a class="p-2 btn btn-outline-danger mt-4 ml-4" href="{% url 'home' %}">Retour aux articles</a></p>
-    {% if error %}
-        <p>Une erreur s'est produite ou le pseudo est déjà pris.</p>
-    {% endif %}
-    <form action="{% url 'signUp' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ profile_form.as_p}}
-        <input type="submit" value="Inscription" class="btn btn-block btn-danger"/>
-    </form>
 
+                                {% endblock %}
+                                {% block javascript %}
 
-{% endblock %}
-{% block javascript %}
+                                    <script>
+                                        // gestion des champs générés par le template de django en anglais
+                                        $('[for="id_username"]').replaceWith('<label for="id_username">Pseudo</label>');
 
-    <script>
-        // gestion des champs générés par le template de django en anglais
-        $('[for="id_username"]').replaceWith('<label for="id_username">Pseudo</label>');
+                                        $('.helptext').replaceWith('<small class="form-text text-muted">Requis. 150 caractères max. Lettres, chiffres et @ . + - _ uniquement.</small>');
 
-        $('.helptext').replaceWith('<small class="form-text text-muted">Requis. 150 caractères max. Lettres, chiffres et @ . + - _ uniquement.</small>');
+                                        $('[for="id_email"]').replaceWith('<label for="id_email">Email</label>');
+                                        $('[for="id_password"]').replaceWith('<label for="id_password">Mot de passe</label>');
+                                        $('[for="id_first_name"]').replaceWith('<label for="id_first_name">Prénom</label>');
+                                        $('[for="id_last_name"]').replaceWith('<label for="id_last_name">Nom</label>');
+                                        $('[for="id_picture"]').replaceWith('<label for="id_picture">Avatar</label>');
 
-        $('[for="id_email"]').replaceWith('<label for="id_email">Email</label>');
-        $('[for="id_password"]').replaceWith('<label for="id_password">Mot de passe</label>');
-        $('[for="id_first_name"]').replaceWith('<label for="id_first_name">Prénom</label>');
-        $('[for="id_last_name"]').replaceWith('<label for="id_last_name">Nom</label>');
-        $('[for="id_picture"]').replaceWith('<label for="id_picture">Avatar</label>');
+                                        // ajout texte info sur critères du mot de passe d'inscription
+                                        $('[for="id_password"]').append("<br><small class=\"form-text text-muted\">Minimum 8 caractères dont 1 majuscule, 1 chiffre et 1 caractère spécial (#!?@).</small>")
 
-        // ajout texte info sur critères du mot de passe d'inscription
-        $('[for="id_password"]').append("<br><small class=\"form-text text-muted\">Minimum 8 caractères dont 1 majuscule, 1 chiffre et 1 caractère spécial (#!?@).</small>")
+                                    </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    </script>
+		<!-- galerie-->
+        <section class="gallery">
+            <div class="container-fluid">
+                <div class="gallery-content gallery-hover">
+                    <div class="row">
+                        <div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/caravelle_bandeau_01.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/caravelle_bandeau_01.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/caravelle_bandeau_02.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/caravelle_bandeau_02.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+						<div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/caravelle_bandeau_05.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/caravelle_bandeau_05.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/caravelle_bandeau_03.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/caravelle_bandeau_03.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col px-0">
+                            <figure>
+                                <a href="{% static ''%}img/caravelle_bandeau_04.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                    <img src="{% static ''%}img/caravelle_bandeau_04.jpg" alt="">
+                                </a>
+                            </figure>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
 {% endblock %}
