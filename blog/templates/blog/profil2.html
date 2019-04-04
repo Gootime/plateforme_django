@@ -37,7 +37,7 @@
 		{% for i in Parcours_by_author %}
 		<div class="col-4" style="border:solid 1px;">
 			Parcours n° {{i.id}}
-			<p><a href="{% url 'view_parcours' i.id %}">Voir ce parcours</a></p>
+			<p><a href="{% url 'view_collection' i.id %}">Voir ce parcours</a></p>
 		</div>
 		{% empty %}
 		<p>Aucun Parcours</p>

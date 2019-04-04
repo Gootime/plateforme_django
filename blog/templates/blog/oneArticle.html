@@ -2,309 +2,295 @@
 
 {%  block content %}
 {%load static%}
-<!--<link rel="stylesheet" href="../..{%static 'css/style.css'%}">-->
-<link rel="stylesheet" href="../..{%static 'css/star-rating-svg.css'%}">
-<script type="text/javascript" src="../..{%static 'js/script.js'%}"></script>
-<script type="text/javascript" src="../..{%static 'js/jquery.star-rating-svg.js'%}"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
-<link rel="stylesheet" href="../..{%static 'css/oneArticle.css'%}">
-<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
-
-<!--TEST AFFICHAGE-->
 <style>
-    .btn-outline-danger{
-        border: 1px solid antiquewhite;
-    }
-    .btn-outline-danger:hover{
-        border: 1px solid #ee5249;
-        background-color: #ee5249;
-    }
-    .btn.mt-4 a:hover{
-        text-decoration: none;
-    }
-    .col-lg-8 p:nth-of-type(1){
-        font-style: italic;
-    }
-    .container:not(.footer){
-        background-color: #cede92;
-    }
-    h1{
-        text-shadow: 2px 2px 2px #ee5249;
-        color: antiquewhite !important;
-        font-size: 2.5rem;
-    }
-    .col-lg-8 p:nth-of-type(2) > img{
-        width: 350px;
-        max-width: 730px;
-    }
-    .container:nth-of-type(2){
-        min-height: 200px;
-    }
-    a[href*=profil_other], a[href*=territoire]{
-        color: #ee5249;
-    }
-    a[href*=profil_other]:hover, a[href*=profil_other]:focus, a[href*=territoire]:hover, a[href*=territoire]:focus{
-        text-decoration: none;
-    }
-
-    #video{
-        /*height: 45vh;*/
-        background-color: #443f2f !important;
-    }
-    img.img-fluid{
-        background-color: #443f2f !important;
-    }
-
-    .alert-success{
-        background-color: antiquewhite;
-    }
-
-    /*.contenu{*/
-        /*height: 30vh;*/
-        /*max-height: 30vh;*/
-
-    /*}*/
-    .contenu p, .contenu #map{
-        height: 30vh;
-        max-height: 30vh;
-    }
-    /* Small devices (landscape phones, 576px and up)*/
-    @media (min-width: 576px) {
-        /* CONTAINER */
-        /* image à la une */
-        /*.col-lg-8 > img, col-lg-8 > video{*/
-            /*height: 30vh;*/
-        /*}*/
-        /*bloc de présentation avec l'image à la une*/
-        .margin_y_6 .col-md-4{
-            padding-top: 3rem !important;
-            padding-bottom: 3rem !important;
-        }
-        .col-md-4 > h2{
-            font-size: 2.5rem;
-        }
-        .col-md-4 > p{
-            color: #000;
-            font-size: 1.05rem;
-            border-bottom: .1rem solid white;
-            line-height: 2.16rem;
-        }
-        .margin_y_6{
-            margin-top: 6rem !important;
-            margin-bottom: 6rem !important;
-        }
-        .rs{
-            margin-top: 6rem !important;
-        }
-        /*Nav secondaire*/
-        .nav_secondaire{
-            font-size: 1.2rem;
-            font-weight: 600;
-            line-height: 1.715;
-            padding-top: 4rem;
-        }
-        .nav_secondaire .nav-item:nth-of-type(2) a{
-            display: inline-block;
-        }
-        .nav_secondaire .nav-item:nth-of-type(3) a{
-            display: none;
-        }
-        #map, .contenu p{
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            /*height: 55%;*/
-        }
-    }
-    /* Medium devices (tablets, 768px and up)*/
-    @media (min-width: 768px) {
-        /* CONTAINER */
-        /* image à la une */
-        .col-md-8 > img{
-            max-height: 45vh;
-        }
-        /*bloc de présentation avec l'image à la une*/
-        .margin_y_6 .col-md-4{
-            padding-top: 1.5rem !important;
-            padding-bottom: 1.5rem !important;
-        }
-        .col-md-4 > h2{
-            font-size: 2.2rem;
-        }
-        .col-md-4 > p{
-            color: #000;
-            font-size: .95rem;
-            border-bottom: .1rem solid white;
-            line-height: 1.6rem;
-        }
-        .margin_y_6{
-            margin-top: 1.5rem !important;
-            margin-bottom: 1.5rem !important;
-        }
-        .rs{
-            margin-top: 1.5rem !important;
-        }
-        /*Nav secondaire*/
-        .nav_secondaire{
-            font-size: 1.2rem;
-            font-weight: 600;
-            line-height: 1.715;
-            padding-top: 1.5rem;
-        }
-        .nav_secondaire .nav-item:nth-of-type(2) a{
-            display: inline-block;
-        }
-        .nav_secondaire .nav-item:nth-of-type(3) a{
-            display: none;
-        }
-    }
-    /* Large devices (desktops, 992px and up)*/
-    @media (min-width: 992px) { ... }
-    /* Extra large devices (large desktops, 1200px and up)*/
-    @media (min-width: 1200px) { ... }
+  #map{
+    width:870px !important;
+    height:470px !important;
+  }
 </style>
-<!--<div style="border:solid 1px #ccc;">Tous les Territoires-->
-<!--{% for t in territoires%}-->
-<!--<div>nom du territoire : <a href ="{% url 'view_territoire' t.id %}">{{t.nom}}</a></div>-->
-<!--<div><img src="{{t.Image | safe}}"></div>-->
-<!--{% endfor %}-->
-<!--</div>-->
-<!--{% for categorie in categories %}-->
-<!--<a href="{% url 'view_categorie' categorie.id %}">-->
-<!--<span class="header-page__category-icon"><img src="{{categorie.Image | safe}}" data-recalc-dims="1"></span>-->
-<!--<span class="header-page__category-title">{{categorie.name}}</span>-->
-<!--</a>-->
-<!--{% endfor %}-->
-<!--END TEST AFFICHAGE-->
-<div class="container">
-    <!--{{oneArticle}}-->
-    <input type="hidden" readonly class="id_article" value="{{oneArticle.pk.id}}">
-    <div class="row margin_y_6">
-        <div class="col-lg-8 col-12 px-0">
-            <!--<img src="{{oneArticle.pk.file}}" class="w-100 img-fluid" alt="Image de {{oneArticle.pk.title}}">-->
-            {% if oneArticle.pk.category == 2 %}
-            <video controls id="video" src="{{oneArticle.pk.file}}"></video>
-            {% else %}
-            <img id="image" class="img-fluid w-100" src="{{oneArticle.pk.file}}" alt="carte" />
-            {% endif %}
-
-        </div>
-        <div class="col-lg-4 col-12">
-            <h2>{{oneArticle.pk.title}}</h2>
-
-            <p id="full_date" style="display: none;">{{oneArticle.pk.date}}</p>
-            <p id="good_date"></p>
-
-            <p>Par <a href="{% url 'profil_other' oneArticle.pk.user  %}">{{ oneArticle.pk.username}}</a></p>
-            <!--<a href="{% url 'profil_other' oneArticle.pk.user  %}" class="btn btn-outline-danger btn-block">Voir le profil</a>-->
-            {% if oneArticle.pk.category == 1 %}
-            <p>Catégorie :  Image</p>
-            {% endif %}
-            {% if oneArticle.pk.category == 2 %}
-            <p>Catégorie :  Vidéo</p>
-            {% endif %}
-            {% if oneArticle.pk.category == 3 %}
-            <p>Catégorie :  Audio</p>
-            {% endif %}
-            {% if oneArticle.pk.category == 4 %}
-            <p>Catégorie :  Récit</p>
-            {% endif %}
-            <!--<p>Catégorie :  {{oneArticle.pk.category}}</p>-->
-            <p>Localisation : {{oneArticle.pk.address}}</p>
-
-            <!--<p>Territoire : {{oneArticle.pk.place}}</p>-->
-            {% if oneArticle.pk.place == 1 %}
-            <p>Territoire : <a href="{% url 'view_territoire' 1 %}">Essonne</a></p>
-            {% endif %}
-            {% if oneArticle.pk.place == 2 %}
-            <p>Territoire : <a href="{% url 'view_territoire' 2 %}">Paris</a></p>
-            {% endif %}
-            {% if oneArticle.pk.place == 3 %}
-            <p>Territoire : <a href="{% url 'view_territoire' 3 %}">Hauts-de-Seine</a></p>
-            {% endif %}
-            {% if oneArticle.pk.place == 4 %}
-            <p>Territoire : <a href="{% url 'view_territoire' 4 %}">Seine-et-Marne</a></p>
-            {% endif %}
-            {% if oneArticle.pk.place == 5 %}
-            <p>Territoire : <a href="{% url 'view_territoire' 5 %}">Seine-st-Denis</a></p>
-            {% endif %}
-
-            <!--<p>Territoire : {{oneArticle.pk.place}}</p>-->
-            <p>Vues: {{oneArticle.pk.views}}</p>
-            <button class="btn btn-block btn-primary like">{{oneArticle.pk.like}} &nbsp; <i class="fa fa-thumbs-up"></i> </button>
-            {% if request.session.token %}
-            <button
-                    class="btn btn-outline-danger btn-block mt-4 text-center"><a href="{% url 'updateArticle' oneArticle.pk.id %}">Modifier la capsule</a></button>
-            {% endif %}
-        </div>
-    </div>
-
-    <hr>
+<main>
+        <!-- Heading Page -->
+        <section class="heading-page">
+            <img src="{% static '' %}img/bandeau_reseau.jpg" alt="">
+            <div class="container">
+                <div class="heading-page-content">
+                    <div class="au-page-title posts">
+                      <h1>Post : {{oneArticle.pk.title}}</h1>
+                    </div>
+                    <nav aria-label="breadcrumb" class="posts">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                            <li class="breadcrumb-item"><a href="#">Découvrir</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'toutes_les_capsules' %}">Post</a></li>
+                            <li class="breadcrumb-item" aria-current="page">n° {{oneArticle.pk.id}}</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
 
 
-    <div class="row contenu">
-        <div class="col-md-6 col-12">
-            <p class="alert alert-success">{{oneArticle.id.content}}</p>
-            <!--<p>{{html | safe}}</p>-->
-        </div>
-        <!--<div id="map" class="col-4"></div>-->
-        <div class="col-md-6 col-12">
-            <div id="map"></div>
-        </div>
-</div>
-</div><!-- /.container -->
+        <section class="single-course section-padding-large">
+                    <div class="container">
+                      <div class="section-title section-title-left">
+                          <h2>Post : {{oneArticle.pk.title}}</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 single-course-content">
+                                <div class="single-title">
+                                    
+                                    <span class="price free">
+                                      <span class="full_date" style="display: none;">{{oneArticle.pk.date}}</span>
+                                      <span class="good_date"></span>
+                                    </span>
+                                </div>
+                                <div class="single-course-info">
+                                    <figure class="single-course-images">
+                                      {% if oneArticle.pk.category == 2 %}
+                                          <video controls id="video" src="{{oneArticle.pk.file}}" class="img-fluid w-100" width="870" height="450"></video>
+                                      {% else %}
+                                          <img class="img-fluid w-100" src="{{oneArticle.pk.file}}" alt="{{oneArticle.pk.title}}" width="870" height="450">
+                                      {% endif %}
+                                    </figure>
+                                    <div class="course-teacher-cat display-flex">
+                                        <div class="teacher-cat">
+                                            <ul class="display-flex">
+                                                <li class="display-flex">
+                                                    <a href="#">
+                                                        <img src="{% static '' %}img/utilisateur.jpg" alt="{{oneArticle.pk.username}}">
+                                                    </a>
+                                                    <div class="teacher-cat-item">
+                                                        <span>Auteur</span>
+                                                        <a href="#">{{oneArticle.pk.username}}</a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="teacher-cat-item">
+                                                        <span>Catégorie</span>
+                                                        <span class="category">
+                                                          {% if oneArticle.pk.category == 1 %}
+                                            							       <a href="{% url 'view_categorie' 1 %}">Image</a>
+                                            							{% endif %}
+                                            							{% if oneArticle.pk.category == 2 %}
+                                            							       <a href="{% url 'view_categorie' 2 %}">Vidéo</a>
+                                            							{% endif %}
+                                            							{% if oneArticle.pk.category == 3 %}
+                                            							       <a href="{% url 'view_categorie' 3 %}">Audio</a>
+                                            							{% endif %}
+                                            							{% if oneArticle.pk.category == 4 %}
+                                            							       <a href="{% url 'view_categorie' 4 %}">Récit</a>
+                                            							{% endif %}
+                                                        </span>
+                                                    </div>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="single-course-tab">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true"><i class="fas fa-map-marker-alt"></i>Sur la Carte</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="instructor-tab" data-toggle="tab" href="#instructor" role="tab" aria-controls="instructor" aria-selected="false"><i class="fas fa-graduation-cap"></i>Description</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                                            <div class="course-overview">
+                                                <div class="course-desc">
 
 
-<script type="text/javascript">
-    $(".like").click(function() {
-        $.ajax({
-            method:'POST',
-            url: '{{ url }}/api/capsule/like/{{ oneArticle.pk.id }}/',
-            headers: {'Authorization': '{{ header }}'},
-            dataType: 'json',
-            complete: function (data) {
-                window.location.reload(true);
-            }
-        });
-    });
-    var lat = {{center.0}};
-    var lon = {{center.1}};
-    var macarte = null;
-    //var lat = document.getElementById('lat').value
-    //var lng = document.getElementById('lng').value
-    //console.log("lat : " + lat + " lng : " + lng)
-    function initMap() {
-        macarte = L.map('map').setView([lat, lon], 11);
-        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
-            minZoom: 1,
-            maxZoom: 20
-        }).addTo(macarte);
-        {% for marker in listMarker %}
-        var marker = L.marker([{{marker.0.0}},{{marker.0.1}}]).addTo(macarte);
-        marker.bindPopup("{{marker.1}}")
-        {% endfor %}
-    }
-    window.onload = function(){
-        initMap();
-    };
+                                                    <div id="map"></div>
+                                                    <script type="text/javascript">
+                                                      var lat = {{center.0}};
+                                                      var lon = {{center.1}};
+                                                      var macarte = null;
+                                                      //var lat = document.getElementById('lat').value
+                                                      //var lng = document.getElementById('lng').value
+                                                      //console.log("lat : " + lat + " lng : " + lng)
+                                                      function initMap() {
+                                                          macarte = L.map('map').setView([lat, lon], 11);
+                                                          L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+                                                              attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+                                                              minZoom: 1,
+                                                              maxZoom: 20
+                                                          }).addTo(macarte);
+                                                          {% for marker in listMarker %}
+                                                          var marker = L.marker([{{marker.0.0}},{{marker.0.1}}]).addTo(macarte);
+                                                          marker.bindPopup("{{marker.1}}")
+                                                          {% endfor %}
+                                                      }
+                                                      window.onload = function(){
+                                                          initMap();
+                                                      };
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <!-- MAP -->
+
+                                        </div>
 
 
-    //2019-02-05T23:22:01.714652+01:00
-    var full_date = $('#full_date').text();
-    var short_date = full_date.slice(0,10);
-    var array_date = short_date.split('-');
-    var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
-    var nb_month = array_date[1];
-    var month = parseInt(nb_month);
-    // console.log(nb_month);
-    var month_ok = month-1;
-	// console.log(m_names[month_ok]);
-	var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
-    // console.log(full_date);
-    // console.log(short_date);
-    // console.log(array_date);
-    // console.log(formated_date);
+                                        <div class="tab-pane fade" id="instructor" role="tabpanel" aria-labelledby="instructor-tab">
+                                            <div class="instructor-content">
+                                                <div class="instructor-thumb">
+                                                    <a href="#">
+                                                        <img src="{% static '' %}img/utilisateur.jpg" alt="{{oneArticle.pk.username}}" width="210" height="210">
+                                                    </a>
+                                                </div>
+                                                <div class="instructor-info">
+                                                    <h4 class="title">
+                                                        <a href="#">{{oneArticle.pk.title}}</a>
+                                                    </h4>
+                                                    <div class="categories">
+                                                        <a href="#">{{oneArticle.pk.username}}</a>
+                                                    </div>
+                                                    <p class="desc">
+                                                        {{oneArticle.pk.content}}
+                                                    </p>
 
-    $('#good_date').replaceWith('<p id=\"good_date\">Posté le ' + formated_date + '</p>');
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                <div class="right-sidebar">
+                                    <div class="widget-featured-course">
+                                        <div class="widget-title">
+                                          <h2>Infos</h2>
+                                        </div>
+                                        <ul>
+                                            <li class="display-flex">
+                                                <span><i class="far fa-calendar"></i></span><span class="good_date"></span>
+                                            </li>
+                                            <li class="display-flex">
+                                                <span><i class="fas fa-book"></i></span>
+                                                <span>{{oneArticle.pk.title}}</span>
+                                            </li>
+                                            <li class="display-flex">
+
+                                                  {% if oneArticle.pk.category == 1 %}
+                                                         <span><i class="fas fa-images"></i></i></span><span>Image</span>
+                                                  {% endif %}
+                                                  {% if oneArticle.pk.category == 2 %}
+                                                         <span><i class="fas fa-film"></i></span><span>Vidéo</span>
+                                                  {% endif %}
+                                                  {% if oneArticle.pk.category == 3 %}
+                                                         <span><i class="fas fa-podcast"></i></span><span>Audio</span>
+                                                  {% endif %}
+                                                  {% if oneArticle.pk.category == 4 %}
+                                                         <span><i class="fas fa-quote-left"></i></span><span>Récit</span>
+                                                  {% endif %}
+
+                                            </li>
+                                            <li class="display-flex">
+                                                <span><i class="fas fa-hashtag"></i></span>
+                                                <span>{{oneArticle.pk.views}} vues</span>
+                                            </li>
+                                            <li class="display-flex">
+                                                <span><i class="fas fa-heart"></i></span>
+                                                <span>{{oneArticle.pk.like}} j'aime</span>
+                                            </li>
+                                            <li class="display-flex">
+                                                <button class="btn btn-block btn-secondary like">{{oneArticle.pk.like}} &nbsp; <i class="fa fa-thumbs-up"></i> </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="widget_lastest_entries">
+                                        <div class="widget-title">
+                                          <h2>Autres posts</h2>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <figure>
+                                                    <a href="#"><img src="{% static '' %}img/parcours.jpg" alt="Web Design For Usability"></a>
+                                                </figure>
+                                                <div class="info">
+                                                    <h3 class="title">
+                                                        <a href="#">Web Design For Usability</a>
+                                                    </h3>
+                                                    <span class="price free">Free</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <a href="#"><img src="{% static '' %}img/parcours.jpg" alt="Essential Blogging Tools"></a>
+                                                </figure>
+                                                <div class="info">
+                                                    <h3 class="title">
+                                                        <a href="#">Essential Blogging Tools</a>
+                                                    </h3>
+                                                    <span class="price free">Free</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <a href="#"><img src="{% static '' %}img/parcours.jpg" alt="Advanced: UI Design"></a>
+                                                </figure>
+                                                <div class="info">
+                                                    <h3 class="title">
+                                                        <a href="#">Advanced: UI Design</a>
+                                                    </h3>
+                                                    <span class="price notfree">$65.00</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="widget_signupform">
+                                        <div class="sign-up-form">
+                                            <div class="form-heading">
+                                                <a href="index.php"><img src="{% static '' %}img/la_plateforme_03.png" alt="La plateforme vidéo du PoleS"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+    </main>
+<script>
+      //2019-02-05T23:22:01.714652+01:00
+      var full_date = $('.full_date').text();
+      var short_date = full_date.slice(0,10);
+      var array_date = short_date.split('-');
+      var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+      var nb_month = array_date[1];
+      var month = parseInt(nb_month);
+      // console.log(nb_month);
+      var month_ok = month-1;
+      console.log(m_names[month_ok]);
+      var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+      // console.log(full_date);
+      // console.log(short_date);
+      // console.log(array_date);
+      // console.log(formated_date);
+
+      $('.good_date').replaceWith('<span id=\"good_date\">Le ' + formated_date + '</span>');
+
+      $(".like").click(function() {
+          $.ajax({
+              method:'POST',
+              url: '{{ url }}/api/capsule/like/{{ oneArticle.pk.id }}/',
+              headers: {'Authorization': '{{ header }}'},
+              dataType: 'json',
+              complete: function (data) {
+                  window.location.reload(true);
+              }
+          });
+      });
 </script>
+
+
+
+
 {% endblock %}

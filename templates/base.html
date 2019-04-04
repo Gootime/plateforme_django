@@ -43,6 +43,8 @@
 
 		<!-- jQuery CDN -->
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
 </head>
 <body>
     <!-- page load-->
@@ -61,10 +63,9 @@
                     <div class="header-top-info">
                         <div class="header-socials">
                             <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                              <li><a href="https://www.facebook.com/lePoleSolidaire/?ref=br_rs" target='_blank'><i class="fab fa-facebook-f"></i></a></li>
+                              <li><a href="https://www.instagram.com/lepolesidf/?hl=fr" target='_blank'><i class="fab fa-instagram"></i></a></li>
+                              <li><a href="https://twitter.com/lepolesidf?lang=fr" target='_blank'><i class="fab fa-twitter"></i></a></li>
                             </ul>
                         </div>
                         <a href="mailto:info@smartedu.com" class="email"><i class="far fa-envelope"></i>contact@laplateforme.com</a>
@@ -140,9 +141,9 @@
                                             <!--</ul>-->
                                             <!--</li>-->
                                             <li class="menu-item">
-                                                <a href="contact1.html">Contact</a>
+                                                <a href="{% url 'contact' %}">Contact</a>
                                                 <!--<ul class="sub-menu">-->
-                                                    <!--<li class="menu-item"><a href="contact1.html">Contact 1</a></li>-->
+                                                    <!--<li class="menu-item"><a href="{% url 'contact' %}">Contact 1</a></li>-->
                                                     <!--<li class="menu-item"><a href="contact2.html">Contact 2</a></li>-->
                                                     <!--<li class="menu-item"><a href="contact3.html">Contact 3</a></li>-->
                                                 <!--</ul>-->
@@ -163,11 +164,13 @@
                 </div>
             </div>
         </div>
+        <!--Menu Mobile -->
+
         <div class="hidden-tablet-landscape-up header-mobile">
             <div class="header-top-mobile">
                 <div class="container-fluid">
                     <div class="logo">
-                        <a href="indexOLD.html">
+                        <a href="{% url 'home' %}">
                             <img src="{% static  ''%}img/la_plateforme.png" alt="La Plateforme" />
                         </a>
                     </div>
@@ -191,7 +194,7 @@
                     <div>
                         <ul class="au-navbar-menu">
                             <li class="menu-item">
-                                <a href="index.html">Accueil</a>
+                                <a href="{% url 'home' %}">Accueil</a>
                                 <!--<span class="arrow">-->
                                     <!--<i></i>-->
                                 <!--</span>-->
@@ -227,7 +230,7 @@
                                 </ul>
                             </li>
                             <li class="menu-item">
-                                <a href="events.html">Territoires</a>
+                                <a href="{% url 'all_territoires' %}">Territoires</a>
                                 <!--<span class="arrow">-->
                                     <!--<i></i>-->
                                 <!--</span>-->
@@ -255,12 +258,12 @@
                                 <!--</ul>-->
                                 <!--</li>-->
                                 <li class="menu-item">
-                                    <a href="contact1.html">Contact</a>
+                                    <a href="{% url 'contact' %}">Contact</a>
                                     <!--<span class="arrow">-->
                                     <!--<i></i>-->
                                 <!--</span>-->
                                     <!--<ul class="sub-menu">-->
-                                        <!--<li class="menu-item"><a href="contact1.html">Contact 1</a></li>-->
+                                        <!--<li class="menu-item"><a href="{% url 'contact' %}">Contact 1</a></li>-->
                                         <!--<li class="menu-item"><a href="contact2.html">Contact 2</a></li>-->
                                         <!--<li class="menu-item"><a href="contact3.html">Contact 3</a></li>-->
                                     <!--</ul>-->
@@ -306,21 +309,9 @@
 												</p>
 												<div class="socials">
 														<ul>
-																<li>
-																		<a href="#"><i class="fab fa-facebook-f"></i></a>
-																</li>
-																<li>
-																		<a href="#"><i class="fab fa-google-plus-g"></i></a>
-																</li>
-																<li>
-																		<a href="#"><i class="fab fa-twitter"></i></a>
-																</li>
-																<li>
-																		<a href="#"><i class="fab fa-youtube"></i></a>
-																</li>
-																<li>
-																		<a href="#"><i class="fab fa-instagram"></i></a>
-																</li>
+                              <li><a href="https://www.facebook.com/lePoleSolidaire/?ref=br_rs" target='_blank'><i class="fab fa-facebook-f"></i></a></li>
+                              <li><a href="https://www.instagram.com/lepolesidf/?hl=fr" target='_blank'><i class="fab fa-instagram"></i></a></li>
+                              <li><a href="https://twitter.com/lepolesidf?lang=fr" target='_blank'><i class="fab fa-twitter"></i></a></li>
 														</ul>
 												</div>
 										</div>
@@ -330,11 +321,12 @@
 												</div>
 												<div class="footer-link-menu">
 														<ul>
-																<li><a href="#"><i class="la la-angle-right"></i>Accueil</a></li>
+																<li><a href="{% url 'home' %}"><i class="la la-angle-right"></i>Accueil</a></li>
 																<li><a href="{% url 'cpops' %}"><i class="la la-angle-right"></i>La communauté</a></li>
-																<li><a href=""><i class="la la-angle-right"></i>Découvrir</a></li>
-																<li><a href="#"><i class="la la-angle-right"></i>Territoires</a></li>
-																<li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
+																<li><a href="{% url 'toutes_les_capsules' %}"><i class="la la-angle-right"></i>Les posts</a></li>
+                                <li><a href="{% url 'view_collection' %}"><i class="la la-angle-right"></i>Les parcours</a></li>
+																<li><a href="{% url 'all_territoires' %}"><i class="la la-angle-right"></i>Territoires</a></li>
+																<li><a href="{% url 'contact' %}"><i class="la la-angle-right"></i>Contact</a></li>
 														</ul>
 														<ul>
 																<li><a href="#"><i class="la la-angle-right"></i>Qui sommes-nous ? </a></li>
@@ -431,8 +423,8 @@
 <script src="{% static  ''%}vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Other js -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEmXgQ65zpsjsEAfNPP9mBAz-5zjnIZBw"></script>
-<script src="{% static  ''%}js/theme-map.js"></script>
+
+<!--<script src="{% static  ''%}js/theme-map.js"></script>-->
 <script src="{% static  ''%}js/jquery.countdown.min.js"></script>
 <script src="{% static  ''%}js/masonry.pkgd.min.js"></script>
 <script src="{% static  ''%}js/imagesloaded.pkgd.js"></script>

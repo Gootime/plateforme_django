@@ -61,18 +61,17 @@
                     <div class="header-top-info">
                         <div class="header-socials">
                             <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li><a href="https://www.facebook.com/lePoleSolidaire/?ref=br_rs" target='_blank'><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/lepolesidf/?hl=fr" target='_blank'><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://twitter.com/lepolesidf?lang=fr" target='_blank'><i class="fab fa-twitter"></i></a></li>
                             </ul>
                         </div>
                         <a href="mailto:info@smartedu.com" class="email"><i class="far fa-envelope"></i>contact@laplateforme.com</a>
                         <a href="#" class="telephone"><i class="fas fa-mobile-alt"></i>01 15 16 17 18</a>
                     </div>
                     <div class="header-top-account">
-                        <a href="#" class="signup"><i class="fas fa-edit"></i>Je participe</a>
-                        <a href="#" class="login">Je me connecte</a>
+                        <a href="{% url 'signUp' %}" class="signup"><i class="fas fa-edit"></i>Je participe</a>
+                        <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
                     </div>
                 </div>
             </div>
@@ -82,7 +81,7 @@
                 <div class="header-bottom">
                     <div class="header-bottom-content display-flex">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="{% url 'home' %}">
                                 <img src="{% static  ''%}img/la_plateforme.png" alt="La Plateforme">
                             </a>
                         </div>
@@ -91,64 +90,30 @@
                                 <div>
                                     <ul class="menu-primary">
                                         <li class="menu-item">
-                                            <a href="index.html">Accueil</a>
-                                            <!--<ul class="sub-menu">-->
-                                                <!--<li class="menu-item"><a href="index.html">Home 1</a></li>-->
-                                                <!--<li class="menu-item"><a href="index2.html">Home 2</a></li>-->
-                                                <!--<li class="menu-item"><a href="index3.html">Home 3</a></li>-->
-                                            <!--</ul>-->
+                                            <a href="{% url 'home' %}">Accueil</a>
+
                                         </li>
                                         <li class="menu-item curent-menu-item">
                                             <a href="{% url 'cpops' %}">La Communauté</a>
-                                            <!--<ul class="sub-menu">-->
-                                                <!--<li class="menu-item">-->
-                                                    <!--<a href="courses.html">Course 1</a>-->
-                                                    <!--<ul class="sub-menu">-->
-                                                        <!--<li class="menu-item"><a href="single-course.html">Course Detail</a></li>-->
-                                                    <!--</ul>-->
-                                                <!--</li>-->
-                                                <!--<li class="menu-item"><a href="standardlist.html">Standard List</a></li>-->
-                                            <!--</ul>-->
+
                                         </li>
                                         <li class="menu-item">
                                             <a href="#">Découvrir</a>
-                                            <!--<ul class="sub-menu">-->
-                                                <!--<li class="menu-item"><a href="aboutus.html">About us </a></li>-->
-                                                <!--<li class="menu-item"><a href="gallery1.html">Gallery 1</a></li>-->
-                                                <!--<li class="menu-item"><a href="gallery2.html">Gallery 2</a></li>-->
-                                                <!--<li class="menu-item"><a href="404.html">404</a></li>-->
-                                                <!--<li class="menu-item"><a href="pricing.html">Pricing Table</a></li>-->
-                                            <!--</ul>-->
+                                            <span class="arrow">
+                                               <i></i>
+                                           </span>
+                                            <ul class="sub-menu">
+                                              <li class="menu-item"><a href="{% url 'toutes_les_capsules' %}">Les posts</a></li>
+                                              <li class="menu-item"><a href="{% url 'view_collection' %}">Les parcours</a></li>
+                                            </ul>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="events.html">Territoires</a>
-                                            <!--<ul class="sub-menu">-->
-                                                <!--<li class="menu-item"><a href="events.html">Events</a>-->
-                                                    <!--&lt;!&ndash;<ul class="sub-menu">&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;<li class="menu-item"><a href="single-event.html">Event Detail</a></li>&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-                                                <!--</li>-->
-                                            <!--</ul>-->
+                                            <a href="{% url 'all_territoires' %}">Territoires</a>
                                         </li>
-                                        <!--<li class="menu-item">-->
-                                            <!--<a href="blog1.html">News</a>-->
-                                            <!--<ul class="sub-menu">-->
-                                                <!--<li class="menu-item"><a href="blog1.html">Blog 1</a>-->
-                                                    <!--<ul class="sub-menu">-->
-                                                        <!--<li class="menu-item"><a href="single.html">Blog detail</a></li>-->
-                                                    <!--</ul>-->
-                                                <!--</li>-->
-                                                <!--<li class="menu-item"><a href="blog2.html">Blog 2</a></li>-->
-                                                <!--<li class="menu-item"><a href="blog3.html">Blog 3</a>-->
-                                            <!--</ul>-->
-                                            <!--</li>-->
+
                                             <li class="menu-item">
-                                                <a href="contact1.html">Contact</a>
-                                                <!--<ul class="sub-menu">-->
-                                                    <!--<li class="menu-item"><a href="contact1.html">Contact 1</a></li>-->
-                                                    <!--<li class="menu-item"><a href="contact2.html">Contact 2</a></li>-->
-                                                    <!--<li class="menu-item"><a href="contact3.html">Contact 3</a></li>-->
-                                                <!--</ul>-->
+                                                <a href="{% url 'contact' %}">Contact</a>
+
                                             </li>
                                     </ul>
                                 </div>
@@ -220,14 +185,14 @@
                                 <!--</ul>-->
                             </li>
                             <li class="menu-item">
-                                <a href="#">Découvrir</a>
+                                <a href="../#">Découvrir</a>
                             		<ul class="sub-menu">
                                   <li class="menu-item"><a href="posts.php">Les posts</a></li>
                                   <li class="menu-item"><a href="parcours.php">Les parcours</a></li>
                                 </ul>
                             </li>
                             <li class="menu-item">
-                                <a href="events.html">Territoires</a>
+                                <a href="{% url 'all_territoires' %}">Territoires</a>
                                 <!--<span class="arrow">-->
                                     <!--<i></i>-->
                                 <!--</span>-->
@@ -255,12 +220,12 @@
                                 <!--</ul>-->
                                 <!--</li>-->
                                 <li class="menu-item">
-                                    <a href="contact1.html">Contact</a>
+                                    <a href="{% url 'contact' %}">Contact</a>
                                     <!--<span class="arrow">-->
                                     <!--<i></i>-->
                                 <!--</span>-->
                                     <!--<ul class="sub-menu">-->
-                                        <!--<li class="menu-item"><a href="contact1.html">Contact 1</a></li>-->
+                                        <!--<li class="menu-item"><a href="{% url 'contact' %}">Contact 1</a></li>-->
                                         <!--<li class="menu-item"><a href="contact2.html">Contact 2</a></li>-->
                                         <!--<li class="menu-item"><a href="contact3.html">Contact 3</a></li>-->
                                     <!--</ul>-->
@@ -375,21 +340,9 @@
     												</p>
     												<div class="socials">
     														<ul>
-    																<li>
-    																		<a href="#"><i class="fab fa-facebook-f"></i></a>
-    																</li>
-    																<li>
-    																		<a href="#"><i class="fab fa-google-plus-g"></i></a>
-    																</li>
-    																<li>
-    																		<a href="#"><i class="fab fa-twitter"></i></a>
-    																</li>
-    																<li>
-    																		<a href="#"><i class="fab fa-youtube"></i></a>
-    																</li>
-    																<li>
-    																		<a href="#"><i class="fab fa-instagram"></i></a>
-    																</li>
+                                  <li><a href="https://www.facebook.com/lePoleSolidaire/?ref=br_rs" target='_blank'><i class="fab fa-facebook-f"></i></a></li>
+                                  <li><a href="https://www.instagram.com/lepolesidf/?hl=fr" target='_blank'><i class="fab fa-instagram"></i></a></li>
+                                  <li><a href="https://twitter.com/lepolesidf?lang=fr" target='_blank'><i class="fab fa-twitter"></i></a></li>
     														</ul>
     												</div>
     										</div>
@@ -398,13 +351,14 @@
     														<h4>Liens utiles</h4>
     												</div>
     												<div class="footer-link-menu">
-    														<ul>
-    																<li><a href="#"><i class="la la-angle-right"></i>Accueil</a></li>
-    																<li><a href="{% url 'cpops' %}"><i class="la la-angle-right"></i>La communauté</a></li>
-    																<li><a href=""><i class="la la-angle-right"></i>Découvrir</a></li>
-    																<li><a href="#"><i class="la la-angle-right"></i>Territoires</a></li>
-    																<li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
-    														</ul>
+                              <ul>
+                                  <li><a href="{% url 'home' %}"><i class="la la-angle-right"></i>Accueil</a></li>
+                                  <li><a href="{% url 'cpops' %}"><i class="la la-angle-right"></i>La communauté</a></li>
+                                  <li><a href="{% url 'toutes_les_capsules' %}"><i class="la la-angle-right"></i>Les posts</a></li>
+                                  <li><a href="{% url 'view_collection' %}"><i class="la la-angle-right"></i>Les parcours</a></li>
+                                  <li><a href="{% url 'all_territoires' %}"><i class="la la-angle-right"></i>Territoires</a></li>
+                                  <li><a href="{% url 'contact' %}"><i class="la la-angle-right"></i>Contact</a></li>
+                              </ul>
     														<ul>
     																<li><a href="#"><i class="la la-angle-right"></i>Qui sommes-nous ? </a></li>
     																<li><a href="#"><i class="la la-angle-right"></i>A propos</a></li>

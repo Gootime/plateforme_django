@@ -308,13 +308,13 @@ def getLatLng(adresse):
         return 0, 0
 
 
-def view_parcours(request, id):
+def view_collection(request, id):
     p = requests.get(BASE_URL + '/api/playlist/'+str(id)+'/', headers=get_header(request)).json()
     get_the_post = p['playlist']['capsules']
     listMarker = []
     for article in get_the_post:
         listMarker.append((getLatLng(article['address']), article['title'], article['id']))
-    return render(request, 'blog/view_parcours.html', {'item': get_the_post, 'marker': listMarker})
+    return render(request, 'blog/view_collection.html', {'item': get_the_post, 'marker': listMarker})
 
 
 def view_territoire(request, id):

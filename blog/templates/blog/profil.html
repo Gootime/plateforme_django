@@ -214,7 +214,7 @@
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-around blog-pagination mx-auto">
                 {% for i in Parcours_by_author %}
-                <a class="p-2 btn btn-outline-danger" href="{% url 'view_parcours' i.id %}"><i class="fas fa-map-marked-alt"></i>&nbsp; {{i.id}}</a>
+                <a class="p-2 btn btn-outline-danger" href="{% url 'view_collection' i.id %}"><i class="fas fa-map-marked-alt"></i>&nbsp; {{i.id}}</a>
                 {% empty %}
                 <p>Aucun Parcours</p>
                 {% endfor %}
