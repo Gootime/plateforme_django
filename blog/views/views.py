@@ -30,15 +30,14 @@ def home(request):
 
 
 
-    allArticle = requests.get(BASE_URL + '/api/capsule/')
-    allArticle = [Capsule(article) for article in allArticle.json()]
-    listMarker = []
-
 
     get_territoire = requests.get(BASE_URL + '/api/place/', headers=get_header(request))
     get_territoire = [Place(place) for place in get_territoire.json()]
 
     get_category = [1, 2, 3, 4]  # Category.objects.all()
+    allArticle = requests.get(BASE_URL + '/api/capsule/')
+    allArticle = [Capsule(article) for article in allArticle.json()]
+    listMarker = []
     for article in allArticle:
         listMarker.append((getLatLng(article.pk['address']), article.pk['title'], article.pk['id']))
 
@@ -50,8 +49,11 @@ def home(request):
 def lire(request, id):
     oneArticle = requests.get(BASE_URL + '/api/capsule/'+str(id)+'/')
     oneArticle = Capsule(oneArticle.json())
+    #print(oneArticle.pk['username'])
+    capsuleAuthor = requests.get(BASE_URL + '/api/capsule_author/',json={'username':oneArticle.pk['username']}).json()
+    profile = capsuleAuthor['profile']
+    other_post = capsuleAuthor['capsule']
 
-    print(oneArticle)
     media = oneArticle.file.instance.pk['file']
     filename, file_extension = os.path.splitext(media)
     url_formated = media
@@ -120,7 +122,7 @@ def logIn(request):
         try:
             request.session['token'] = r.json()['auth_token']
             request.session['me'] = requests.get(BASE_URL + '/api/users/me/', headers=get_header(request)).json()
-            return redirect('home')
+            return redirect('user_log')
         except Exception as e:
             error = True
     return render(request, 'blog/logIn.html', locals())
@@ -248,7 +250,24 @@ def profil_other(request, id):
     city = full_profile['profile']['city']
     user = full_profile['user']
     get_parcours = full_profile['parcours']
-    return render(request, 'blog/profil_other.html', locals())
+    paginator = Paginator(Myarticle, 6)
+    page = request.GET.get('page', 1)
+    try:
+        article_page = paginator.page(page)
+    except PageNotAnInteger:
+        article_page = paginator.page(1)
+    except EmptyPage:
+        article_page = paginator.page(paginator.num_pages)
+    return render(request, 'blog/profil_other.html', {
+        'Article_by_author': article_page,
+        'user': user,
+        'avatar': avatar,
+        'city' : city,
+        'Parcours_by_author': get_parcours,
+        'url': BASE_URL,
+        'count_post':len(Myarticle)
+
+    })
 
 
 def profil(request, id):
@@ -257,10 +276,20 @@ def profil(request, id):
 
     Myarticle = full_profile['capsules']
     avatar = full_profile['profile']['picture']
+    city = full_profile['profile']['city']
     user = full_profile['user']
     get_parcours = full_profile['parcours']
+    paginator = Paginator(Myarticle, 6)
+    page = request.GET.get('page', 1)
+    try:
+        article_page = paginator.page(page)
+    except PageNotAnInteger:
+        article_page = paginator.page(1)
+    except EmptyPage:
+        article_page = paginator.page(paginator.num_pages)
+
     return render(request, 'blog/profil.html', {
-        'Article_by_author': Myarticle,
+        'Article_by_author': article_page,
         'user': user,
         'avatar': avatar,
         'Parcours_by_author': get_parcours,
@@ -343,7 +372,15 @@ def all_territoires(request):
     territoires = requests.get(BASE_URL + '/api/place/', headers=get_header(request))
     territoires = [Place(place) for place in territoires.json()]
     get_category = [1, 2, 3, 4]
-    return render(request, 'blog/all_territoires.html', {'territoires': territoires, 'categories': get_category})
+    allArticle = requests.get(BASE_URL + '/api/capsule/')
+    allArticle = [Capsule(article) for article in allArticle.json()]
+    listMarker = []
+    for article in allArticle:
+        listMarker.append((getLatLng(article.pk['address']), article.pk['title'], article.pk['id']))
+    return render(request, 'blog/all_territoires.html',
+    {'territoires': territoires,
+     'categories': get_category,
+     'listMarker': listMarker,})
 
 
 def view_categorie(request, id):
@@ -358,7 +395,9 @@ def view_categorie(request, id):
         article_page = paginator.page(paginator.num_pages)
     territoire = requests.get(BASE_URL + '/api/place/').json()
     return render(request, 'blog/view_category.html',
-                  {'articles': article_page, 'territoire': territoire})
+                  {'articles': article_page,
+                  'territoire': territoire,
+                  'cat_id':id})
 
 
 def tutoriel(request):
@@ -371,6 +410,10 @@ def a_propos(request):
 
 def toutes_les_capsules(request):
     articles = requests.get(BASE_URL + '/api/capsule/')
+    get_article_from_image = requests.get(BASE_URL + '/api/capsule/category/1/').json()
+    get_article_from_video = requests.get(BASE_URL + '/api/capsule/category/2/').json()
+    get_article_from_son = requests.get(BASE_URL + '/api/capsule/category/3/').json()
+    get_article_from_text = requests.get(BASE_URL + '/api/capsule/category/4/').json()
     articles = [Capsule(article) for article in articles.json()]
     paginator = Paginator(articles, 6)
     page = request.GET.get('page', 1)
@@ -383,7 +426,15 @@ def toutes_les_capsules(request):
     territoires = requests.get(BASE_URL + '/api/place/', headers=get_header(request))
     territoires = [Place(place) for place in territoires.json()]
     categories = [1, 2, 3, 4]
-    return render(request, 'blog/toutes_les_capsules.html', {'articles' : article_page ,'territoires':territoires,'categories':categories})
+    return render(request, 'blog/toutes_les_capsules.html', {
+    'articles' : article_page ,
+    'count_post' : len(articles),
+    'territoires':territoires,
+    'categories':categories,
+    'count_image':len(get_article_from_image),
+    'count_video':len(get_article_from_video),
+    'count_son':len(get_article_from_son),
+    'count_text':len(get_article_from_text)})
 
 
 
@@ -466,5 +517,27 @@ def contact(request):
     return render(request,'blog/contact.html',locals())
 
 def view_collection(request):
-    print('Hello world')
+    all_playlist = requests.get(BASE_URL + '/api/all_playlist').json()
+    print(json.dumps(all_playlist))
+    #playlist_by_author = all_playlist['playlist']
     return render(request,'blog/view_collection.html',locals())
+
+def FAQ(request):
+    print('Hello world')
+    return render(request,'blog/faq.html',locals())
+
+def QSN(request):
+    print('Hello World')
+    return render(request,'blog/qsn.html',locals())
+
+def a_propos(request):
+    pritn('Hello World')
+    return render(request,'blog/a_propos.html',locals())
+
+def app(request):
+    pritn('Hello World')
+    return render(request,'blog/app.html',locals())
+
+def user_log(request):
+    print('Hello World')
+    return render(request,'blog/user_log.html',locals())

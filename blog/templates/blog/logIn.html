@@ -8,7 +8,17 @@
             <div class="container">
                 <div class="heading-page-content">
                     <div class="au-page-title connexion">
-                      <h1>Je me connecte</h1>
+                      <h1>{% if request.session.token %}
+    <a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
+{% endif %}
+{% if not request.session.token %}
+  {% if request.session.token %}
+    <a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
+{% endif %}
+{% if not request.session.token %}
+  <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
+{% endif %}
+{% endif %}</h1>
                     </div>
                     <nav aria-label="breadcrumb" class="connexion">
                         <ul class="breadcrumb">
@@ -28,7 +38,17 @@
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                             <div class="contact-us-info">
                                 <h3 class="contact-title">
-                                    Je me connecte
+                                    {% if request.session.token %}
+    <a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
+{% endif %}
+{% if not request.session.token %}
+  {% if request.session.token %}
+    <a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
+{% endif %}
+{% if not request.session.token %}
+  <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
+{% endif %}
+{% endif %}
                                 </h3>
                                 <div class="item">
                                     <i class="fas fa-home"></i>

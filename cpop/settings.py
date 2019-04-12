@@ -135,8 +135,8 @@ GEOPOSITION_MARKER_OPTIONS = {
     'cursor': 'move'
 }
 
-#BASE_URL = 'http://127.0.0.1:8001'
-BASE_URL = 'https://serveur.plateforme.lepoles.com'
+BASE_URL = 'http://127.0.0.1:8001'
+#BASE_URL = 'https://serveur.plateforme.lepoles.com'
 def get_header(request):
     try:
         return {'Authorization': 'token ' + request.session['token']}

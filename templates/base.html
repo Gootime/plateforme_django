@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{% static  ''%}fonts/line-awesome/css/line-awesome.min.css">
     <link rel="stylesheet" href="{% static  ''%}fonts/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static  ''%}fonts/font-awesome-5/css/fontawesome-all.min.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Revolution slider -->
     <link rel="stylesheet" href="{% static  ''%}vendor/revolution/settings.css">
     <link rel="stylesheet" href="{% static  ''%}vendor/revolution/layers.css">
@@ -70,10 +70,17 @@
                         </div>
                         <a href="mailto:info@smartedu.com" class="email"><i class="far fa-envelope"></i>contact@laplateforme.com</a>
                         <a href="#" class="telephone"><i class="fas fa-mobile-alt"></i>01 15 16 17 18</a>
+                        <a href="{% url 'FAQ' %}" class="faq"><i class="far fa-question-circle"></i>FAQ</a>
                     </div>
                     <div class="header-top-account">
-                        <a href="{% url 'signUp' %}" class="signup"><i class="fas fa-edit"></i>Je participe</a>
-                        <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
+                        <a href="{% url 'signUp' %}" class="signup"><i class="fas fa-edit"></i> Je participe</a>
+                        {% if request.session.token %}
+                          <li><a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
+                          <li><a class="nav-link" href="{% url 'logOut' %}">Se déconnecter</a></li>
+                        {% endif %}
+                        {% if not request.session.token %}
+                          <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -115,7 +122,7 @@
                                             <a href="#">Découvrir</a>
                                             <ul class="sub-menu">
                                               <li class="menu-item"><a href="{% url 'toutes_les_capsules' %}">Les posts</a></li>
-                                              <li class="menu-item"><a href="{% url 'view_collection' %}">Les parcours</a></li>
+
                                             </ul>
                                         </li>
                                         <li class="menu-item">
@@ -226,7 +233,7 @@
                                </span>
                                 <ul class="sub-menu">
                                   <li class="menu-item"><a href="{% url 'toutes_les_capsules' %}">Les posts</a></li>
-                                  <li class="menu-item"><a href="{% url 'view_collection' %}">Les parcours</a></li>
+
                                 </ul>
                             </li>
                             <li class="menu-item">
@@ -279,11 +286,12 @@
                         <div class="header-top-info">
                             <a href="tel:04445552222" class="telephone"><span><i class="fas fa-mobile-alt"></i></span> 06 63 74 11 35</a>
                             <a href="mailto:contact@.laplateforme.com" class="email"><span><i class="far fa-envelope"></i></span> contact@.laplateforme.com</a>
+                            <a href="{% url 'FAQ' %}" class="telephone"><span><i class="far fa-question-circle"></i></span>FAQ</a>
                         </div>
                         <div class="header-top-account">
                             {% if not request.session.token %}
-                                   <a href="{% url 'signUp' %}" class="login"><i class="fas fa-user"></i>Je participe</a>
-					                         <a class="btn btn-outline-danger btn-lg" href="{% url 'logIn' %}" role="button">Je me connecte</a>
+                                   <a href="{% url 'signUp' %}" class="login"><i class="fas fa-edit"></i> Je participe</a>
+					                         <a class="login" href="{% url 'logIn' %}" role="button"><i class="fas fa-user"></i> Je me connecte</a>
 				                    {% endif %}
                         </div>
                     </div>
@@ -329,10 +337,10 @@
 																<li><a href="{% url 'contact' %}"><i class="la la-angle-right"></i>Contact</a></li>
 														</ul>
 														<ul>
-																<li><a href="#"><i class="la la-angle-right"></i>Qui sommes-nous ? </a></li>
-																<li><a href="#"><i class="la la-angle-right"></i>A propos</a></li>
+																<li><a href="{% url 'qui-sommes-nous' %}"><i class="la la-angle-right"></i>Qui sommes-nous ? </a></li>
+																<li><a href="{% url 'a_propos' %}"><i class="la la-angle-right"></i>A propos</a></li>
 																<li><a href="#"><i class="la la-angle-right"></i>FAQ</a></li>
-																<li><a href="#"><i class="la la-angle-right"></i>L'appli</a></li>
+																<li><a href="{% url 'app' %}"><i class="la la-angle-right"></i>L'appli</a></li>
 																<li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
 														</ul>
 												</div>
@@ -455,7 +463,7 @@
 <script src="{% static  ''%}js/main.js"></script>
 
 <script>
-		$('[src="None"]').replaceWith("<img src=\"{% static '../static/img/utilisateur.jpg' %}\" class=\"w-100 img-fluid\" style=\"min-height: 17vh !important; max-height: 30vh !important;\">");
+		$('[src="None"]').replaceWith("<img src=\"{% static '../static/img/utilisateur.jpg' %}\">");
 </script>
 </body>
 </html>

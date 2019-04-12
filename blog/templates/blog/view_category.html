@@ -2,159 +2,223 @@
 
 {% block content %}
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-
-<style>
-  .container-fluid{
-    margin-top: 4.5rem;
-    margin-bottom: 4.5rem;
-  }
-
-  .col-md-4.mx-auto{
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .card {
-    background-color: #909B66;
-  }
-
-  .card-body{
-    background-color: #cede92 !important;
-  }
-
-  .card-title{
-    font-family: "Permanent Marker", cursive !important;
-    color: #ee5249;
-  }
-
-  h5.card-title{
-    height: 6.35vh;
-  }
-
-  p{
-    font-size: 0.85rem;
-  }
-
-  p.card-text{
-    height: 4vh;
-  }
-
-  .btn-outline-danger {
-    color: #ee5249;
-    border-color: #ee5249;
-
-  }.btn-outline-danger:hover {
-     color: #fff;
-     background-color: #ee5249;
-     border-color: #ee5249;
-   }
-
-  /*.card > img{*/
-    /*height: 25vh;*/
-  /*}*/
-  #video{
-    /*height: 16vh;*/
-    background-color: #443f2f !important;
-  }
-  img.img-fluid{
-    /*width: 300px;*/
-    /*height: 19vh;*/
-    background-color: #443f2f !important;
-  }
-
-  a[href*=profil_other]{
-	  color: #ee5249 !important;
-  }
-  a[href*=profil_other]:hover, a[href*=profil_other]:focus{
-	  text-decoration: none;
-  }
-
-  .pagination > strong{
-    color: #ee5249;
-  }
-
-</style>
+<main>
 
 
-<div class="jumbotron jumbotron-fluid mb-0">
-  <div class="container">
-    <h1 class="display-4">Catégorie {{article.categorie}}</h1>
-  </div>
-</div>
-<div class="fil_d_ariane">
-  <div class="container" >
-    <div class="row">
-      <div class="col">
-        <p><a href="{% url 'home' %}">Accueil</a></p>
+
+  <section class="heading-page">
+      <img src="{% static '' %}img/bandeau_reseau.jpg" alt="">
+      <div class="container">
+          <div class="heading-page-content">
+            {% if cat_id == 1 %}
+              <div class="au-page-title parcours">
+                <h1>Les images</h1>
+              </div>
+              <nav aria-label="breadcrumb" class="parcours">
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                      <li class="breadcrumb-item"><a href="#">Découvrir</a></li>
+                      <li class="breadcrumb-item"><a href="{% url 'toutes_les_capsules' %}">Les posts</a></li>
+                      <li class="breadcrumb-item">Images</li>
+                  </ul>
+              </nav>
+            {% endif %}
+            {% if cat_id == 2 %}
+              <div class="au-page-title posts">
+                <h1>Les vidéos</h1>
+              </div>
+              <nav aria-label="breadcrumb" class="posts">
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                      <li class="breadcrumb-item"><a href="#">Découvrir</a></li>
+                      <li class="breadcrumb-item"><a href="{% url 'toutes_les_capsules' %}">Les posts</a></li>
+                      <li class="breadcrumb-item">Vidéos</li>
+                  </ul>
+              </nav>
+            {% endif %}
+            {% if cat_id == 3 %}
+              <div class="au-page-title territoires">
+                <h1>Les sons</h1>
+              </div>
+              <nav aria-label="breadcrumb" class="territoires">
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                      <li class="breadcrumb-item"><a href="#">Découvrir</a></li>
+                      <li class="breadcrumb-item"><a href="{% url 'toutes_les_capsules' %}">Les posts</a></li>
+                      <li class="breadcrumb-item">Sons</li>
+                  </ul>
+              </nav>
+            {% endif %}
+            {% if cat_id == 4 %}
+              <div class="au-page-title communaute">
+                <h1>Les récits</h1>
+              </div>
+              <nav aria-label="breadcrumb" class="communaute">
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                      <li class="breadcrumb-item"><a href="#">Découvrir</a></li>
+                      <li class="breadcrumb-item"><a href="{% url 'toutes_les_capsules' %}">Les posts</a></li>
+                      <li class="breadcrumb-item">Récits</li>
+                  </ul>
+              </nav>
+            {% endif %}
+
+          </div>
       </div>
-    </div>
+  </section>
+
+
+    <section class="blog blog-sidebar section-padding-large">
+            <div class="container">
+              <div class="section-title section-title-left wow slideInLeft" data-wow-delay="0.05s">
+                {% if cat_id == 1 %}
+                      <h2>Images</h2>
+                {% endif %}
+                {% if cat_id == 2 %}
+                       <h2>Vidéos</h2>
+                {% endif %}
+                {% if cat_id == 3 %}
+                       <h2>Sons</h2>
+                {% endif %}
+                {% if cat_id == 4 %}
+                       <h2>Récits</h2>
+                {% endif %}
+               </div>
+                <div class="row">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="blog-content">
+                            <div class="row">
+
+                              {% for item in articles %}
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <article class="item hover-scale">
+                                        <figure>
+                                            <a href="{% url 'lire' item.id %}">
+                                              {% if item.category == 2 %}
+                                                  <video controls id="video" src="{{item.file}}" class="img-fluid w-100"></video>
+                                              {% else %}
+                                                  <img class="img-fluid w-100" src="{{item.file}}" alt="{{item.title}}" />
+                                              {% endif %}
+                                            </a>
+                                            <div class="hover-border">
+                                                <a href="single.html">
+                                                    <i class="fas fa-link"></i>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="{% url 'lire' item.id %}">
+                                                    {{item.title}}
+                                                </a>
+                                            </h3>
+                                            <p class="desc">
+                                                {{ item.title|truncatechars:75 }}
+                                            </p>
+
+                                            <div class="meta">
+                                              <span class="author"><i class="fas fa-users"></i> {{item.username}}</span>
+                                              <span class="date"><i class="far fa-calendar"></i>
+                                                <span class="full_date" style="display: none;">{{item.date}}</span>
+                                                <span class="good_date"></span>
+                                              </span><br>
+
+                                                <span class="likes">
+                                                    <i class="fas fa-heart"></i> {{item.like}} j'aime
+                                                </span>
+                                                <span class="category"><i class="la la-list-ul"></i>
+                                                  {% if item.category == 1 %}
+                                    							       Image
+                                    							{% endif %}
+                                    							{% if item.category == 2 %}
+                                    							       Vidéo
+                                    							{% endif %}
+                                    							{% if item.category == 3 %}
+                                    							       Audio
+                                    							{% endif %}
+                                    							{% if item.category == 4 %}
+                                    							       Récit
+                                    							{% endif %}</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <script>
+                                  //2019-02-05T23:22:01.714652+01:00
+                                  var full_date = $('.full_date').text();
+                                  var short_date = full_date.slice(0,10);
+                                  var array_date = short_date.split('-');
+                                  var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
+                                  var nb_month = array_date[1];
+                                  var month = parseInt(nb_month);
+                                  // console.log(nb_month);
+                                  var month_ok = month-1;
+                                  console.log(m_names[month_ok]);
+                                  var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+                                  // console.log(full_date);
+                                  // console.log(short_date);
+                                  // console.log(array_date);
+                                  // console.log(formated_date);
+
+                                  $('.good_date').replaceWith('<span id=\"good_date\" class=\"text-right\">Le ' + formated_date + '</span>');
+                                </script>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="right-sidebar">
+
+                            <div class="widget_product_categories">
+                                <div class="widget-title">
+                                  <h2>Trier par territoires</h2>
+                                </div>
+                                <select class="filters-select filter option-set clearfix form-control custom-select">
+                                  <option value="*">Voir tout</option>
+
+                                  {% for item in territoire%}
+                                    <option value=".{{item.id}}">{{item.name}}</option>
+                                  {% endfor %}
+                                </select>
+                            </div>
+                            <div class="widget_signupform">
+                                <div class="sign-up-form">
+                                    <div class="form-heading">
+                                        <a href="index.php"><img src="{% static '' %}img/la_plateforme_03.png" alt="La plateforme vidéo du PoleS"></a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+              <ul class="page-numbers">
+                {% if articles.has_previous %}
+                    <li><a href="?page=1"><i class="la la-angle-left"></i></a></li>
+                    <li><a href="?page={{articles.previous_page_number}}" class="page-numbers"> <i class="la la-angle-left"></i> </a></li>
+                {% endif %}
+                {% for num in articles.paginator.page_range %}
+                    {% if articles.number == num %}
+                        <li><span aria-current="page" class="page-numbers current">{{ num }}</span></li>
+                    {% elif num > articles.number|add:'-3' and num < articles.number|add:'3' %}
+                        <li><a href="?page={{ num }}" class="page-numbers">&nbsp;{{ num }}&nbsp;</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if articles.has_next %}
+                  <li><a href="?page={{articles.next_page_number}}" class="page-numbers"> <i class="la la-angle-right"></i> </a></li>
+                  <li><a href="?page={{articles.paginator.num_pages}}" class="page-numbers"><i class="la la-angle-right"></i> </a></li>
+                {% endif %}
+              </ul>
+            </div>
+        </section>
   </div>
 </div>
 
-<div class="container">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-6 mx-auto">
-        <div class="form-group">
-
-          <select class="filters-select filter option-set clearfix form-control custom-select">
-            <option value="*">Voir tout</option>
-
-            {% for item in territoire%}
-              <option value=".{{item.id}}">{{item.name}}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-    </div>
-	  <!--{{articles}}-->
-	  <div class="row grid">
-  {% for article in articles %}
-  <div class="col-lg-4 col-md-6 col-12 mx-auto element-item {{article.place}}">
-    <div class="card mt-4">
-      <!--<img class="img-fluid w-100" src="{{article.file}}" alt="carte" />-->
-      {% if article.category == 2 %}
-      <video controls id="video" src="{{article.file}}" class="img-fluid w-100"></video>
-      {% else %}
-      <img id="image" class="img-fluid w-100" src="{{article.file}}" alt="carte" />
-      {% endif %}
-        <div class="card-body">
-          <h5 class="card-title text-center">{{ article.title|truncatechars:75 }}</h5>
-          <p>par <a href="{% url 'profil_other' article.user %}">{{article.username}}</a></p>
-			<span class="full_date" style="display: none;">{{article.date}}</span>
-			<p class="good_date"></p>
-          <p class="card-text">{{ article.content|truncatechars:85 }}</p>
-          <a href="{% url 'lire' article.id %}" class="btn btn-outline-danger btn-block">Lire la suite</a>
-        </div>
-        </div>
-  </div>
-
-                {% empty %}
-      <p>Aucun article.</p>
-  {% endfor %}
-  </div>
-  </div>
-</div>
-
-<div class="container-fluid d-flex justify-content-center">
-  <div class="pagination text-center">
-    {% if articles.has_previous %}
-    <a href="?page=1"> Première Page </a>&nbsp;&nbsp;&nbsp;<a href="?page={{articles.previous_page_number}}"> < </a>
-
-    {% endif %}
-    {% for num in articles.paginator.page_range %}
-    {% if articles.number == num %}
-    <strong>{{ num }}</strong>
-    {% elif num > articles.number|add:'-3' and num < articles.number|add:'3' %}
-    <a href="?page={{ num }}">&nbsp;{{ num }}&nbsp;</a>
-    {% endif %}
-    {% endfor %}
-    {% if articles.has_next %}
-    <a href="?page={{articles.next_page_number}}"> > </a>&nbsp;&nbsp;&nbsp;<a href="?page={{articles.paginator.num_pages}}"> Dernière Page </a>
-
-    {% endif %}
-  </div>
-</div>
 
   <script type="text/javascript">
     var $grid = $('.grid').isotope({
@@ -166,7 +230,7 @@ $('.filters-select').on( 'change', function() {
 
   var filterValue = this.value;
 
-  
+
   $grid.isotope({ filter: filterValue });
   });
 
@@ -188,4 +252,5 @@ $('.filters-select').on( 'change', function() {
 
 	$('.good_date').replaceWith('<p class=\"good_date text-right\">Le ' + formated_date + '</p>');
 </script>
+</main>
 {% endblock %}
