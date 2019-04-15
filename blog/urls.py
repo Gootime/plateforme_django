@@ -32,5 +32,5 @@ urlpatterns = [
     path('qsn',views.QSN,name="qui-sommes-nous"),
     path('a_propos',views.a_propos,name="a_propos"),
     path('app',views.app,name="app"),
-    path('user_log',views.user_log,name="user_log"),
+
 ]

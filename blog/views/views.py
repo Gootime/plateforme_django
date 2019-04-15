@@ -122,7 +122,7 @@ def logIn(request):
         try:
             request.session['token'] = r.json()['auth_token']
             request.session['me'] = requests.get(BASE_URL + '/api/users/me/', headers=get_header(request)).json()
-            return redirect('user_log')
+            return redirect('toutes_les_capsules')
         except Exception as e:
             error = True
     return render(request, 'blog/logIn.html', locals())
@@ -365,7 +365,7 @@ def view_territoire(request, id):
     territoire = territoire.json()
     return render(request, 'blog/view_territoire.html',
                   {'articles': article_page, 'territoires': territoires, 'categories': get_category,
-                   'request_territoire': territoire['name']})
+                   'request_territoire': territoire['name'],'territoire_id':id})
 
 
 def all_territoires(request):
@@ -414,6 +414,16 @@ def toutes_les_capsules(request):
     get_article_from_video = requests.get(BASE_URL + '/api/capsule/category/2/').json()
     get_article_from_son = requests.get(BASE_URL + '/api/capsule/category/3/').json()
     get_article_from_text = requests.get(BASE_URL + '/api/capsule/category/4/').json()
+
+    #ull_profile = requests.get(BASE_URL + '/api/profile/full/'+str(id)+'/', headers=get_header(request)).json()
+    #avatar = full_profile['profile']['picture']
+    #city = full_profile['profile']['city']
+    #user = full_profile['user']
+    #get_parcours = full_profile['parcours']
+    #Myarticle = full_profile['capsules']
+
+
+
     articles = [Capsule(article) for article in articles.json()]
     paginator = Paginator(articles, 6)
     page = request.GET.get('page', 1)
@@ -537,7 +547,3 @@ def a_propos(request):
 def app(request):
     pritn('Hello World')
     return render(request,'blog/app.html',locals())
-
-def user_log(request):
-    print('Hello World')
-    return render(request,'blog/user_log.html',locals())

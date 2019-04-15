@@ -1,676 +1,200 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {%  block content %}
+{%load static%}
+
 <main>
         <!-- Heading Page -->
         <section class="heading-page">
             <img src="{% static '' %}img/communaute.jpg" alt="">
-<!--			Image par<a href="https://pixabay.com/fr/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=937884">Gerd Altmann</a> de <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=937884">Pixabay</a>-->
             <div class="container">
                 <div class="heading-page-content">
-                    <div class="au-page-title profil">
-                        <h1>Profil de .....</h1>
+                    <div class="au-page-title posts">
+                      <h1>Profil de {{user.first_name}} {{user.last_name}}</h1>
                     </div>
-                    <nav aria-label="breadcrumb" class="profil">
+                    <nav aria-label="breadcrumb" class="posts">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Profil</li>
+                            <li class="breadcrumb-item"><a href="index.php">Accueil</a></li><li class="breadcrumb-item"><a href="index.php">Découvrir</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{user.username}}</li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </section>
 
-        <section class="single-course section-padding-large">
+
+<!--	section liste des posts du membre -->
+    <section class="blog blog-sidebar section-padding-large">
             <div class="container">
-				<div class="single-course-content">
-					<div class="row">
-            {{user}}
-                        <div class="single-course-info">
-                            <div class="course-teacher-cat display-flex text-center">
-                                <div class="teacher-cat">
-                                    <ul class="display-flex">
-                                        <li class="display-flex"
-                                            style="border-right: 0.2vw solid rgba(243,131,0,1)" ;>
-                                            <img src="" alt="Papaoumar Mbaye">
-                                        </li>
-                                        <li>
-                                            <h3>Papaoumar Mbaye</h3>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="au-btn au-btn-hover" style="background-color: rgba(243,131,0,0.5);">Ajouter un post</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="au-btn au-btn-hover" style="background-color: rgba(243,131,0,0.5);">Créer un parcours</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="au-btn au-btn-hover" style="background-color: rgba(243,131,0,0.5);">Modifier le profil</a>
-                                        </li>
-                                    </ul>
-                                </div>
+				<div class="row p-4">
+				  <div class="section-title section-title-left wow slideInLeft" data-wow-delay="0.05s">
+                    <h2>{{user.first_name}} a posté</h2>
+                </div>
+				</div>
+                <div class="row">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="blog-content">
+                            <div class="row">
+
+
+                                  {% for item in Article_by_author %}
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <article class="item hover-scale">
+                                      <figure>
+                                          <a href="{% url 'lire' item.id %}">
+                                            {% if item.category == 2 %}
+                                                <video controls id="video" src="{{item.file}}" class="img-fluid w-100"></video>
+                                            {% else %}
+                                                <img class="img-fluid w-100" src="{{item.file}}" alt="{{item.title}}" />
+                                            {% endif %}
+                                          </a>
+                                          <div class="hover-border">
+                                              <a href="single.html">
+                                                  <i class="fas fa-link"></i>
+                                              </a>
+                                          </div>
+                                      </figure>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="{% url 'lire' item.id %}" title="{{item.title}}">{{item.title |truncatechars:30}}</a>
+                                            </h3>
+                                            <p class="desc">{{item.desc |truncatechars:25}}</p>
+                                            <div class="meta">
+                                              <span class="author"><i class="fas fa-users"></i> {{item.username}}</span>
+                                              <span class="date"><i class="far fa-calendar"></i>
+                                                <span class="full_date" style="display: none;">{{item.date}}</span>
+                                                <span class="good_date"></span>
+                                              </span><br>
+                                                <span class="likes"><i class="fas fa-heart"></i> {{item.like}} j'aime</span>
+                                                <span class="category"><i class="la la-list-ul"></i>Vidéo</span>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    </div>
+                                    {% empty %}
+                                      <div class="section-title section-title-left wow slideInLeft" data-wow-delay="0.05s">
+                                        <h3>Revenez dès que {{user.username}} aura posté ! </h3>
+                                      </div>
+                                    {% endfor %}
+
+
+
+
                             </div>
                         </div>
-					</div>
-				</div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="right-sidebar">
 
-				<div class="row">
-					<div class="col-12">
-						<div class="single-course-tab">
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-								<li class="nav-item">
-									<a class="nav-link active" id="overview-tab" data-toggle="tab" href="#profil"
-									   role="tab"
-									   aria-controls="overview" aria-selected="true"><i
-												class="fas fa-user"></i>Profil</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="curriculum-tab" data-toggle="tab" href="#posts" role="tab"
-									   aria-controls="curriculum" aria-selected="false"><i class="fas fa-film"></i>Posts</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="review-tab" data-toggle="tab" href="#parcours" role="tab"
-									   aria-controls="review" aria-selected="false"><i class="fas fa-link"></i>Parcours</a>
-								</li>
-							</ul>
-							<div class="tab-content" id="myTabContent">
-								<div class="tab-pane fade show active" id="profil" role="tabpanel"
-									 aria-labelledby="instructor-tab">
-									<div class="instructor-content">
-										<div class="instructor-thumb">
-											<a href="#">
-												<img src="{% static ''%}img/papaoumar_mbaye.png" alt="Papaoumar Mbaye">
-											</a>
-										</div>
-										<div class="instructor-info">
-											<h4 class="title">
-												<a href="#">Papaoumar Mbaye</a>
-											</h4>
-											<div class="categories">
-												<a href="#">10 Posts </a>
-												<a href="#">& 2 Parcours</a>
-											</div>
-											<p class="desc">
-												Ullamcorper eget nulla facilisi etiam dignissim diam. Vitae ultri
-												integer
-												malesuada nunc vel risus. Cursus mattis molestie a iaculis at. Augue
-												eget
-												arcu dictum varius. Vulputate ut pharetra sit amet aliquam id diam
-												maecenas
-												hendrerit dolor.
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="tab-pane fade" id="posts" role="tabpanel" aria-labelledby="curriculum-tab">
-									<section class="gallery-page section-padding-large">
-										<div class="container">
-											<div class="gallery-page-content gallery-hover">
-												<div class="row">
-													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-														<div class="item">
-															<figure>
-																<a href="{% static ''%}img/gallery-grid-1.jpg" class="group-grid"
-																   data-fancybox="gallery">
-																	<img src="{% static ''%}img/gallery-grid-1.jpg" alt="">
-																</a>
-															</figure>
-															<div class="mt-1"
-																 style="background-color: rgba(243,131,0,0.5); padding: 1vh; color: #fff;">
-																<h5 class="title text-center">
-																	<a href="single-course.html">Titre</a>
-																</h5>
-																<p class="course-desc">
-																	Morbi tristique senectus et ne malesuada fames ac
-																	turpis. Tempus egestas sed.
-																</p>
-																<hr>
-																<div class="desc display-flex">
-																	<a href="#" class="comments"><i
-																				class="far fa-eye"></i>
-																		20 Vues</a>
-																	<a href="#" class="students"><i
-																				class="fas fa-thumbs-up"></i> 05 J'aime</a>
-																	<span class="price free">Vidéo</span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-														<div class="item">
-															<figure>
-																<a href="{% static ''%}img/gallery-grid-2.jpg" class="group-grid"
-																   data-fancybox="gallery">
-																	<img src="{% static ''%}img/gallery-grid-2.jpg" alt="">
-																</a>
-															</figure>
-															<div class="mt-1"
-																 style="background-color: rgba(243,131,0,0.5); padding: 1vh; color: #fff;">
-																<h5 class="title text-center">
-																	<a href="single-course.html">Titre</a>
-																</h5>
-																<p class="course-desc">
-																	Morbi tristique senectus et ne malesuada fames ac
-																	turpis. Tempus egestas sed.
-																</p>
-																<hr>
-																<div class="desc display-flex">
-																	<a href="#" class="comments"><i
-																				class="far fa-eye"></i>
-																		20 Vues</a>
-																	<a href="#" class="students"><i
-																				class="fas fa-thumbs-up"></i> 05 J'aime</a>
-																	<span class="price free">Vidéo</span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-														<div class="item">
-															<figure>
-																<a href="{% static ''%}img/gallery-grid-3.jpg" class="group-grid"
-																   data-fancybox="gallery">
-																	<img src="{% static ''%}img/gallery-grid-3.jpg" alt="">
-																</a>
-															</figure>
-															<div class="mt-1"
-																 style="background-color: rgba(243,131,0,0.5); padding: 1vh; color: #fff;">
-																<h5 class="title text-center">
-																	<a href="single-course.html">Titre</a>
-																</h5>
-																<p class="course-desc">
-																	Morbi tristique senectus et ne malesuada fames ac
-																	turpis. Tempus egestas sed.
-																</p>
-																<hr>
-																<div class="desc display-flex">
-																	<a href="#" class="comments"><i
-																				class="far fa-eye"></i>
-																		20 Vues</a>
-																	<a href="#" class="students"><i
-																				class="fas fa-thumbs-up"></i> 05 J'aime</a>
-																	<span class="price free">Vidéo</span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-														<div class="item">
-															<figure>
-																<a href="{% static ''%}img/gallery-grid-4.jpg" class="group-grid"
-																   data-fancybox="gallery">
-																	<img src="{% static ''%}img/gallery-grid-4.jpg" alt="">
-																</a>
-															</figure>
-															<div class="mt-1"
-																 style="background-color: rgba(243,131,0,0.5); padding: 1vh; color: #fff;">
-																<h5 class="title text-center">
-																	<a href="single-course.html">Titre</a>
-																</h5>
-																<p class="course-desc">
-																	Morbi tristique senectus et ne malesuada fames ac
-																	turpis. Tempus egestas sed.
-																</p>
-																<hr>
-																<div class="desc display-flex">
-																	<a href="#" class="comments"><i
-																				class="far fa-eye"></i>
-																		20 Vues</a>
-																	<a href="#" class="students"><i
-																				class="fas fa-thumbs-up"></i> 05 J'aime</a>
-																	<span class="price notfree">Son</span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-														<div class="item">
-															<figure>
-																<a href="{% static ''%}img/gallery-grid-5.jpg" class="group-grid"
-																   data-fancybox="gallery">
-																	<img src="{% static ''%}img/gallery-grid-5.jpg" alt="">
-																</a>
-															</figure>
-															<div class="mt-1"
-																 style="background-color: rgba(243,131,0,0.5); padding: 1vh; color: #fff;">
-																<h5 class="title text-center">
-																	<a href="single-course.html">Titre</a>
-																</h5>
-																<p class="course-desc">
-																	Morbi tristique senectus et ne malesuada fames ac
-																	turpis. Tempus egestas sed.
-																</p>
-																<hr>
-																<div class="desc display-flex">
-																	<a href="#" class="comments"><i
-																				class="far fa-eye"></i>
-																		20 Vues</a>
-																	<a href="#" class="students"><i
-																				class="fas fa-thumbs-up"></i> 05 J'aime</a>
-																	<span class="price free">Vidéo</span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-														<div class="item">
-															<figure>
-																<a href="{% static ''%}img/gallery-grid-6.jpg" class="group-grid"
-																   data-fancybox="gallery">
-																	<img src="{% static ''%}img/gallery-grid-6.jpg" alt="">
-																</a>
-															</figure>
-															<div class="mt-1"
-																 style="background-color: rgba(243,131,0,0.5); padding: 1vh; color: #fff;">
-																<h5 class="title text-center">
-																	<a href="single-course.html">Titre</a>
-																</h5>
-																<p class="course-desc">
-																	Morbi tristique senectus et ne malesuada fames ac
-																	turpis. Tempus egestas sed.
-																</p>
-																<hr>
-																<div class="desc display-flex">
-																	<a href="#" class="comments"><i
-																				class="far fa-eye"></i>
-																		20 Vues</a>
-																	<a href="#" class="students"><i
-																				class="fas fa-thumbs-up"></i> 05 J'aime</a>
-																	<span class="price free">Vidéo</span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="pagination">
-														<ul class="page-numbers">
-															<li><span aria-current="page"
-																	  class="page-numbers current">01</span></li>
-															<li><a class="page-numbers" href="#">02</a></li>
-															<li><a class="page-numbers" href="#">03</a></li>
-															<li><a class="page-numbers" href="#"><i
-																			class="la la-angle-right"></i></a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</section>
-								</div>
-<!--                                Les Parcours -->
-                                <div class="tab-pane fade" id="parcours" role="tabpanel" aria-labelledby="review-tab">
-                                    <!-- FQA -->
-                                    <div class="faq">
-                                        <h4 class="title">La collection de parcours</h4>
-                                        <div class="fqa-content">
-                                            <ul id="accordion">
-                                                <li class="card">
-                                                    <div class="card-header" id="headingOne">
-                                                        <div class="title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="button">
-                                                            Parcours #1 ~ 3 <i class="fas fa-film"></i>
-                                                        </div>
-                                                    </div>
+							<div class="widget_product_categories">
 
-                                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                                        <div class="card-body content">
-                                                            <div class="single-event-content">
-                                                                <div class="row">
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">25 fév. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">03 jan. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">03 jan. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="card">
-                                                    <div class="card-header" id="headingTwo">
-                                                        <div class="title collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" role="button">
-                                                            Parcours #2 ~ 4 <i class="fas fa-film"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                        <div class="card-body content">
-                                                            <div class="single-event-content">
-                                                                <div class="row">
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">25 fév. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">03 jan. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">03 jan. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">03 jan. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="card">
-                                                    <div class="card-header" id="headingThree">
-                                                        <div class="title collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="button">
-                                                            Parcours #3 ~ 5 <i class="fas fa-film"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                                        <div class="card-body content">
-                                                            <div class="single-event-content">
-                                                                <div class="row">
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">25 fév. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">25 fév. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">25 fév. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">25 fév. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                        <div class="events-related display-flex background-grey mb-1">
-                                                                            <article class="item item-prev">
-                                                                                <figure>
-                                                                                    <a href="single-event.html">
-                                                                                        <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                    </a>
-                                                                                </figure>
-                                                                                <div class="info">
-                                                                                    <h3 class="title">
-                                                                                        <a href="single-event.html">AI Development Day</a>
-                                                                                    </h3>
-                                                                                    <h4 class="desc">25 fév. 2019</h4>
-                                                                                </div>
-                                                                            </article>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="card active">
-                                                    <div class="card-header" id="headingFour">
-                                                        <div class="title collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" role="button">
-                                                            Parcours #4 ~ 2 <i class="fas fa-film"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordion">
-                                                        <div class="card-body content">
-                                                            <div class="card-body content">
-                                                                <div class="single-event-content">
-                                                                    <div class="row">
-                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                            <div class="events-related display-flex background-grey mb-1">
-                                                                                <article class="item item-prev">
-                                                                                    <figure>
-                                                                                        <a href="single-event.html">
-                                                                                            <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                        </a>
-                                                                                    </figure>
-                                                                                    <div class="info">
-                                                                                        <h3 class="title">
-                                                                                            <a href="single-event.html">AI Development Day</a>
-                                                                                        </h3>
-                                                                                        <h4 class="desc">25 fév. 2019</h4>
-                                                                                    </div>
-                                                                                </article>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                                            <div class="events-related display-flex background-grey mb-1">
-                                                                                <article class="item item-prev">
-                                                                                    <figure>
-                                                                                        <a href="single-event.html">
-                                                                                            <img src="{% static ''%}img/event-detail-prev.jpg" alt="AI Development Day">
-                                                                                        </a>
-                                                                                    </figure>
-                                                                                    <div class="info">
-                                                                                        <h3 class="title">
-                                                                                            <a href="single-event.html">AI Development Day</a>
-                                                                                        </h3>
-                                                                                        <h4 class="desc">25 fév. 2019</h4>
-                                                                                    </div>
-                                                                                </article>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+								<div class="item-thumb">
+                                    <a href="single-course.html">
+                                        <img src="{{avatar}}" alt="">
+                                        <span class="overlay"></span>
+                                    </a>
                                 </div>
-								<div class="clearfix"></div>
+								<div class="widget-title mt-2">
+                                  <h2>{{user.first_name}} {{user.last_name}}</h2>
+                                </div>
+								<ul>
+                  <li><a href="#"><i class="la la-user"></i>{{user.username}}</a></li>
+                  <li><a href="#"><i class="la la-map-marker"></i>{{city}}</a></li>
+                  <li><a href="#"><i class="la la-calendar-check-o"></i>
+                    <span class="full_date_joined" style="display: none;">{{user.date_joined}}</span>
+                    <span class="good_date_joined"></span></a>
+                  </li>
+                  <li><a href="#"><i class="la la-file-text-o"></i>A Reflechir</a></li>
+                  <li><a href="#"><i class="la la-list-ul"></i>{{count_post}} post(s)</a></li>
+                </ul>
+
 							</div>
-						</div>
-					</div>
-				</div>
+              <div class="widget_lastest_entries">
+                <div class="widget-title">
+                    <h2>Ses parcours</h2>
+                <p class="mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                </div>
+                <ul>
+                  {% for i in Parcours_by_author %}
+                    <li>
+                      <figure>
+                        <img src="/static/img/parcours.jpg" alt="La Fontaine">
+                      </figure>
+                      <div class="info">
+                          <h3 class="title"><a href="{% url 'view_collection' i.id %}">Parcours n° {{i.id}}</a></h3>
+                          <span class="price free">{{i.capsules|length}} posts dans ce parcours</span>
+                      </div>
+                    </li>
+                  {% endfor %}
+                  </ul>
+                </div>
+
+                            <div class="widget_signupform">
+                                <div class="sign-up-form">
+                                    <div class="form-heading">
+                                        <a href="index.php"><img src="{% static '' %}img/la_plateforme_03.png" alt="La plateforme vidéo du PoleS"></a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+              <ul class="page-numbers">
+                {% if Article_by_author.has_previous %}
+                    <li><a href="?page=1"><i class="la la-angle-left"></i></a></li>
+                    <li><a href="?page={{Article_by_author.previous_page_number}}" class="page-numbers"> <i class="la la-angle-left"></i> </a></li>
+                {% endif %}
+                {% for num in Article_by_author.paginator.page_range %}
+                    {% if Article_by_author.number == num %}
+                        <li><span aria-current="page" class="page-numbers current">{{ num }}</span></li>
+                    {% elif num > Article_by_author.number|add:'-3' and num < Article_by_author.number|add:'3' %}
+                        <li><a href="?page={{ num }}" class="page-numbers">&nbsp;{{ num }}&nbsp;</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if Article_by_author.has_next %}
+                  <li><a href="?page={{Article_by_author.next_page_number}}" class="page-numbers"> <i class="la la-angle-right"></i> </a></li>
+                  <li><a href="?page={{Article_by_author.paginator.num_pages}}" class="page-numbers"><i class="la la-angle-right"></i> </a></li>
+                {% endif %}
+              </ul>
             </div>
         </section>
     </main>
 
+    <script type="text/javascript">
 
-<script type="text/javascript">
-	var tableau = [];
-	var json = {};
+        //2019-02-05T23:22:01.714652+01:00
+        var full_date = $('.full_date').text();
+        var short_date = full_date.slice(0,10);
+        var array_date = short_date.split('-');
+        var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+        var nb_month = array_date[1];
+        var month = parseInt(nb_month);
+        // console.log(nb_month);
+        var month_ok = month-1;
+        var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+        // console.log(full_date);
+        // console.log(short_date);
+        // console.log(array_date);
+        // console.log(formated_date);
 
-	console.log('capsule')
-	$('.fa-plus-square').click(function (Capsule) {
-		var Capsule = $(this).closest("div.col-md-4").find($('input[type="hidden"]')).val();
-		var Valide = $(this).closest("div.card-body");
-		Valide.addClass("highlight")
-		if( $.inArray(Capsule , tableau) !== -1 ){
-			alert('Article Deja present');
-		}else{
-			tableau.push(Capsule);
+        $('.good_date').replaceWith('<span id=\"good_date\">Le ' + formated_date + '</span>');
 
-		}
+        var full_date_joined = $('.full_date_joined').text();
+        var short_date_joined = full_date_joined.slice(0,10);
+        var array_date_joined = short_date_joined.split('-');
+        var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+        var nb_month = array_date_joined[1];
+        var month = parseInt(nb_month);
+        // console.log(nb_month);
+        var month_ok = month-1;
+        var formated_date_joined = array_date_joined[2] + ' ' + m_names[month_ok] + ' ' + array_date_joined[0];
+        $('.good_date_joined').replaceWith('<span id=\"good_date_joined\">Membre :  ' + formated_date_joined + '</span>');
+    </script>
 
-		var json = { tableau };
 
-	});
-	$('#submit_parcours').click(function(){
-		var json = {tableau}
-		if(tableau.length < 1){
-			alert('vous ne pouvez pas créer de parcours sans aucun article')
-		}else{
-			console.log(json)
-			$.ajax({
-				method:'POST',
-				url: '../create_parkour/',
-				data: json ,
-				dataType: 'json',
-				success: function (data) {
-					alert("Parcours créer avec succès")
-					window.location.reload(true);
-				}
-			});
-		}
-	});
-
-	//2019-02-05T23:22:01.714652+01:00
-	var full_date = $('.full_date').text();
-	var short_date = full_date.slice(0,10);
-	var array_date = short_date.split('-');
-	var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
-	var nb_month = array_date[1];
-	var month = parseInt(nb_month);
-	// console.log(nb_month);
-	var month_ok = month-1;
-	console.log(m_names[month_ok]);
-	var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
-	// console.log(full_date);
-	// console.log(short_date);
-	// console.log(array_date);
-	// console.log(formated_date);
-
-	$('.good_date').replaceWith('<span class=\"good_date mt-1 text-muted\" style=\"font-size: xx-small\">du ' + formated_date + '</span>');
-</script>
 {% endblock %}

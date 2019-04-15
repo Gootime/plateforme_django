@@ -75,8 +75,8 @@
                     <div class="header-top-account">
                         <a href="{% url 'signUp' %}" class="signup"><i class="fas fa-edit"></i> Je participe</a>
                         {% if request.session.token %}
-                          <li><a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
-                          <li><a class="nav-link" href="{% url 'logOut' %}">Se déconnecter</a></li>
+                          <!-- <li><a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li> -->
+                          <a class="login" href="{% url 'logOut' %}">Se déconnecter</a>
                         {% endif %}
                         {% if not request.session.token %}
                           <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
@@ -155,6 +155,11 @@
                                                     <!--<li class="menu-item"><a href="contact3.html">Contact 3</a></li>-->
                                                 <!--</ul>-->
                                             </li>
+                                            {% if request.session.token %}
+                                            <li class="menu-item">
+                                                <a href="{% url 'profil' request.session.me.id %}"><i class="fas fa-user"></i>&nbsp;{{request.session.me.username}}</a>
+                                            </li>
+                                            {% endif %}
                                     </ul>
                                 </div>
                             </nav>
@@ -275,6 +280,11 @@
                                         <!--<li class="menu-item"><a href="contact3.html">Contact 3</a></li>-->
                                     <!--</ul>-->
                                 </li>
+                                {% if request.session.token %}
+                                <li class="menu-item">
+                                    <a href="{% url 'profil' request.session.me.id %}"><i class="fas fa-user"></i>&nbsp;{{request.session.me.username}}</a>
+                                </li>
+                                {% endif %}
                         </ul>
                     </div>
                 </nav>
@@ -289,10 +299,14 @@
                             <a href="{% url 'FAQ' %}" class="telephone"><span><i class="far fa-question-circle"></i></span>FAQ</a>
                         </div>
                         <div class="header-top-account">
+                            <a href="{% url 'signUp' %}" class="signup"><i class="fas fa-edit"></i> Je participe</a>
+                            {% if request.session.token %}
+                              <!-- <li><a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li> -->
+                              <a class="login" href="{% url 'logOut' %}">Se déconnecter</a>
+                            {% endif %}
                             {% if not request.session.token %}
-                                   <a href="{% url 'signUp' %}" class="login"><i class="fas fa-edit"></i> Je participe</a>
-					                         <a class="login" href="{% url 'logIn' %}" role="button"><i class="fas fa-user"></i> Je me connecte</a>
-				                    {% endif %}
+                              <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

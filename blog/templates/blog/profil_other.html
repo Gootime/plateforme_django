@@ -99,39 +99,36 @@
                                   <h2>{{user.first_name}} {{user.last_name}}</h2>
                                 </div>
 								<ul>
-                                    <li><a href="#"><i class="la la-user"></i>{{user.username}}</a></li>
-                                    <li><a href="#"><i class="la la-map-marker"></i>{{city}}</a></li>
-                                    <li><a href="#"><i class="la la-calendar-check-o"></i>
-                                      <span class="full_date_joined" style="display: none;">{{user.date_joined}}</span>
-                                      <span class="good_date_joined"></span></a>
-                                    </li>
-                                    <li><a href="#"><i class="la la-file-text-o"></i>A Reflechir</a></li>
-                                    <li><a href="#"><i class="la la-list-ul"></i>{{count_post}} post(s)</a></li>
-                                </ul>
+                  <li><a href="#"><i class="la la-user"></i>{{user.username}}</a></li>
+                  <li><a href="#"><i class="la la-map-marker"></i>{{city}}</a></li>
+                  <li><a href="#"><i class="la la-calendar-check-o"></i>
+                    <span class="full_date_joined" style="display: none;">{{user.date_joined}}</span>
+                    <span class="good_date_joined"></span></a>
+                  </li>
+                  <li><a href="#"><i class="la la-file-text-o"></i>A Reflechir</a></li>
+                  <li><a href="#"><i class="la la-list-ul"></i>{{count_post}} post(s)</a></li>
+                </ul>
 
 							</div>
-                             <div class="widget_lastest_entries">
-                                        <div class="widget-title">
-                                          <h2>Ses parcours</h2>
-                                          <p class="mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                                        </div>
-                                        <ul>
-                                          {% for i in Parcours_by_author %}
-                                          <li>
-                                                <figure>
-                                                    <img src="/static/img/parcours.jpg" alt="La Fontaine">
-                                                </figure>
-                                                <div class="info">
-                                                    <h3 class="title">
-                                                        <a href="{% url 'view_collection' i.id %}">Parcours n° {{i.id}}</a>
-                                                    </h3>
-                                                    <span class="price free">{{i.capsules|length}} posts dans ce parcours</span>
-                                                </div>
-                                            </li>
-                                          {% endfor %}
-                                        </ul>
-
-                                    </div>
+              <div class="widget_lastest_entries">
+                <div class="widget-title">
+                    <h2>Ses parcours</h2>
+                <p class="mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                </div>
+                <ul>
+                  {% for i in Parcours_by_author %}
+                    <li>
+                      <figure>
+                        <img src="/static/img/parcours.jpg" alt="La Fontaine">
+                      </figure>
+                      <div class="info">
+                          <h3 class="title"><a href="{% url 'view_collection' i.id %}">Parcours n° {{i.id}}</a></h3>
+                          <span class="price free">{{i.capsules|length}} posts dans ce parcours</span>
+                      </div>
+                    </li>
+                  {% endfor %}
+                  </ul>
+                </div>
 
                             <div class="widget_signupform">
                                 <div class="sign-up-form">
