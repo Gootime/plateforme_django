@@ -279,17 +279,9 @@ def profil(request, id):
     city = full_profile['profile']['city']
     user = full_profile['user']
     get_parcours = full_profile['parcours']
-    paginator = Paginator(Myarticle, 6)
-    page = request.GET.get('page', 1)
-    try:
-        article_page = paginator.page(page)
-    except PageNotAnInteger:
-        article_page = paginator.page(1)
-    except EmptyPage:
-        article_page = paginator.page(paginator.num_pages)
 
     return render(request, 'blog/profil.html', {
-        'Article_by_author': article_page,
+        'Article_by_author': Myarticle,
         'user': user,
         'avatar': avatar,
         'Parcours_by_author': get_parcours,

@@ -2,199 +2,280 @@
 
 {%  block content %}
 {%load static%}
-
+<style>
+    .highlight{
+        background-color: #ff4b5a;
+        border-radius:25px;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        -o-border-radius: 25px;
+        -ms-border-radius: 25px;
+        padding: 0.5vh;
+        color: #fff;
+    }
+</style>
 <main>
-        <!-- Heading Page -->
-        <section class="heading-page">
-            <img src="{% static '' %}img/communaute.jpg" alt="">
-            <div class="container">
-                <div class="heading-page-content">
-                    <div class="au-page-title posts">
-                      <h1>Profil de {{user.first_name}} {{user.last_name}}</h1>
+    <!-- Heading Page -->
+    <section class="heading-page">
+        <img src="{% static '' %}img/communaute.jpg" alt="">
+        <div class="container">
+            <div class="heading-page-content">
+                <div class="au-page-title posts">
+                    <h1>Profil de {{user.first_name}} {{user.last_name}}</h1>
+                </div>
+                <nav aria-label="breadcrumb" class="posts">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Accueil</a></li><li class="breadcrumb-item"><a href="index.php">Découvrir</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{user.username}}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!--	section liste des posts du membre -->
+    <section class="blog blog-sidebar section-padding-large">
+        <div class="container">
+
+            <div class="single-course-content">
+                <!--				    <div class="section-title section-title-left wow slideInLeft" data-wow-delay="0.05s">-->
+                <!--                        <h2>{{user.first_name}} a posté</h2>-->
+                <!--                    </div>-->
+                <div class="row p-4">
+                    <div class="single-course-info">
+                        <div class="course-teacher-cat display-flex text-center">
+                            <div class="teacher-cat">
+                                <ul class="display-flex">
+                                    <li class="display-flex"
+                                        style="border-right: 0.2vw solid rgba(243,131,0,1)" ;>
+                                        <img src="{{ avatar }}" alt="Avatar de {{user.first_name}} {{user.last_name}}">
+                                        <!--                                            <img src="images/papaoumar_mbaye.png" alt="Papaoumar Mbaye">-->
+                                    </li>
+                                    <li>
+                                        <h3>{{user.first_name}} {{user.last_name}}</h3>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'upload' %}" class="au-btn basic au-btn-hover" style="background-color: #62d8b6; border-radius:25px;
+                                            -moz-border-radius: 25px; -webkit-border-radius: 25px; -o-border-radius: 25px; -ms-border-radius: 25px;">Posts</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="au-btn business au-btn-hover"
+                                           id="submit_parcours" style="background-color: #ff4b5a; border-radius:25px; -moz-border-radius: 25px;
+                                           -webkit-border-radius: 25px;
+                                           -o-border-radius: 25px; -ms-border-radius: 25px;">Parcours</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'update_profil' %}" class="au-btn premium au-btn-hover" style="background-color: #8058bd; border-radius:25px;
+                                            -moz-border-radius: 25px; -webkit-border-radius: 25px; -o-border-radius: 25px; -ms-border-radius: 25px;">Profil</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <nav aria-label="breadcrumb" class="posts">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.php">Accueil</a></li><li class="breadcrumb-item"><a href="index.php">Découvrir</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{user.username}}</li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
-        </section>
 
 
-<!--	section liste des posts du membre -->
-    <section class="blog blog-sidebar section-padding-large">
-            <div class="container">
-				<div class="row p-4">
-				  <div class="section-title section-title-left wow slideInLeft" data-wow-delay="0.05s">
-                    <h2>{{user.first_name}} a posté</h2>
-                </div>
-				</div>
-                <div class="row">
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                        <div class="blog-content">
-                            <div class="row">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                            <div class="blog-content">
+                                <div class="row">
 
 
-                                  {% for item in Article_by_author %}
+                                    {% for item in Article_by_author %}
+                                    {{item}}
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <article class="item hover-scale">
-                                      <figure>
-                                          <a href="{% url 'lire' item.id %}">
-                                            {% if item.category == 2 %}
-                                                <video controls id="video" src="{{item.file}}" class="img-fluid w-100"></video>
-                                            {% else %}
-                                                <img class="img-fluid w-100" src="{{item.file}}" alt="{{item.title}}" />
-                                            {% endif %}
-                                          </a>
-                                          <div class="hover-border">
-                                              <a href="single.html">
-                                                  <i class="fas fa-link"></i>
-                                              </a>
-                                          </div>
-                                      </figure>
-                                        <div class="info">
-                                            <h3 class="title">
-                                                <a href="{% url 'lire' item.id %}" title="{{item.title}}">{{item.title |truncatechars:30}}</a>
-                                            </h3>
-                                            <p class="desc">{{item.desc |truncatechars:25}}</p>
-                                            <div class="meta">
-                                              <span class="author"><i class="fas fa-users"></i> {{item.username}}</span>
-                                              <span class="date"><i class="far fa-calendar"></i>
-                                                <span class="full_date" style="display: none;">{{item.date}}</span>
-                                                <span class="good_date"></span>
-                                              </span><br>
-                                                <span class="likes"><i class="fas fa-heart"></i> {{item.like}} j'aime</span>
-                                                <span class="category"><i class="la la-list-ul"></i>Vidéo</span>
+                                        <article class="item hover-scale">
+                                            <figure>
+                                                <a href="{% url 'lire' item.id %}">
+                                                    {% if item.category == 2 %}
+                                                    <video controls id="video" src="{{item.file}}" class="img-fluid w-100"></video>
+                                                    {% else %}
+                                                    <img class="img-fluid w-100" src="{{item.file}}" alt="{{item.title}}" />
+                                                    {% endif %}
+                                                </a>
+                                                <div class="hover-border">
+                                                    <a href="single.html">
+                                                        <i class="fas fa-link"></i>
+                                                    </a>
+                                                </div>
+                                            </figure>
+                                            <div class="info">
+                                                <h3 class="title">
+                                                    <a href="{% url 'lire' item.id %}" title="{{item.title}}">{{item.title |truncatechars:30}}</a>
+                                                </h3>
+                                                <p class="desc">{{item.desc |truncatechars:25}}</p>
+                                                <div class="meta">
+                                                    <span class="author"><i class="fas fa-users"></i> {{item.username}}</span>
+                                                    <span class="date"><i class="far fa-calendar"></i>
+                                                        <span class="full_date" style="display: none;">{{item.date}}</span>
+                                                        <span class="good_date"></span>
+                                                    </span><br>
+                                                    <span class="likes"><i class="fas fa-heart"></i> {{item.like}} j'aime</span>
+                                                    <span class="category"><i class="la la-list-ul"></i>Vidéo</span>
+                                                    <br>
+                                                    <span class="parcours_add"><i class="fas fa-plus-circle"></i>Parcours</span>
+                                                    <input type="hidden" value="{{item.id}}" name="article" class="articleHidden{{item.id}}">
+                                                </div>
                                             </div>
-                                        </div>
-                                    </article>
+                                        </article>
 
                                     </div>
                                     {% empty %}
-                                      <div class="section-title section-title-left wow slideInLeft" data-wow-delay="0.05s">
+                                    <div class="section-title section-title-left wow slideInLeft" data-wow-delay="0.05s">
                                         <h3>Revenez dès que {{user.username}} aura posté ! </h3>
-                                      </div>
+                                    </div>
                                     {% endfor %}
 
-
-
-
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                        <div class="right-sidebar">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                            <div class="right-sidebar">
 
-							<div class="widget_product_categories">
+                                <div class="widget_product_categories">
 
-								<div class="item-thumb">
-                                    <a href="single-course.html">
-                                        <img src="{{avatar}}" alt="">
-                                        <span class="overlay"></span>
-                                    </a>
-                                </div>
-								<div class="widget-title mt-2">
-                                  <h2>{{user.first_name}} {{user.last_name}}</h2>
-                                </div>
-								<ul>
-                  <li><a href="#"><i class="la la-user"></i>{{user.username}}</a></li>
-                  <li><a href="#"><i class="la la-map-marker"></i>{{city}}</a></li>
-                  <li><a href="#"><i class="la la-calendar-check-o"></i>
-                    <span class="full_date_joined" style="display: none;">{{user.date_joined}}</span>
-                    <span class="good_date_joined"></span></a>
-                  </li>
-                  <li><a href="#"><i class="la la-file-text-o"></i>A Reflechir</a></li>
-                  <li><a href="#"><i class="la la-list-ul"></i>{{count_post}} post(s)</a></li>
-                </ul>
-
-							</div>
-              <div class="widget_lastest_entries">
-                <div class="widget-title">
-                    <h2>Ses parcours</h2>
-                <p class="mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                </div>
-                <ul>
-                  {% for i in Parcours_by_author %}
-                    <li>
-                      <figure>
-                        <img src="/static/img/parcours.jpg" alt="La Fontaine">
-                      </figure>
-                      <div class="info">
-                          <h3 class="title"><a href="{% url 'view_collection' i.id %}">Parcours n° {{i.id}}</a></h3>
-                          <span class="price free">{{i.capsules|length}} posts dans ce parcours</span>
-                      </div>
-                    </li>
-                  {% endfor %}
-                  </ul>
-                </div>
-
-                            <div class="widget_signupform">
-                                <div class="sign-up-form">
-                                    <div class="form-heading">
-                                        <a href="index.php"><img src="{% static '' %}img/la_plateforme_03.png" alt="La plateforme vidéo du PoleS"></a>
+                                    <div class="item-thumb">
+                                        <a href="single-course.html">
+                                            <img src="{{avatar}}" alt="">
+                                            <span class="overlay"></span>
+                                        </a>
                                     </div>
+                                    <div class="widget-title mt-2">
+                                        <h2>{{user.first_name}} {{user.last_name}}</h2>
+                                    </div>
+                                    <ul>
+                                        <li><a href="#"><i class="la la-user"></i>{{user.username}}</a></li>
+                                        <li><a href="#"><i class="la la-map-marker"></i>{{city}}</a></li>
+                                        <li><a href="#"><i class="la la-calendar-check-o"></i>
+                                            <span class="full_date_joined" style="display: none;">{{user.date_joined}}</span>
+                                            <span class="good_date_joined"></span></a>
+                                        </li>
+                                        <li><a href="#"><i class="la la-file-text-o"></i>A Reflechir</a></li>
+                                        <li><a href="#"><i class="la la-list-ul"></i>{{count_post}} post(s)</a></li>
+                                    </ul>
 
                                 </div>
-                            </div>
+                                <div class="widget_lastest_entries">
+                                    <div class="widget-title">
+                                        <h2>Ses parcours</h2>
+                                        <p class="mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                    </div>
+                                    <ul>
+                                        {% for i in Parcours_by_author %}
+                                        <li>
+                                            <figure>
+                                                <img src="/static/img/parcours.jpg" alt="La Fontaine">
+                                            </figure>
+                                            <div class="info">
+                                                <h3 class="title"><a href="{% url 'view_collection' i.id %}">Parcours n° {{i.id}}</a></h3>
+                                                <span class="price free">{{i.capsules|length}} posts dans ce parcours</span>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
 
+                                <div class="widget_signupform">
+                                    <div class="sign-up-form">
+                                        <div class="form-heading">
+                                            <a href="index.php"><img src="{% static '' %}img/la_plateforme_03.png" alt="La plateforme vidéo du PoleS"></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="pagination">
-              <ul class="page-numbers">
-                {% if Article_by_author.has_previous %}
-                    <li><a href="?page=1"><i class="la la-angle-left"></i></a></li>
-                    <li><a href="?page={{Article_by_author.previous_page_number}}" class="page-numbers"> <i class="la la-angle-left"></i> </a></li>
-                {% endif %}
-                {% for num in Article_by_author.paginator.page_range %}
-                    {% if Article_by_author.number == num %}
+                <div class="pagination">
+                    <ul class="page-numbers">
+                        {% if Article_by_author.has_previous %}
+                        <li><a href="?page=1"><i class="la la-angle-left"></i></a></li>
+                        <li><a href="?page={{Article_by_author.previous_page_number}}" class="page-numbers"> <i class="la la-angle-left"></i> </a></li>
+                        {% endif %}
+                        {% for num in Article_by_author.paginator.page_range %}
+                        {% if Article_by_author.number == num %}
                         <li><span aria-current="page" class="page-numbers current">{{ num }}</span></li>
-                    {% elif num > Article_by_author.number|add:'-3' and num < Article_by_author.number|add:'3' %}
+                        {% elif num > Article_by_author.number|add:'-3' and num < Article_by_author.number|add:'3' %}
                         <li><a href="?page={{ num }}" class="page-numbers">&nbsp;{{ num }}&nbsp;</a></li>
-                    {% endif %}
-                {% endfor %}
-                {% if Article_by_author.has_next %}
-                  <li><a href="?page={{Article_by_author.next_page_number}}" class="page-numbers"> <i class="la la-angle-right"></i> </a></li>
-                  <li><a href="?page={{Article_by_author.paginator.num_pages}}" class="page-numbers"><i class="la la-angle-right"></i> </a></li>
-                {% endif %}
-              </ul>
-            </div>
-        </section>
-    </main>
+                        {% endif %}
+                        {% endfor %}
+                        {% if Article_by_author.has_next %}
+                        <li><a href="?page={{Article_by_author.next_page_number}}" class="page-numbers"> <i class="la la-angle-right"></i> </a></li>
+                        <li><a href="?page={{Article_by_author.paginator.num_pages}}" class="page-numbers"><i class="la la-angle-right"></i> </a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </section>
+</main>
 
-    <script type="text/javascript">
+<script type="text/javascript">
+    //2019-02-05T23:22:01.714652+01:00
+    var full_date = $('.full_date').text();
+    var short_date = full_date.slice(0,10);
+    var array_date = short_date.split('-');
+    var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+    var nb_month = array_date[1];
+    var month = parseInt(nb_month);
+    // console.log(nb_month);
+    var month_ok = month-1;
+    var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
+    // console.log(full_date);
+    // console.log(short_date);
+    // console.log(array_date);
+    // console.log(formated_date);
+    $('.good_date').replaceWith('<span id=\"good_date\">Le ' + formated_date + '</span>');
+    var full_date_joined = $('.full_date_joined').text();
+    var short_date_joined = full_date_joined.slice(0,10);
+    var array_date_joined = short_date_joined.split('-');
+    var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+    var nb_month = array_date_joined[1];
+    var month = parseInt(nb_month);
+    // console.log(nb_month);
+    var month_ok = month-1;
+    var formated_date_joined = array_date_joined[2] + ' ' + m_names[month_ok] + ' ' + array_date_joined[0];
+    $('.good_date_joined').replaceWith('<span id=\"good_date_joined\">Membre :  ' + formated_date_joined + '</span>');
 
-        //2019-02-05T23:22:01.714652+01:00
-        var full_date = $('.full_date').text();
-        var short_date = full_date.slice(0,10);
-        var array_date = short_date.split('-');
-        var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-        var nb_month = array_date[1];
-        var month = parseInt(nb_month);
-        // console.log(nb_month);
-        var month_ok = month-1;
-        var formated_date = array_date[2] + ' ' + m_names[month_ok] + ' ' + array_date[0];
-        // console.log(full_date);
-        // console.log(short_date);
-        // console.log(array_date);
-        // console.log(formated_date);
 
-        $('.good_date').replaceWith('<span id=\"good_date\">Le ' + formated_date + '</span>');
+    // ajout des parcours
+    var tableau = [];
+    var json = {};
+    $('.parcours_add').click(function (Capsule) {
+        var Capsule = $(this).closest("div.meta").find($('input[type="hidden"]')).val();
+        var Valide = $(this).closest("span.parcours_add");
+        Valide.addClass("highlight")
+        if( $.inArray(Capsule , tableau) !== -1 ){
+            alert('Article Deja present');
+        }else{
+            tableau.push(Capsule);
+            console.log(Capsule);
+        }
 
-        var full_date_joined = $('.full_date_joined').text();
-        var short_date_joined = full_date_joined.slice(0,10);
-        var array_date_joined = short_date_joined.split('-');
-        var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-        var nb_month = array_date_joined[1];
-        var month = parseInt(nb_month);
-        // console.log(nb_month);
-        var month_ok = month-1;
-        var formated_date_joined = array_date_joined[2] + ' ' + m_names[month_ok] + ' ' + array_date_joined[0];
-        $('.good_date_joined').replaceWith('<span id=\"good_date_joined\">Membre :  ' + formated_date_joined + '</span>');
-    </script>
+        var json = { tableau };
+
+    });
+    // var json = { tableau };
+    $('#submit_parcours').click(function(){
+
+        if(tableau.length < 1){
+            alert('vous ne pouvez pas créer de parcours sans aucun article')
+        }else{
+
+            $.ajax({
+                method:'POST',
+                url: '{{ url }}/api/playlist/',
+                data: JSON.stringify(tableau) ,
+                headers: {'Authorization': '{{ header }}'},
+                dataType: 'json',
+                complete: function (data) {
+                    window.location.reload(true);
+                }
+            });
+        }
+    });
+</script>
 
 
 {% endblock %}
