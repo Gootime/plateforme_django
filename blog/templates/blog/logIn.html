@@ -8,17 +8,14 @@
             <div class="container">
                 <div class="heading-page-content">
                     <div class="au-page-title connexion">
-                      <h1>{% if request.session.token %}
-    <a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
-{% endif %}
-{% if not request.session.token %}
-  {% if request.session.token %}
-    <a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
-{% endif %}
-{% if not request.session.token %}
-  <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
-{% endif %}
-{% endif %}</h1>
+                      <h1>
+                        {% if request.session.token %}
+                          <a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
+                        {% endif %}
+                    {% if not request.session.token %}
+                      Je me connecte
+                    {% endif %}
+</h1>
                     </div>
                     <nav aria-label="breadcrumb" class="connexion">
                         <ul class="breadcrumb">
@@ -46,23 +43,15 @@
     <a class="nav-link" href="{% url 'profil' request.session.me.id %}"><i class="far fa-user"></i> {{ request.session.me.username }}</a></li>
 {% endif %}
 {% if not request.session.token %}
-  <a href="{% url 'logIn' %}" class="login">Je me connecte</a>
+  Bienvenue
 {% endif %}
 {% endif %}
                                 </h3>
-                                <div class="item">
-                                    <i class="fas fa-home"></i>
-                                    <span class="address-info">VOIR</span>
-                                </div>
-                                <div class="item phone-item">
-                                    <i class="fas fa-mobile-alt"></i>
-                                    <span class="contact-phone">VOIR</span>
-                                </div>
-                                <div class="item">
-                                    <i class="far fa-clock"></i>
-                                    <div class="time-info">
-                                        <span>VOIR</span>
-                                        <span>Voir</span>
+                                <div class="widget_signupform">
+                                    <div class="sign-up-form">
+                                        <div class="form-heading">
+                                            <a href="{% url 'home' %}"><img src="{% static '' %}img/la_plateforme_03.png" alt="La plateforme vidéo du PoleS"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

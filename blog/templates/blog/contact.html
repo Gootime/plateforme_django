@@ -4,7 +4,7 @@
 <main>
        <!-- Heading Page -->
        <section class="heading-page">
-           <img src="{% static '' %}img/bloggrid-heading-bg.jpg" alt="">
+           <img src="{% static '' %}img/contact_bandeau_new.jpg" alt="">
            <div class="container">
                <div class="heading-page-content">
                    <div class="au-page-title">
@@ -63,26 +63,46 @@
        </section>
 
        <!-- Contact us -->
-       <section class="contact-us contact-us-two">
+       <section class="gallery">
            <div class="container-fluid">
-               <div class="contact-us-content">
+               <div class="gallery-content gallery-hover">
                    <div class="row">
-                       <div class="col-xl-6 col-lg-6 col-md-12-col-sm-12 col-12 px-0">
-                           <div class="contact-form">
-                               <h3 class="contact-title">
-                                   Restez en contact
-                               </h3>
-                               <form method="POST" action="{% url 'contact' %}" class="form-contact js-contact-form">
-                                  {{form.as_p}}
-                                  <input type="submit" value="Submit">
-                               </form>
-                           </div>
+                       <div class="col px-0">
+                           <figure>
+                               <a href="{% static ''%}img/carre_damien_santo.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                   <img src="{% static ''%}img/carre_damien_santo.jpg" alt="">
+                               </a>
+                           </figure>
                        </div>
-                       <div class="col-xl-6 col-lg-6 col-md-12-col-sm-12 col-12 px-0">
-                           <div class="map-wrapper js-google-map" data-makericon="{% static '' %}img/icon/icon-map-blue.png" data-makers='[["Smartedu", "Now that you visited our website,<br> how about checking out our office too?", 40.717209, -74.005165]]'>
-                               <div class="map__holder js-map-holder" id="map"></div>
-                           </div>
+                       <div class="col px-0">
+                           <figure>
+                               <a href="{% static ''%}img/utilisateur.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                   <img src="{% static ''%}img/utilisateur.jpg" alt="">
+                               </a>
+                           </figure>
                        </div>
+          <div class="col px-0">
+                           <figure>
+                               <a href="{% static ''%}img/carre_lesly_poujaud_melot.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                   <img src="{% static ''%}img/carre_lesly_poujaud_melot.jpg" alt="">
+                               </a>
+                           </figure>
+                       </div>
+                       <div class="col px-0">
+                           <figure>
+                               <a href="{% static ''%}img/utilisateur.jpg" class="grouped_gallery" data-fancybox="gallery">
+                                   <img src="{% static ''%}img/utilisateur.jpg" alt="">
+                               </a>
+                           </figure>
+                       </div>
+                       <div class="col px-0">
+                           <figure>
+                               <a href="{% static ''%}img/carre_papaoumar_mbaye.png" class="grouped_gallery" data-fancybox="gallery">
+                                   <img src="{% static ''%}img/carre_papaoumar_mbaye.png" alt="">
+                               </a>
+                           </figure>
+                       </div>
+
                    </div>
                </div>
            </div>
