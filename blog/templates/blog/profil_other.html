@@ -9,10 +9,10 @@
             <img src="{% static '' %}img/communaute.jpg" alt="">
             <div class="container">
                 <div class="heading-page-content">
-                    <div class="au-page-title posts">
+                    <div class="au-page-title communaute">
                       <h1>Profil de {{user.first_name}} {{user.last_name}}</h1>
                     </div>
-                    <nav aria-label="breadcrumb" class="posts">
+                    <nav aria-label="breadcrumb" class="communaute">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.php">Accueil</a></li><li class="breadcrumb-item"><a href="index.php">Découvrir</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{user.username}}</li>
@@ -60,13 +60,25 @@
                                             </h3>
                                             <p class="desc">{{item.desc |truncatechars:25}}</p>
                                             <div class="meta">
-                                              <span class="author"><i class="fas fa-users"></i> {{item.username}}</span>
                                               <span class="date"><i class="far fa-calendar"></i>
                                                 <span class="full_date" style="display: none;">{{item.date}}</span>
                                                 <span class="good_date"></span>
-                                              </span><br>
-                                                <span class="likes"><i class="fas fa-heart"></i> {{item.like}} j'aime</span>
+                                              </span>
+                                              <span class="likes"><i class="fas fa-heart"></i> {{item.like}} j'aime</span><br>
+                                              <span class="author"><i class="fas fa-users"></i> {{item.username}}</span>
+                                              {% if item.category == 1 %}
+                                                <span class="category"><i class="la la-list-ul"></i>Image</span>
+                                              {% endif %}
+                                              {% if item.category == 2 %}
                                                 <span class="category"><i class="la la-list-ul"></i>Vidéo</span>
+                                              {% endif %}
+                                              {% if item.category == 3 %}
+                                                <span class="category"><i class="la la-list-ul"></i>Son</span>
+                                              {% endif %}
+                                              {% if item.category == 4 %}
+                                                <span class="category"><i class="la la-list-ul"></i>Récit</span>
+                                              {% endif %}
+
                                             </div>
                                         </div>
                                     </article>

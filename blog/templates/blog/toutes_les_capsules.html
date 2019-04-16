@@ -33,7 +33,7 @@
                                 <h3 class="title">
                                     <a href="{% url 'view_categorie' 2 %}">Vidéos</a>
                                 </h3>
-                                <span class="total-course"><i class="la la-video-camera"></i> {{count_video}}</span>
+                                <a href="{% url 'view_categorie' 2 %}"><span class="total-course"><i class="la la-video-camera"></i> {{count_video}}</span></a>
                             </div>
                         </figure>
                     </article>
@@ -47,7 +47,7 @@
                                             <h3 class="title">
                                                 <a href="{% url 'view_categorie' 1 %}">Images</a>
                                             </h3>
-                                            <span class="total-course"><i class="la la-photo"></i> {{count_image}}</span>
+                                            <a href="{% url 'view_categorie' 1 %}"><span class="total-course"><i class="la la-photo"></i> {{count_image}}</span></a>
                                         </div>
                                     </figure>
                                 </article>
@@ -58,7 +58,7 @@
                                             <h3 class="title">
                                                 <a href="{% url 'view_categorie' 3 %}">Sons</a>
                                             </h3>
-                                            <span class="total-course"><i class="la la-volume-up"></i> {{count_son}}</span>
+                                            <a href="{% url 'view_categorie' 3 %}"><span class="total-course"><i class="la la-volume-up"></i> {{count_son}}</span></a>
                                         </div>
                                     </figure>
                                 </article>
@@ -71,7 +71,7 @@
                                             <h3 class="title">
                                                 <a href="{% url 'view_categorie' 4 %}">Récits</a>
                                             </h3>
-                                            <span class="total-course"><i class="la la-file-text-o"></i> {{count_text}}</span>
+                                            <a href="{% url 'view_categorie' 4 %}"><span class="total-course"><i class="la la-file-text-o"></i> {{count_text}}</span></a>
                                         </div>
                                     </figure>
                                 </article>
@@ -80,9 +80,9 @@
                                         <a href="courses.html"><img src="{% static '' %}img/tous_les_posts.jpg" alt=""></a>
                                         <div class="info">
                                             <h3 class="title">
-                                                <a href="courses.html">Tous les posts</a>
+                                                <a href="#">Tous les posts</a>
                                             </h3>
-                                            <span class="total-course"><i class="la la-list-ul"></i> {{count_post}}</span>
+                                            <a href="#"><span class="total-course"><i class="la la-list-ul"></i> {{count_post}}</span></a>
                                         </div>
                                     </figure>
                                 </article>
