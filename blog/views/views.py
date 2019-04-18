@@ -533,9 +533,9 @@ def QSN(request):
     return render(request,'blog/qsn.html',locals())
 
 def a_propos(request):
-    pritn('Hello World')
+    print('Hello World')
     return render(request,'blog/a_propos.html',locals())
 
 def app(request):
-    pritn('Hello World')
+    print('Hello World')
     return render(request,'blog/app.html',locals())
