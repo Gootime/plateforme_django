@@ -65,7 +65,7 @@
                                                 <span class="good_date"></span>
                                               </span>
                                               <span class="likes"><i class="fas fa-heart"></i> {{item.like}} j'aime</span><br>
-                                              <span class="author"><i class="fas fa-users"></i> {{item.username}}</span>
+                                              <span class="author"><i class="fas fa-user"></i> {{item.username}}</span>
                                               {% if item.category == 1 %}
                                                 <span class="category"><i class="la la-list-ul"></i>Image</span>
                                               {% endif %}
@@ -117,7 +117,7 @@
                     <span class="full_date_joined" style="display: none;">{{user.date_joined}}</span>
                     <span class="good_date_joined"></span></a>
                   </li>
-                  <li><a href="#"><i class="la la-file-text-o"></i>A Reflechir</a></li>
+                  <li><a href="#"><i class="la la-file-text-o"></i>A réflechir</a></li>
                   <li><a href="#"><i class="la la-list-ul"></i>{{count_post}} post(s)</a></li>
                 </ul>
 
@@ -183,7 +183,7 @@
         var full_date = $('.full_date').text();
         var short_date = full_date.slice(0,10);
         var array_date = short_date.split('-');
-        var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+        var m_names = new Array("janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc.");
         var nb_month = array_date[1];
         var month = parseInt(nb_month);
         // console.log(nb_month);
@@ -199,7 +199,7 @@
         var full_date_joined = $('.full_date_joined').text();
         var short_date_joined = full_date_joined.slice(0,10);
         var array_date_joined = short_date_joined.split('-');
-        var m_names = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+        var m_names = new Array("janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc.");
         var nb_month = array_date_joined[1];
         var month = parseInt(nb_month);
         // console.log(nb_month);

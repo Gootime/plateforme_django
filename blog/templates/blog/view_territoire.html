@@ -77,7 +77,7 @@
                                             </p>
 
                                             <div class="meta">
-                                              <span class="author"><i class="fas fa-users"></i> {{item.username}}</span>
+                                              <span class="author"><i class="fas fa-user"></i> {{item.username}}</span>
                                               <span class="date"><i class="far fa-calendar"></i>
                                                 <span class="full_date" style="display: none;">{{item.date}}</span>
                                                 <span class="good_date"></span>
@@ -108,7 +108,7 @@
                                   var full_date = $('.full_date').text();
                                   var short_date = full_date.slice(0,10);
                                   var array_date = short_date.split('-');
-                                  var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
+                                  var m_names = new Array("janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc.");
                                   var nb_month = array_date[1];
                                   var month = parseInt(nb_month);
                                   // console.log(nb_month);
@@ -139,7 +139,7 @@
                                     {% for item in categories%}
 
                                         {% if item == 1 %}
-                                            <option value="{{item}}" data-filter-value=".{{item}}">Image</option>
+                                        <option value="{{item}}" data-filter-value=".{{item}}">Image</option>
                                         {% endif %}
                                         {% if item == 2 %}
                                         <option value="{{item}}" data-filter-value=".{{item}}">Vidéo</option>
@@ -234,7 +234,7 @@
 	var full_date = $('.full_date').text();
 	var short_date = full_date.slice(0,10);
 	var array_date = short_date.split('-');
-	var m_names = new Array("Jan.", "Fév.", "Mar.", "Avr.", "Mai", "Jui.", "Juil.", "Aoû.", "Sept.", "Oct.", "Nov.", "Déc.");
+	var m_names = new Array("janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc.");
 	var nb_month = array_date[1];
 	var month = parseInt(nb_month);
 	// console.log(nb_month);
