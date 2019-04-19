@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gallery Mansory</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="vendor/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/font-awesome-5/css/fontawesome-all.min.css">
+
+    <!-- Revolution slider -->
+    <link rel="stylesheet" href="vendor/revolution/settings.css">
+    <link rel="stylesheet" href="vendor/revolution/layers.css">
+    <link rel="stylesheet" href="vendor/revolution/navigation.css">
+    <link rel="stylesheet" href="vendor/revolution/settings-source.css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="vendor/css-hamburgers/dist/hamburgers.min.css">
+    <link rel="stylesheet" href="vendor/slick/slick-theme.css">
+    <link rel="stylesheet" href="vendor/slick/slick.css">
+    <link rel="stylesheet" href="vendor/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="vendor/fullcalendar/fullcalendar.css" />
+    <link rel="stylesheet" href="vendor/animate/animate.css" />
+
+    <!-- Main CSS File -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.png">
+</head>
+
+<body>
+    <!-- page load-->
+    <div class="images-preloader">
+	    <div id="preloader_1 spinner1" class="spinner1 rectangle-bounce">
+	    	<div class="double-bounce1"></div>
+	    	<div class="double-bounce2"></div>
+	    </div>
+	</div>
+
+    <!-- Header page -->
+    <header class="header">
+        <div class="header-top hidden-tablet-landscape">
+            <div class="container">
+                <div class="header-top-content display-flex">
+                    <div class="header-top-info">
+                        <div class="header-socials">
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                        <a href="mailto:info@smartedu.com" class="email"><i class="far fa-envelope"></i>info@smartedu.com</a>
+                        <a href="#" class="telephone"><i class="fas fa-mobile-alt"></i>+1 222-333-9999</a>
+                    </div>
+                    <div class="header-top-account">
+                        <a href="#" class="signup"><i class="fas fa-edit"></i>Sign Up</a>
+                        <a href="#" class="login">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom hidden-tablet-landscape" id="js-navbar-fixed">
+            <div class="container">
+                <div class="header-bottom">
+                    <div class="header-bottom-content display-flex">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="images/logo.png" alt="SmartEdu">
+                            </a>
+                        </div>
+                        <div class="menu-search display-flex">
+                            <nav class="menu">
+                                <div>
+                                    <ul class="menu-primary">
+                                        <li class="menu-item">
+                                            <a href="index.html">Home</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item"><a href="index.html">Home 1</a></li>
+                                                <li class="menu-item"><a href="index2.html">Home 2</a></li>
+                                                <li class="menu-item"><a href="index3.html">Home 3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="courses.html">Courses</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item">
+                                                    <a href="courses.html">Courses</a>
+                                                    <ul class="sub-menu">
+                                                        <li class="menu-item"><a href="single-course.html">Course Detail</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="menu-item"><a href="standardlist.html">Standard List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item curent-menu-item">
+                                            <a href="#">Pages</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item"><a href="aboutus.html">About us</a></li>
+                                                <li class="menu-item"><a href="gallery1.html">Gallery 1</a></li>
+                                                <li class="menu-item"><a href="gallery2.html">Gallery 2</a></li>
+                                                <li class="menu-item"><a href="404.html">404</a></li>
+                                                <li class="menu-item"><a href="pricing.html">Pricing Table</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="events.html">Events</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item"><a href="events.html">Events</a>
+                                                    <ul class="sub-menu">
+                                                        <li class="menu-item"><a href="single-event.html">Event Detail</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="blog1.html">News</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item"><a href="blog1.html">Blog 1</a>
+                                                    <ul class="sub-menu">
+                                                        <li class="menu-item"><a href="single.html">Blog detail</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="menu-item"><a href="blog2.html">Blog 2</a></li>
+                                                <li class="menu-item"><a href="blog3.html">Blog 3</a>
+                                            </ul>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="contact1.html">Contact</a>
+                                                <ul class="sub-menu">
+                                                    <li class="menu-item"><a href="contact1.html">Contact 1</a></li>
+                                                    <li class="menu-item"><a href="contact2.html">Contact 2</a></li>
+                                                    <li class="menu-item"><a href="contact3.html">Contact 3</a></li>
+                                                </ul>
+                                            </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <div class="search-box">
+                                <form method="POST">
+                                    <input type="text" placeholder="Search..." id="search-box" name="s" value="">
+                                    <div class="search-icon display-flex-center">
+                                        <i class="la la-search"></i>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-tablet-landscape-up header-mobile">
+            <div class="header-top-mobile">
+                <div class="container-fluid">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="images/logo.png" alt="SmartEdu" />
+                        </a>
+                    </div>
+                    <div class="search-box">
+                        <form method="POST">
+                            <input type="text" placeholder="Search..." name="s" value="">
+                            <div class="search-icon font-color-white display-flex-center">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </div>
+                        </form>
+                    </div>
+                    <button class="hamburger hamburger--spin hidden-tablet-landscape-up" id="toggle-icon">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="au-nav-mobile">
+                <nav class="menu-mobile">
+                    <div>
+                        <ul class="au-navbar-menu">
+                            <li class="menu-item">
+                                <a href="index.html">Home</a>
+                                <span class="arrow">
+                                    <i></i>
+                                </span>
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="index.html">Home 1</a></li>
+                                    <li class="menu-item"><a href="index2.html">Home 2</a></li>
+                                    <li class="menu-item"><a href="index3.html">Home 3</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item">
+                                <a href="courses.html">Courses</a>
+                                <span class="arrow">
+                                    <i></i>
+                                </span>
+                                <ul class="sub-menu">
+                                    <li class="menu-item">
+                                        <a href="courses.html">Courses</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item"><a href="single-course.html">Course Detail</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item"><a href="standardlist.html">Standard List</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item curent-menu-item">
+                                <a href="#">Pages</a>
+                                <span class="arrow">
+                                    <i></i>
+                                </span>
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="aboutus.html">About us 1</a></li>
+                                    <li class="menu-item"><a href="gallery1.html">Gallery 1</a></li>
+                                    <li class="menu-item"><a href="gallery2.html">Gallery 2</a></li>
+                                    <li class="menu-item"><a href="404.html">404</a></li>
+                                    <li class="menu-item"><a href="pricing.html">Pricing Table</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item">
+                                <a href="events.html">Events</a>
+                                <span class="arrow">
+                                    <i></i>
+                                </span>
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="events.html">Events</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item"><a href="single-event.html">Event Detail</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item">
+                                <a href="blog1.html">News</a>
+                                <span class="arrow">
+                                    <i></i>
+                                </span>
+                                <ul class="sub-menu">
+                                    <li class="menu-item"><a href="blog1.html">Blog 1</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item"><a href="single.html">Blog detail</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item"><a href="blog2.html">Blog 2</a></li>
+                                    <li class="menu-item"><a href="blog3.html">Blog 3</a>
+                                </ul>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="contact1.html">Contact</a>
+                                    <span class="arrow">
+                                    <i></i>
+                                </span>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="contact1.html">Contact 1</a></li>
+                                        <li class="menu-item"><a href="contact2.html">Contact 2</a></li>
+                                        <li class="menu-item"><a href="contact3.html">Contact 3</a></li>
+                                    </ul>
+                                </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- <div class="clear"></div> -->
+            <div class="header-top">
+                <div class="container-fluid">
+                    <div class="header-top-content display-flex">
+                        <div class="header-top-info">
+                            <a href="tel:04445552222" class="telephone"><span><i class="fas fa-mobile-alt"></i></span> +1 444-555-2222</a>
+                            <a href="mailto:info@smartedu.com" class="email"><span><i class="far fa-envelope"></i></span> info@smartedu.com</a>
+                        </div>
+                        <div class="header-top-account">
+                            <a href="#" class="login"><i class="fas fa-user"></i>Login</a>
+                            <a href="#" class="signup"><i class="fas fa-edit"></i>Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Heading Page -->
+        <section class="heading-page">
+            <img src="images/bloggrid-heading-bg.jpg" alt="">
+            <div class="container">
+                <div class="heading-page-content">
+                    <div class="au-page-title">
+                        <h1>Gallery</h1>
+                    </div>
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section class="gallery-mansory section-padding-large">
+            <div class="container">
+                <div class="gallery-mansory-content gallery-hover">
+                    <div class="grid-sizer">
+                    </div>
+                    <div class="gallery-item">
+                        <figure>
+                            <a href="images/gallery-mansory-1.jpg" class="group-mansory" data-fancybox="gallery">
+                                <img src="images/gallery-mansory-1.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="gallery-item">
+                        <figure>
+                            <a href="images/gallery-mansory-2.jpg" class="group-mansory" data-fancybox="gallery">
+                                <img src="images/gallery-mansory-2.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="gallery-item">
+                        <figure>
+                            <a href="images/gallery-mansory-3.jpg" class="group-mansory" data-fancybox="gallery">
+                                <img src="images/gallery-mansory-3.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="gallery-item">
+                        <figure>
+                            <a href="images/gallery-mansory-4.jpg" class="group-mansory" data-fancybox="gallery">
+                                <img src="images/gallery-mansory-4.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="gallery-item">
+                        <figure>
+                            <a href="images/gallery-mansory-5.jpg" class="group-mansory" data-fancybox="gallery">
+                                <img src="images/gallery-mansory-5.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="gallery-item">
+                        <figure>
+                            <a href="images/gallery-mansory-6.jpg" class="group-mansory" data-fancybox="gallery">
+                                <img src="images/gallery-mansory-6.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="gallery-item">
+                        <figure>
+                            <a href="images/gallery-mansory-7.jpg" class="group-mansory" data-fancybox="gallery">
+                                <img src="images/gallery-mansory-7.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer page -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-top-content">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-info">
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="images/logo-white.png" alt="SmartEdu"></a>
+                            </div>
+                            <p class="footer-intro">
+                                Proin libero nunc conseq interdum varius sit amet. Metus ali elei mi in nulla posuere. Tortor preti viverra suspendisse potenti nul ac.
+                            </p>
+                            <div class="socials">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-menu">
+                            <div class="footer-title">
+                                <h4>Link Useful</h4>
+                            </div>
+                            <div class="footer-link-menu">
+                                <ul>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Courses</a></li>
+                                    <li><a href=""><i class="la la-angle-right"></i>Teacher</a></li>
+                                    <li><a href=""><i class="la la-angle-right"></i>Graduation</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>International</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Support</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#"><i class="la la-angle-right"></i>About Us</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Partner</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Blog Post</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Events</a></li>
+                                    <li><a href="#"><i class="la la-angle-right"></i>Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-gallery">
+                            <div class="footer-title">
+                                <h4>Gallery</h4>
+                            </div>
+                            <div class="footer-gallery-content">
+                                <figure>
+                                    <a href="images/footer-gallery-1.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="images/footer-gallery-1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="images/footer-gallery-2.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="images/footer-gallery-2.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="images/footer-gallery-3.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="images/footer-gallery-3.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="images/footer-gallery-4.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="images/footer-gallery-4.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="images/footer-gallery-5.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="images/footer-gallery-5.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <figure>
+                                    <a href="images/footer-gallery-6.jpg" class="grouped_elements" data-fancybox="gallery">
+                                        <img src="images/footer-gallery-6.jpg" alt="">
+                                    </a>
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 footer-contact">
+                            <div class="footer-title">
+                                <h4>Infomation</h4>
+                            </div>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>SmartEdu, 20th St, New York, NY 10003</span>
+                                </li>
+                                <li class="footer-phone">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>+1 333-444-5555</span>
+                                </li>
+                                <li class="footer-fax">
+                                    <i class="fas fa-fax"></i>
+                                    <span>+1 333-444-5555</span>
+                                </li>
+                                <li>
+                                    <i class="far fa-envelope"></i>
+                                    <span>info@smartedu.com</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">Copyright @ 2019 <span>SmartEdu</span>. <a class="au-btn-buy" href="https://themeforest.net/cart/add_items?item_ids=23218895">Get The Template</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <div id="back-to-top">
+        <i class="fa fa-angle-up"></i>
+    </div>
+
+    <!-- JS -->
+
+    <!-- Jquery and Boostrap library -->
+    <script src="vendor/bootstrap/js/popper.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Other js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEmXgQ65zpsjsEAfNPP9mBAz-5zjnIZBw"></script>
+    <script src="js/theme-map.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.js"></script>
+    <script src="js/isotope-docs.min.js"></script>
+
+    <!-- Vendor JS -->
+    <script src="vendor/slick/slick.min.js"></script>
+    <script src='vendor/jquery-ui/jquery-ui.min.js'></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="vendor/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script src='vendor/fullcalendar/lib/moment.min.js'></script>
+    <script src='vendor/fullcalendar/fullcalendar.min.js'></script>
+    <script src='vendor/wow/dist/wow.min.js'></script>
+
+    <!-- REVOLUTION JS FILES -->
+    <script src="vendor/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="vendor/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- Form JS -->
+    <script src="js/validate-form.js"></script>
+    <script src="js/config-contact.js"></script>
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script> 
+</body>
+
+</html>

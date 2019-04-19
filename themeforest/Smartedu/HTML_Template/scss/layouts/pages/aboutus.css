@@ -1,0 +1,16 @@
+/* 12. About us Page  ------------------------------------------*/
+.aboutus-skillls {
+  margin-top: -7px; }
+  .aboutus-skillls .our-skillls-content {
+    padding-top: 0px; }
+    .aboutus-skillls .our-skillls-content .list-skills {
+      padding-top: 0px; }
+      .aboutus-skillls .our-skillls-content .list-skills .title {
+        padding-bottom: 20px; }
+      .aboutus-skillls .our-skillls-content .list-skills .desc {
+        font-size: 18px;
+        padding-right: 65px; }
+    .aboutus-skillls .our-skillls-content .skills {
+      margin-top: 40px; }
+      .aboutus-skillls .our-skillls-content .skills .progress-box:last-child {
+        padding-bottom: 0px; }
